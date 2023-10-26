@@ -49,6 +49,7 @@
             lower_lbl1 = new Label();
             delete_btn = new Button();
             dataGridView1 = new DataGridView();
+            home_btn2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -199,7 +200,7 @@
             // upper_lbl1
             // 
             upper_lbl1.AutoSize = true;
-            upper_lbl1.Location = new Point(140, 146);
+            upper_lbl1.Location = new Point(158, 146);
             upper_lbl1.Name = "upper_lbl1";
             upper_lbl1.Size = new Size(82, 17);
             upper_lbl1.TabIndex = 18;
@@ -208,11 +209,12 @@
             // lower_lbl1
             // 
             lower_lbl1.AutoSize = true;
-            lower_lbl1.Location = new Point(140, 179);
+            lower_lbl1.Location = new Point(158, 179);
             lower_lbl1.Name = "lower_lbl1";
             lower_lbl1.Size = new Size(82, 17);
             lower_lbl1.TabIndex = 19;
             lower_lbl1.Text = "Lower Limit";
+            lower_lbl1.Click += lower_lbl1_Click;
             // 
             // delete_btn
             // 
@@ -234,12 +236,23 @@
             dataGridView1.Size = new Size(265, 230);
             dataGridView1.TabIndex = 21;
             // 
+            // home_btn2
+            // 
+            home_btn2.Location = new Point(488, 313);
+            home_btn2.Name = "home_btn2";
+            home_btn2.Size = new Size(78, 33);
+            home_btn2.TabIndex = 22;
+            home_btn2.Text = "Home";
+            home_btn2.UseVisualStyleBackColor = true;
+            home_btn2.Click += home_btn2_Click;
+            // 
             // View
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(686, 390);
+            Controls.Add(home_btn2);
             Controls.Add(dataGridView1);
             Controls.Add(delete_btn);
             Controls.Add(lower_lbl1);
@@ -292,5 +305,6 @@
         private Label lower_lbl1;
         private Button delete_btn;
         private DataGridView dataGridView1;
+        private Button home_btn2;
     }
 }

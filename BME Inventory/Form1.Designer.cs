@@ -46,6 +46,7 @@
             view_btn = new Button();
             fileSystemWatcher1 = new FileSystemWatcher();
             load_btn = new Button();
+            home_btn1 = new Button();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
@@ -206,12 +207,23 @@
             load_btn.UseVisualStyleBackColor = true;
             load_btn.Click += load_btn_Click;
             // 
+            // home_btn1
+            // 
+            home_btn1.Location = new Point(437, 188);
+            home_btn1.Name = "home_btn1";
+            home_btn1.Size = new Size(116, 38);
+            home_btn1.TabIndex = 38;
+            home_btn1.Text = "Home";
+            home_btn1.UseVisualStyleBackColor = true;
+            home_btn1.Click += home_btn1_Click;
+            // 
             // Insert
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(686, 413);
+            Controls.Add(home_btn1);
             Controls.Add(load_btn);
             Controls.Add(view_btn);
             Controls.Add(insert_btn);
@@ -259,5 +271,6 @@
         private Button view_btn;
         private FileSystemWatcher fileSystemWatcher1;
         private Button load_btn;
+        private Button home_btn1;
     }
 }

@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BME_Inventory
 {
@@ -113,6 +105,18 @@ namespace BME_Inventory
                 this.Hide();
             }
 
+        }
+
+        private void lower_lbl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void home_btn2_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Hide();
         }
     }
 }

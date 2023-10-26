@@ -184,7 +184,7 @@
             // 
             // load_btn
             // 
-            load_btn.Location = new Point(50, 296);
+            load_btn.Location = new Point(74, 296);
             load_btn.Name = "load_btn";
             load_btn.Size = new Size(94, 40);
             load_btn.TabIndex = 36;
@@ -204,7 +204,7 @@
             // 
             // table_btn2
             // 
-            table_btn2.Location = new Point(292, 294);
+            table_btn2.Location = new Point(283, 294);
             table_btn2.Name = "table_btn2";
             table_btn2.Size = new Size(99, 42);
             table_btn2.TabIndex = 38;
@@ -214,11 +214,11 @@
             // 
             // button1
             // 
-            button1.Location = new Point(397, 294);
+            button1.Location = new Point(388, 294);
             button1.Name = "button1";
             button1.Size = new Size(99, 42);
             button1.TabIndex = 39;
-            button1.Text = "Table";
+            button1.Text = "Distribution";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
