@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace BME_Inventory
 {
-    public partial class Form1 : Form
+    public partial class Insert : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-F8T5T4R\\SQLEXPRESS;Initial Catalog=Hospital;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=ASUS_X512JA\\SQLEXPRESS;Initial Catalog=Hospital;Integrated Security=True");
 
-        public Form1()
+        public Insert()
         {
             InitializeComponent();
         }
@@ -36,6 +36,14 @@ namespace BME_Inventory
             {
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Entry Successfully Updated");
+
+                foreach (Control c in this.Controls)
+                {
+                    if (c is TextBox)
+                    {
+                        c.Text = "";
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -56,10 +64,11 @@ namespace BME_Inventory
             this.Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void load_btn_Click(object sender, EventArgs e)
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM spare_parts WHERE part_id = '" + part_id_txt.Text + "'",con);
-
+            Show_Data show_data = new Show_Data();
+            show_data.Show();
+            this.Hide();
         }
     }
 }
