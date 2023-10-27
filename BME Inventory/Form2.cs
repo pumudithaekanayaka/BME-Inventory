@@ -51,9 +51,12 @@ namespace BME_Inventory
 
         private void back_btn_Click(object sender, EventArgs e)
         {
-            Insert form1 = new Insert();
-            form1.Show();
-            this.Hide();
+            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void update_btn_Click(object sender, EventArgs e)

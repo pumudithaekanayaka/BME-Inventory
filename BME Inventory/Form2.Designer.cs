@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             load_btn = new Button();
-            back_btn = new Button();
+            exit_btn2 = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -63,15 +63,15 @@
             load_btn.UseVisualStyleBackColor = true;
             load_btn.Click += load_btn_Click;
             // 
-            // back_btn
+            // exit_btn2
             // 
-            back_btn.Location = new Point(365, 312);
-            back_btn.Name = "back_btn";
-            back_btn.Size = new Size(99, 36);
-            back_btn.TabIndex = 2;
-            back_btn.Text = "Back";
-            back_btn.UseVisualStyleBackColor = true;
-            back_btn.Click += back_btn_Click;
+            exit_btn2.Location = new Point(365, 312);
+            exit_btn2.Name = "exit_btn2";
+            exit_btn2.Size = new Size(99, 36);
+            exit_btn2.TabIndex = 2;
+            exit_btn2.Text = "Exit";
+            exit_btn2.UseVisualStyleBackColor = true;
+            exit_btn2.Click += back_btn_Click;
             // 
             // label1
             // 
@@ -272,7 +272,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(back_btn);
+            Controls.Add(exit_btn2);
             Controls.Add(load_btn);
             Font = new Font("Berlin Sans FB", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "View";
@@ -285,7 +285,7 @@
 
         #endregion
         private Button load_btn;
-        private Button back_btn;
+        private Button exit_btn2;
         private Label label1;
         private Label label2;
         private Label label3;

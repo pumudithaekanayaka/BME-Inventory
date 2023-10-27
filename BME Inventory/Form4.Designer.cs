@@ -30,7 +30,9 @@
         {
             dataGridView1 = new DataGridView();
             load_btn3 = new Button();
-            mail_btn = new Button();
+            export_btn = new Button();
+            exit_btn4 = new Button();
+            mail_btn4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -54,15 +56,35 @@
             load_btn3.UseVisualStyleBackColor = true;
             load_btn3.Click += load_btn3_Click;
             // 
-            // mail_btn
+            // export_btn
             // 
-            mail_btn.Location = new Point(191, 336);
-            mail_btn.Name = "mail_btn";
-            mail_btn.Size = new Size(93, 38);
-            mail_btn.TabIndex = 2;
-            mail_btn.Text = "E-Mail";
-            mail_btn.UseVisualStyleBackColor = true;
-            mail_btn.Click += mail_btn_Click;
+            export_btn.Location = new Point(191, 336);
+            export_btn.Name = "export_btn";
+            export_btn.Size = new Size(93, 38);
+            export_btn.TabIndex = 2;
+            export_btn.Text = "Export";
+            export_btn.UseVisualStyleBackColor = true;
+            export_btn.Click += mail_btn_Click;
+            // 
+            // exit_btn4
+            // 
+            exit_btn4.Location = new Point(302, 336);
+            exit_btn4.Name = "exit_btn4";
+            exit_btn4.Size = new Size(93, 38);
+            exit_btn4.TabIndex = 3;
+            exit_btn4.Text = "Exit";
+            exit_btn4.UseVisualStyleBackColor = true;
+            exit_btn4.Click += exit_btn4_Click;
+            // 
+            // mail_btn4
+            // 
+            mail_btn4.Location = new Point(191, 391);
+            mail_btn4.Name = "mail_btn4";
+            mail_btn4.Size = new Size(93, 38);
+            mail_btn4.TabIndex = 4;
+            mail_btn4.Text = "Mail";
+            mail_btn4.UseVisualStyleBackColor = true;
+            mail_btn4.Click += mail_btn4_Click;
             // 
             // Table
             // 
@@ -70,7 +92,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(1082, 630);
-            Controls.Add(mail_btn);
+            Controls.Add(mail_btn4);
+            Controls.Add(exit_btn4);
+            Controls.Add(export_btn);
             Controls.Add(load_btn3);
             Controls.Add(dataGridView1);
             Font = new Font("Candara", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -85,6 +109,8 @@
 
         private DataGridView dataGridView1;
         private Button load_btn3;
-        private Button mail_btn;
+        private Button export_btn;
+        private Button exit_btn4;
+        private Button mail_btn4;
     }
 }

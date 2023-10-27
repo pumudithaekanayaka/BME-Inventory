@@ -32,8 +32,12 @@
             add_btn = new Button();
             edit_btn = new Button();
             groupBox1 = new GroupBox();
+            exit_btn6 = new Button();
             label1 = new Label();
             table_btn6 = new Button();
+            connect_btn6 = new Button();
+            database_txt6 = new TextBox();
+            table_txt6 = new TextBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,15 +73,26 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(exit_btn6);
             groupBox1.Controls.Add(edit_btn);
             groupBox1.Controls.Add(add_btn);
             groupBox1.Controls.Add(distribute_btn);
             groupBox1.Location = new Point(14, 571);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(724, 95);
+            groupBox1.Size = new Size(898, 95);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "Navigation";
+            // 
+            // exit_btn6
+            // 
+            exit_btn6.Location = new Point(717, 26);
+            exit_btn6.Name = "exit_btn6";
+            exit_btn6.Size = new Size(171, 58);
+            exit_btn6.TabIndex = 5;
+            exit_btn6.Text = "Exit";
+            exit_btn6.UseVisualStyleBackColor = true;
+            exit_btn6.Click += exit_btn6_Click;
             // 
             // label1
             // 
@@ -99,12 +114,39 @@
             table_btn6.UseVisualStyleBackColor = true;
             table_btn6.Click += table_btn6_Click;
             // 
+            // connect_btn6
+            // 
+            connect_btn6.Location = new Point(731, 487);
+            connect_btn6.Name = "connect_btn6";
+            connect_btn6.Size = new Size(171, 58);
+            connect_btn6.TabIndex = 6;
+            connect_btn6.Text = "Connect";
+            connect_btn6.UseVisualStyleBackColor = true;
+            connect_btn6.Click += connect_btn6_Click;
+            // 
+            // database_txt6
+            // 
+            database_txt6.Location = new Point(632, 311);
+            database_txt6.Name = "database_txt6";
+            database_txt6.Size = new Size(280, 28);
+            database_txt6.TabIndex = 7;
+            // 
+            // table_txt6
+            // 
+            table_txt6.Location = new Point(632, 374);
+            table_txt6.Name = "table_txt6";
+            table_txt6.Size = new Size(280, 28);
+            table_txt6.TabIndex = 8;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(1287, 689);
+            Controls.Add(table_txt6);
+            Controls.Add(database_txt6);
+            Controls.Add(connect_btn6);
             Controls.Add(table_btn6);
             Controls.Add(label1);
             Controls.Add(groupBox1);
@@ -124,5 +166,9 @@
         private GroupBox groupBox1;
         private Label label1;
         private Button table_btn6;
+        private Button exit_btn6;
+        private Button connect_btn6;
+        private TextBox database_txt6;
+        private TextBox table_txt6;
     }
 }
