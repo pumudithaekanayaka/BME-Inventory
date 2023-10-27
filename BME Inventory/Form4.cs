@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 
@@ -42,31 +43,54 @@ namespace BME_Inventory
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();
             adapter.Fill(table);
+
             if (table.Rows.Count > 0)
             {
-                StringBuilder sb = new StringBuilder();
-                foreach (DataRow row in table.Rows)
+                // Export the data to an Excel sheet
+                using (var package = new ExcelPackage())
                 {
-                    foreach (DataColumn col in table.Columns)
+                    var worksheet = package.Workbook.Worksheets.Add("Spare Parts Data");
+
+                    // Add headers
+                    for (int i = 1; i <= table.Columns.Count; i++)
                     {
-                        sb.Append(row[col].ToString() + "\t");
+                        worksheet.Cells[1, i].Value = table.Columns[i - 1].ColumnName;
                     }
-                    sb.Append("\n");
+
+                    // Add data rows
+                    for (int row = 0; row < table.Rows.Count; row++)
+                    {
+                        for (int col = 0; col < table.Columns.Count; col++)
+                        {
+                            worksheet.Cells[row + 2, col + 1].Value = table.Rows[row][col];
+                        }
+                    }
+
+                    // Save the Excel file
+                    var excelBytes = package.GetAsByteArray();
+                    File.WriteAllBytes("SparePartsData.xlsx", excelBytes);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Record not found!");
+            }
 
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+            connection.Close();
+        }
 
-                mail.From = new MailAddress("your_email_address@gmail.com");
-                mail.To.Add("to_address@example.com");
-                mail.Subject = "Spare Parts Data";
-                mail.Body = sb.ToString();
-
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("your_email_address@gmail.com", "your_email_password");
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
+        private void Table_Load(object sender, EventArgs e)
+        {
+            connection.Open();
+            string query = "SELECT * FROM spare_parts";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            if (table.Rows.Count > 0)
+            {
+                dataGridView1.DataSource = table;
+                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
             else
             {

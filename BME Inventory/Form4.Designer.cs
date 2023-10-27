@@ -37,17 +37,18 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(33, 39);
+            dataGridView1.Location = new Point(33, 41);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(621, 246);
+            dataGridView1.Size = new Size(889, 260);
             dataGridView1.TabIndex = 0;
             // 
             // load_btn3
             // 
-            load_btn3.Location = new Point(74, 317);
+            load_btn3.Location = new Point(74, 336);
             load_btn3.Name = "load_btn3";
-            load_btn3.Size = new Size(93, 36);
+            load_btn3.Size = new Size(93, 38);
             load_btn3.TabIndex = 1;
             load_btn3.Text = "Load";
             load_btn3.UseVisualStyleBackColor = true;
@@ -55,9 +56,9 @@
             // 
             // mail_btn
             // 
-            mail_btn.Location = new Point(191, 317);
+            mail_btn.Location = new Point(191, 336);
             mail_btn.Name = "mail_btn";
-            mail_btn.Size = new Size(93, 36);
+            mail_btn.Size = new Size(93, 38);
             mail_btn.TabIndex = 2;
             mail_btn.Text = "E-Mail";
             mail_btn.UseVisualStyleBackColor = true;
@@ -65,16 +66,17 @@
             // 
             // Table
             // 
-            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(686, 390);
+            ClientSize = new Size(1082, 630);
             Controls.Add(mail_btn);
             Controls.Add(load_btn3);
             Controls.Add(dataGridView1);
-            Font = new Font("Berlin Sans FB", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Candara", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "Table";
             Text = "Table";
+            Load += Table_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

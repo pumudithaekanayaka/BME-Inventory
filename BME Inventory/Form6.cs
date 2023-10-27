@@ -37,5 +37,12 @@ namespace BME_Inventory
             insert.Show();
             this.Hide();
         }
+
+        private void table_btn6_Click(object sender, EventArgs e)
+        {
+            Table table = new Table();
+            table.Show();
+            this.Hide();
+        }
     }
 }
