@@ -25,8 +25,7 @@ namespace BME_Inventory
             {
                 con.Open();
 
-                cmd.CommandText = "INSERT INTO spare_parts(part_id, part_name, equip_name, upper, lower, stock, description, make, model) " +
-                    "VALUES(@part_id, @part_name, @equip_name, @upper, @lower, @stock, @description, @make, @model)";
+                cmd.CommandText = "INSERT INTO spare_parts(part_id, part_name, equip_name, upper, lower, stock, description, make, model) " + "VALUES(@part_id, @part_name, @equip_name, @upper, @lower, @stock, @description, @make, @model)";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@part_id", part_id_txt.Text);
                 cmd.Parameters.AddWithValue("@part_name", part_name_txt.Text);
