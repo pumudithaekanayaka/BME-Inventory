@@ -47,6 +47,14 @@
             fileSystemWatcher1 = new FileSystemWatcher();
             load_btn = new Button();
             home_btn1 = new Button();
+            make_combo1 = new ComboBox();
+            model_combo1 = new ComboBox();
+            label8 = new Label();
+            label9 = new Label();
+            make_txt1 = new TextBox();
+            model_txt1 = new TextBox();
+            make_btn1 = new Button();
+            model_btn1 = new Button();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
@@ -171,7 +179,7 @@
             // 
             // insert_btn
             // 
-            insert_btn.Location = new Point(130, 348);
+            insert_btn.Location = new Point(29, 458);
             insert_btn.Margin = new Padding(3, 2, 3, 2);
             insert_btn.Name = "insert_btn";
             insert_btn.Size = new Size(90, 39);
@@ -182,10 +190,10 @@
             // 
             // view_btn
             // 
-            view_btn.Location = new Point(398, 50);
+            view_btn.Location = new Point(125, 463);
             view_btn.Margin = new Padding(3, 2, 3, 2);
             view_btn.Name = "view_btn";
-            view_btn.Size = new Size(117, 34);
+            view_btn.Size = new Size(98, 34);
             view_btn.TabIndex = 15;
             view_btn.Text = "View";
             view_btn.UseVisualStyleBackColor = true;
@@ -198,7 +206,7 @@
             // 
             // load_btn
             // 
-            load_btn.Location = new Point(398, 98);
+            load_btn.Location = new Point(229, 463);
             load_btn.Margin = new Padding(3, 2, 3, 2);
             load_btn.Name = "load_btn";
             load_btn.Size = new Size(94, 39);
@@ -209,7 +217,7 @@
             // 
             // home_btn1
             // 
-            home_btn1.Location = new Point(437, 188);
+            home_btn1.Location = new Point(329, 463);
             home_btn1.Name = "home_btn1";
             home_btn1.Size = new Size(116, 38);
             home_btn1.TabIndex = 38;
@@ -217,12 +225,91 @@
             home_btn1.UseVisualStyleBackColor = true;
             home_btn1.Click += home_btn1_Click;
             // 
+            // make_combo1
+            // 
+            make_combo1.FormattingEnabled = true;
+            make_combo1.Location = new Point(607, 56);
+            make_combo1.Name = "make_combo1";
+            make_combo1.Size = new Size(133, 26);
+            make_combo1.TabIndex = 39;
+            // 
+            // model_combo1
+            // 
+            model_combo1.FormattingEnabled = true;
+            model_combo1.Location = new Point(607, 98);
+            model_combo1.Name = "model_combo1";
+            model_combo1.Size = new Size(133, 26);
+            model_combo1.TabIndex = 40;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(495, 64);
+            label8.Name = "label8";
+            label8.Size = new Size(42, 18);
+            label8.TabIndex = 41;
+            label8.Text = "Make";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(495, 106);
+            label9.Name = "label9";
+            label9.Size = new Size(48, 18);
+            label9.TabIndex = 42;
+            label9.Text = "Model";
+            // 
+            // make_txt1
+            // 
+            make_txt1.Location = new Point(768, 56);
+            make_txt1.Margin = new Padding(3, 2, 3, 2);
+            make_txt1.Name = "make_txt1";
+            make_txt1.Size = new Size(169, 26);
+            make_txt1.TabIndex = 43;
+            // 
+            // model_txt1
+            // 
+            model_txt1.Location = new Point(768, 98);
+            model_txt1.Margin = new Padding(3, 2, 3, 2);
+            model_txt1.Name = "model_txt1";
+            model_txt1.Size = new Size(169, 26);
+            model_txt1.TabIndex = 44;
+            // 
+            // make_btn1
+            // 
+            make_btn1.Location = new Point(961, 51);
+            make_btn1.Margin = new Padding(3, 2, 3, 2);
+            make_btn1.Name = "make_btn1";
+            make_btn1.Size = new Size(99, 31);
+            make_btn1.TabIndex = 45;
+            make_btn1.Text = "Add";
+            make_btn1.UseVisualStyleBackColor = true;
+            make_btn1.Click += make_btn1_Click;
+            // 
+            // model_btn1
+            // 
+            model_btn1.Location = new Point(961, 93);
+            model_btn1.Margin = new Padding(3, 2, 3, 2);
+            model_btn1.Name = "model_btn1";
+            model_btn1.Size = new Size(99, 31);
+            model_btn1.TabIndex = 46;
+            model_btn1.Text = "Add";
+            model_btn1.UseVisualStyleBackColor = true;
+            // 
             // Insert
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(686, 413);
+            ClientSize = new Size(1149, 648);
+            Controls.Add(model_btn1);
+            Controls.Add(make_btn1);
+            Controls.Add(model_txt1);
+            Controls.Add(make_txt1);
+            Controls.Add(label9);
+            Controls.Add(label8);
+            Controls.Add(model_combo1);
+            Controls.Add(make_combo1);
             Controls.Add(home_btn1);
             Controls.Add(load_btn);
             Controls.Add(view_btn);
@@ -271,5 +358,13 @@
         private FileSystemWatcher fileSystemWatcher1;
         private Button load_btn;
         private Button home_btn1;
+        private Label label9;
+        private Label label8;
+        private ComboBox model_combo1;
+        private ComboBox make_combo1;
+        private Button model_btn1;
+        private Button make_btn1;
+        private TextBox model_txt1;
+        private TextBox make_txt1;
     }
 }

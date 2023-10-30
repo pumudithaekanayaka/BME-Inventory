@@ -25,8 +25,8 @@ namespace BME_Inventory
             {
                 con.Open();
 
-                cmd.CommandText = "INSERT INTO spare_parts(part_id, part_name, equip_name, upper, lower, stock, description) " +
-                    "VALUES(@part_id, @part_name, @equip_name, @upper, @lower, @stock, @description)";
+                cmd.CommandText = "INSERT INTO spare_parts(part_id, part_name, equip_name, upper, lower, stock, description, make, model) " +
+                    "VALUES(@part_id, @part_name, @equip_name, @upper, @lower, @stock, @description, @make, @model)";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@part_id", part_id_txt.Text);
                 cmd.Parameters.AddWithValue("@part_name", part_name_txt.Text);
@@ -35,6 +35,8 @@ namespace BME_Inventory
                 cmd.Parameters.AddWithValue("@lower", lower_txt.Text);
                 cmd.Parameters.AddWithValue("@stock", stock_txt.Text);
                 cmd.Parameters.AddWithValue("@description", desc_txt.Text);
+                cmd.Parameters.AddWithValue("@make", make_combo1.SelectedItem.ToString());
+                cmd.Parameters.AddWithValue("@model", model_combo1.SelectedItem.ToString());
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Entry Successfully Updated");
@@ -86,6 +88,11 @@ namespace BME_Inventory
             Home home = new Home();
             home.Show();
             this.Hide();
+        }
+
+        private void make_btn1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
