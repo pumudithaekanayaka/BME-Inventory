@@ -1,6 +1,6 @@
 ﻿namespace BME_Inventory
 {
-    partial class distribute
+    partial class Distribute
     {
         /// <summary>
         /// Required designer variable.
@@ -260,7 +260,7 @@
             home_btn5.UseVisualStyleBackColor = true;
             home_btn5.Click += button1_Click;
             // 
-            // distribute
+            // Distribute
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -290,7 +290,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "distribute";
+            Name = "Distribute";
             Text = "Distribution Form";
             ResumeLayout(false);
             PerformLayout();

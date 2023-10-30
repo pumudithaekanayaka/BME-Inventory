@@ -71,7 +71,6 @@
             exit_btn2.TabIndex = 2;
             exit_btn2.Text = "Exit";
             exit_btn2.UseVisualStyleBackColor = true;
-            exit_btn2.Click += back_btn_Click;
             // 
             // label1
             // 
@@ -214,7 +213,6 @@
             lower_lbl1.Size = new Size(82, 17);
             lower_lbl1.TabIndex = 19;
             lower_lbl1.Text = "Lower Limit";
-            lower_lbl1.Click += lower_lbl1_Click;
             // 
             // delete_btn
             // 
@@ -277,7 +275,6 @@
             Font = new Font("Berlin Sans FB", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "View";
             Text = "View Data";
-            Load += View_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

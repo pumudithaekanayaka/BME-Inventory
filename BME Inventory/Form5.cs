@@ -2,11 +2,11 @@
 
 namespace BME_Inventory
 {
-    public partial class distribute : Form
+    public partial class Distribute : Form
     {
 
         SqlConnection connection = new SqlConnection("Data Source=ASUS_X512JA\\SQLEXPRESS;Initial Catalog=Hospital;Integrated Security=True");
-        public distribute()
+        public Distribute()
         {
             InitializeComponent();
         }

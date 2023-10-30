@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-            load_btn3 = new Button();
             export_btn = new Button();
             exit_btn4 = new Button();
             mail_btn4 = new Button();
+            home_btn4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -46,16 +46,6 @@
             dataGridView1.Size = new Size(889, 260);
             dataGridView1.TabIndex = 0;
             // 
-            // load_btn3
-            // 
-            load_btn3.Location = new Point(74, 336);
-            load_btn3.Name = "load_btn3";
-            load_btn3.Size = new Size(93, 38);
-            load_btn3.TabIndex = 1;
-            load_btn3.Text = "Load";
-            load_btn3.UseVisualStyleBackColor = true;
-            load_btn3.Click += load_btn3_Click;
-            // 
             // export_btn
             // 
             export_btn.Location = new Point(191, 336);
@@ -68,7 +58,7 @@
             // 
             // exit_btn4
             // 
-            exit_btn4.Location = new Point(302, 336);
+            exit_btn4.Location = new Point(389, 336);
             exit_btn4.Name = "exit_btn4";
             exit_btn4.Size = new Size(93, 38);
             exit_btn4.TabIndex = 3;
@@ -78,13 +68,22 @@
             // 
             // mail_btn4
             // 
-            mail_btn4.Location = new Point(191, 391);
+            mail_btn4.Location = new Point(92, 336);
             mail_btn4.Name = "mail_btn4";
             mail_btn4.Size = new Size(93, 38);
             mail_btn4.TabIndex = 4;
             mail_btn4.Text = "Mail";
             mail_btn4.UseVisualStyleBackColor = true;
-            mail_btn4.Click += mail_btn4_Click;
+            // 
+            // home_btn4
+            // 
+            home_btn4.Location = new Point(290, 336);
+            home_btn4.Name = "home_btn4";
+            home_btn4.Size = new Size(93, 38);
+            home_btn4.TabIndex = 5;
+            home_btn4.Text = "Home";
+            home_btn4.UseVisualStyleBackColor = true;
+            home_btn4.Click += home_btn4_Click;
             // 
             // Table
             // 
@@ -92,10 +91,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(1082, 630);
+            Controls.Add(home_btn4);
             Controls.Add(mail_btn4);
             Controls.Add(exit_btn4);
             Controls.Add(export_btn);
-            Controls.Add(load_btn3);
             Controls.Add(dataGridView1);
             Font = new Font("Candara", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "Table";
@@ -108,9 +107,9 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private Button load_btn3;
         private Button export_btn;
         private Button exit_btn4;
         private Button mail_btn4;
+        private Button home_btn4;
     }
 }

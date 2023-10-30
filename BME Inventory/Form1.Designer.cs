@@ -245,7 +245,6 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "Insert";
             Text = "Insert Data";
-            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -1,5 +1,7 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace BME_Inventory
 {
@@ -12,7 +14,7 @@ namespace BME_Inventory
             InitializeComponent();
         }
 
-        private void load_btn_Click(object sender, EventArgs e)
+        private void LoadData()
         {
             connection.Open();
             string query = "SELECT * FROM spare_parts WHERE part_id LIKE '%' + @part_id + '%'";
@@ -21,6 +23,8 @@ namespace BME_Inventory
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();
             adapter.Fill(table);
+            connection.Close();
+
             if (table.Rows.Count > 0)
             {
                 dataGridView1.DataSource = table;
@@ -41,22 +45,11 @@ namespace BME_Inventory
             {
                 MessageBox.Show("Record not found!");
             }
-            connection.Close();
         }
 
-
-        private void View_Load(object sender, EventArgs e)
+        private void load_btn_Click(object sender, EventArgs e)
         {
-        }
-
-        private void back_btn_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            LoadData();
         }
 
         private void update_btn_Click(object sender, EventArgs e)
@@ -67,9 +60,11 @@ namespace BME_Inventory
             cmd.Parameters.AddWithValue("@part_id", part_id_txt1.Text);
             cmd.Parameters.AddWithValue("@part_name", part_name_txt1.Text);
             cmd.Parameters.AddWithValue("@equipment_name", equip_name_txt1.Text);
-            cmd.Parameters.AddWithValue("@stock", Convert.ToDecimal(stock_txt1.Text));
+            cmd.Parameters.AddWithValue("@stock", stock_txt1.Text);
             cmd.Parameters.AddWithValue("@description", desc_txt1.Text);
             int rowsAffected = cmd.ExecuteNonQuery();
+            connection.Close();
+
             if (rowsAffected > 0)
             {
                 MessageBox.Show("Record updated successfully!");
@@ -78,7 +73,6 @@ namespace BME_Inventory
             {
                 MessageBox.Show("Record not found!");
             }
-            connection.Close();
         }
 
         private void delete_btn_Click(object sender, EventArgs e)
@@ -92,6 +86,8 @@ namespace BME_Inventory
             if (dialogResult == DialogResult.Yes)
             {
                 int rowsAffected = cmd.ExecuteNonQuery();
+                connection.Close();
+
                 if (rowsAffected > 0)
                 {
                     MessageBox.Show("Record deleted successfully!");
@@ -103,23 +99,22 @@ namespace BME_Inventory
             }
             else if (dialogResult == DialogResult.No)
             {
+                // Redirect back to the main form (Insert)
+                Hide();
                 Insert form1 = new Insert();
                 form1.Show();
-                this.Hide();
             }
-
-        }
-
-        private void lower_lbl1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void home_btn2_Click(object sender, EventArgs e)
         {
+            // Navigate to the Home form
+            Hide();
             Home home = new Home();
             home.Show();
-            this.Hide();
         }
+
+        // Other event handlers remain the same
+
     }
 }
