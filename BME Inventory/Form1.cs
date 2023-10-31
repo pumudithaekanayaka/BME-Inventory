@@ -1,6 +1,4 @@
-using System;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace BME_Inventory
 {
@@ -22,7 +20,7 @@ namespace BME_Inventory
             BindModelComboBox();
         }
 
-        private void BindModelComboBox()
+        private void BindMakeComboBox()
         {
             try
             {
@@ -58,7 +56,7 @@ namespace BME_Inventory
 
         }
 
-        private void BindMakeComboBox()
+        private void BindModelComboBox()
         {
             try
             {
@@ -73,12 +71,12 @@ namespace BME_Inventory
                 {
                     while (reader.Read())
                     {
-                        string makeValue = reader["model"].ToString() ?? string.Empty;
+                        string modelValue = reader["model"].ToString() ?? string.Empty;
 
-                        if (!uniqueModels.Contains(makeValue))
+                        if (!uniqueModels.Contains(modelValue))
                         {
-                            model_combo1.Items.Add(makeValue);
-                            uniqueModels.Add(makeValue);
+                            model_combo1.Items.Add(modelValue);
+                            uniqueModels.Add(modelValue);
                         }
                     }
                 }
