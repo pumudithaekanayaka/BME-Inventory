@@ -53,8 +53,7 @@
             label9 = new Label();
             make_txt1 = new TextBox();
             model_txt1 = new TextBox();
-            make_btn1 = new Button();
-            model_btn1 = new Button();
+            add_btn1 = new Button();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
@@ -72,7 +71,7 @@
             part_id_txt.Location = new Point(172, 53);
             part_id_txt.Margin = new Padding(3, 2, 3, 2);
             part_id_txt.Name = "part_id_txt";
-            part_id_txt.Size = new Size(169, 26);
+            part_id_txt.Size = new Size(314, 26);
             part_id_txt.TabIndex = 1;
             // 
             // label2
@@ -89,7 +88,7 @@
             part_name_txt.Location = new Point(172, 95);
             part_name_txt.Margin = new Padding(3, 2, 3, 2);
             part_name_txt.Name = "part_name_txt";
-            part_name_txt.Size = new Size(169, 26);
+            part_name_txt.Size = new Size(314, 26);
             part_name_txt.TabIndex = 3;
             // 
             // label3
@@ -106,7 +105,7 @@
             equip_name_txt.Location = new Point(172, 138);
             equip_name_txt.Margin = new Padding(3, 2, 3, 2);
             equip_name_txt.Name = "equip_name_txt";
-            equip_name_txt.Size = new Size(169, 26);
+            equip_name_txt.Size = new Size(314, 26);
             equip_name_txt.TabIndex = 5;
             // 
             // label4
@@ -123,7 +122,7 @@
             upper_txt.Location = new Point(172, 179);
             upper_txt.Margin = new Padding(3, 2, 3, 2);
             upper_txt.Name = "upper_txt";
-            upper_txt.Size = new Size(169, 26);
+            upper_txt.Size = new Size(314, 26);
             upper_txt.TabIndex = 7;
             // 
             // label5
@@ -140,7 +139,7 @@
             lower_txt.Location = new Point(172, 220);
             lower_txt.Margin = new Padding(3, 2, 3, 2);
             lower_txt.Name = "lower_txt";
-            lower_txt.Size = new Size(169, 26);
+            lower_txt.Size = new Size(314, 26);
             lower_txt.TabIndex = 9;
             // 
             // label6
@@ -157,7 +156,7 @@
             stock_txt.Location = new Point(172, 261);
             stock_txt.Margin = new Padding(3, 2, 3, 2);
             stock_txt.Name = "stock_txt";
-            stock_txt.Size = new Size(169, 26);
+            stock_txt.Size = new Size(314, 26);
             stock_txt.TabIndex = 11;
             // 
             // label7
@@ -174,7 +173,7 @@
             desc_txt.Location = new Point(172, 300);
             desc_txt.Margin = new Padding(3, 2, 3, 2);
             desc_txt.Name = "desc_txt";
-            desc_txt.Size = new Size(195, 26);
+            desc_txt.Size = new Size(314, 26);
             desc_txt.TabIndex = 13;
             // 
             // insert_btn
@@ -228,7 +227,7 @@
             // make_combo1
             // 
             make_combo1.FormattingEnabled = true;
-            make_combo1.Location = new Point(607, 56);
+            make_combo1.Location = new Point(549, 56);
             make_combo1.Name = "make_combo1";
             make_combo1.Size = new Size(133, 26);
             make_combo1.TabIndex = 39;
@@ -236,9 +235,9 @@
             // model_combo1
             // 
             model_combo1.FormattingEnabled = true;
-            model_combo1.Location = new Point(607, 98);
+            model_combo1.Location = new Point(549, 98);
             model_combo1.Name = "model_combo1";
-            model_combo1.Size = new Size(133, 26);
+            model_combo1.Size = new Size(269, 26);
             model_combo1.TabIndex = 40;
             // 
             // label8
@@ -261,49 +260,38 @@
             // 
             // make_txt1
             // 
-            make_txt1.Location = new Point(768, 56);
+            make_txt1.Location = new Point(828, 56);
             make_txt1.Margin = new Padding(3, 2, 3, 2);
             make_txt1.Name = "make_txt1";
-            make_txt1.Size = new Size(169, 26);
+            make_txt1.Size = new Size(257, 26);
             make_txt1.TabIndex = 43;
             // 
             // model_txt1
             // 
-            model_txt1.Location = new Point(768, 98);
+            model_txt1.Location = new Point(828, 95);
             model_txt1.Margin = new Padding(3, 2, 3, 2);
             model_txt1.Name = "model_txt1";
-            model_txt1.Size = new Size(169, 26);
+            model_txt1.Size = new Size(257, 26);
             model_txt1.TabIndex = 44;
             // 
-            // make_btn1
+            // add_btn1
             // 
-            make_btn1.Location = new Point(961, 51);
-            make_btn1.Margin = new Padding(3, 2, 3, 2);
-            make_btn1.Name = "make_btn1";
-            make_btn1.Size = new Size(99, 31);
-            make_btn1.TabIndex = 45;
-            make_btn1.Text = "Add";
-            make_btn1.UseVisualStyleBackColor = true;
-            make_btn1.Click += make_btn1_Click;
-            // 
-            // model_btn1
-            // 
-            model_btn1.Location = new Point(961, 93);
-            model_btn1.Margin = new Padding(3, 2, 3, 2);
-            model_btn1.Name = "model_btn1";
-            model_btn1.Size = new Size(99, 31);
-            model_btn1.TabIndex = 46;
-            model_btn1.Text = "Add";
-            model_btn1.UseVisualStyleBackColor = true;
+            add_btn1.Location = new Point(1105, 53);
+            add_btn1.Margin = new Padding(3, 2, 3, 2);
+            add_btn1.Name = "add_btn1";
+            add_btn1.Size = new Size(99, 71);
+            add_btn1.TabIndex = 46;
+            add_btn1.Text = "Add";
+            add_btn1.UseVisualStyleBackColor = true;
+            add_btn1.Click += model_btn1_Click;
             // 
             // Insert
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(1149, 648);
-            Controls.Add(model_btn1);
-            Controls.Add(make_btn1);
+            ClientSize = new Size(1258, 656);
+            Controls.Add(add_btn1);
             Controls.Add(model_txt1);
             Controls.Add(make_txt1);
             Controls.Add(label9);
@@ -362,8 +350,7 @@
         private Label label8;
         private ComboBox model_combo1;
         private ComboBox make_combo1;
-        private Button model_btn1;
-        private Button make_btn1;
+        private Button add_btn1;
         private TextBox model_txt1;
         private TextBox make_txt1;
     }

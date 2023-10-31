@@ -16,7 +16,82 @@ namespace BME_Inventory
             InitializeComponent();
 
             con = new SqlConnection(ConnectionString);
-            cmd = new SqlCommand("", con);
+            cmd = new SqlCommand();
+            cmd.Connection = con;
+            BindMakeComboBox();
+            BindModelComboBox();
+        }
+
+        private void BindModelComboBox()
+        {
+            try
+            {
+                con.Open();
+
+                var uniqueMakes = new HashSet<string>();
+
+                string query = "SELECT make FROM parts_data WHERE make IS NOT NULL";
+                cmd.CommandText = query;
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string makeValue = reader["make"].ToString() ?? string.Empty;
+
+                        if (!uniqueMakes.Contains(makeValue))
+                        {
+                            make_combo1.Items.Add(makeValue);
+                            uniqueMakes.Add(makeValue);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        private void BindMakeComboBox()
+        {
+            try
+            {
+                con.Open();
+
+                var uniqueModels = new HashSet<string>();
+
+                string query = "SELECT model FROM parts_data WHERE model IS NOT NULL";
+                cmd.CommandText = query;
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string makeValue = reader["model"].ToString() ?? string.Empty;
+
+                        if (!uniqueModels.Contains(makeValue))
+                        {
+                            model_combo1.Items.Add(makeValue);
+                            uniqueModels.Add(makeValue);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
         }
 
         private void insert_btn_Click(object sender, EventArgs e)
@@ -41,7 +116,6 @@ namespace BME_Inventory
                 MessageBox.Show("Entry Successfully Updated");
 
                 ClearTextBoxes(this);
-
             }
             catch (Exception ex)
             {
@@ -89,9 +163,33 @@ namespace BME_Inventory
             this.Hide();
         }
 
-        private void make_btn1_Click(object sender, EventArgs e)
+        private void model_btn1_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (string.IsNullOrEmpty(make_txt1.Text) || string.IsNullOrEmpty(model_txt1.Text))
+                {
+                    MessageBox.Show("Both 'Make' and 'Model' fields must be filled.");
+                }
+                else
+                {
+                    con.Open();
+                    cmd.CommandText = "INSERT INTO parts_data(make, model) VALUES(@make, @model)";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@make", make_txt1.Text);
+                    cmd.Parameters.AddWithValue("@model", model_txt1.Text);
+                    cmd.ExecuteNonQuery();
+                    ClearTextBoxes(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }
