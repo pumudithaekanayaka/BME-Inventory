@@ -62,5 +62,10 @@ namespace BME_Inventory
         {
 
         }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

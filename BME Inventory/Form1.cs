@@ -98,7 +98,27 @@ namespace BME_Inventory
             {
                 con.Open();
 
-                cmd.CommandText = "INSERT INTO spare_parts(part_id, part_name, equip_name, upper, lower, stock, description, make, model) " + "VALUES(@part_id, @part_name, @equip_name, @upper, @lower, @stock, @description, @make, @model)";
+                string partId = part_id_txt.Text;
+                string partName = part_name_txt.Text;
+                string equipName = equip_name_txt.Text;
+                string upper = upper_txt.Text;
+                string lower = lower_txt.Text;
+                string stock = stock_txt.Text;
+                string description = desc_txt.Text;
+                string make = make_combo1.SelectedItem?.ToString() ?? "";
+                string model = model_combo1.SelectedItem?.ToString() ?? "";
+
+
+                if (string.IsNullOrEmpty(partId) || string.IsNullOrEmpty(partName) || string.IsNullOrEmpty(equipName) || string.IsNullOrEmpty(upper) || string.IsNullOrEmpty(lower) || string.IsNullOrEmpty(stock) || string.IsNullOrEmpty(description) || string.IsNullOrEmpty(make) || string.IsNullOrEmpty(model))
+                {
+                    success_lbl1.Text = "Enter All the fields";
+                    success_lbl1.ForeColor = Color.White;
+                    success_lbl1.BackColor = Color.Red;
+                    success_lbl1.Visible = true;
+                    return;
+                }
+
+                cmd.CommandText = "INSERT INTO spare_parts(part_id, part_name, equip_name, upper, lower, stock, description, make, model, date_time) " + "VALUES(@part_id, @part_name, @equip_name, @upper, @lower, @stock, @description, @make, @model, GETDATE())";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@part_id", part_id_txt.Text);
                 cmd.Parameters.AddWithValue("@part_name", part_name_txt.Text);
@@ -107,11 +127,12 @@ namespace BME_Inventory
                 cmd.Parameters.AddWithValue("@lower", lower_txt.Text);
                 cmd.Parameters.AddWithValue("@stock", stock_txt.Text);
                 cmd.Parameters.AddWithValue("@description", desc_txt.Text);
-                cmd.Parameters.AddWithValue("@make", make_combo1.SelectedItem.ToString());
-                cmd.Parameters.AddWithValue("@model", model_combo1.SelectedItem.ToString());
+                cmd.Parameters.AddWithValue("@make", make_combo1.SelectedItem.ToString() ?? "");
+                cmd.Parameters.AddWithValue("@model", model_combo1.SelectedItem.ToString() ?? "");
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Entry Successfully Updated");
+                success_lbl1.Text = "Entry Successfully Added";
+                success_lbl1.Visible = true;
 
                 ClearTextBoxes(this);
             }
@@ -188,6 +209,44 @@ namespace BME_Inventory
             {
                 con.Close();
             }
+        }
+
+        private void exit_btn6_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void home_btn1_Click_1(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Hide();
+        }
+
+        private void edit_btn_Click(object sender, EventArgs e)
+        {
+            View view = new View();
+            view.Show();
+            this.Hide();
+        }
+
+        private void table_btn6_Click(object sender, EventArgs e)
+        {
+            Table table = new Table();
+            table.Show();
+            this.Hide();
+        }
+
+        private void distribute_btn_Click(object sender, EventArgs e)
+        {
+            Distribute distribute = new Distribute();
+            distribute.Show();
+            this.Hide();
         }
     }
 }
