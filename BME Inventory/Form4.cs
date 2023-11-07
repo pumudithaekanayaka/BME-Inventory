@@ -1,30 +1,45 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data;
-using System.Data.SqlClient;
 using OfficeOpenXml;
 using System.IO;
 using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace BME_Inventory
 {
     public partial class Table : Form
     {
-        SqlConnection connection = new SqlConnection("Data Source=ASUS_X512JA\\SQLEXPRESS;Initial Catalog=Hospital;Integrated Security=True");
+        private DatabaseManager dbManager;
+        private SqlConnection connection;
 
-        public Table()
+        public Table(DatabaseManager databaseManager)
         {
             InitializeComponent();
+            dbManager = databaseManager;
+            connection = dbManager.GetConnection();
         }
 
-        private void LoadDataIntoGrid(string query)
+        private void LoadDataIntoGrid(string query, DataTable table)
         {
-            connection.Open();
-            SqlCommand cmd = new SqlCommand(query, connection);
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            connection.Close();
+            try
+            {
+                connection.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(table);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
 
             if (table.Rows.Count > 0)
             {
@@ -40,7 +55,8 @@ namespace BME_Inventory
         private void LoadDataForStockCheck()
         {
             string query = "SELECT * FROM spare_parts WHERE stock < lower";
-            LoadDataIntoGrid(query);
+            DataTable table = new DataTable();
+            LoadDataIntoGrid(query, table);
         }
 
         private void load_btn3_Click(object sender, EventArgs e)
@@ -101,31 +117,10 @@ namespace BME_Inventory
             }
         }
 
-        private void LoadDataIntoGrid(string query, DataTable table)
-        {
-            try
-            {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand(query, connection);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(table);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
-
-
         private void Table_Load(object sender, EventArgs e)
         {
             string query = "SELECT * FROM spare_parts";
-            LoadDataIntoGrid(query);
+            LoadDataIntoGrid(query, new DataTable());
         }
 
         private void exit_btn4_Click(object sender, EventArgs e)
@@ -140,7 +135,7 @@ namespace BME_Inventory
 
         private void home_btn4_Click(object sender, EventArgs e)
         {
-            AdminHome home = new AdminHome();
+            AdminHome home = new AdminHome(dbManager);
             home.Show();
             this.Hide();
         }

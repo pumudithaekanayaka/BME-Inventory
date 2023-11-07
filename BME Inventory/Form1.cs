@@ -4,18 +4,12 @@ namespace BME_Inventory
 {
     public partial class Insert : Form
     {
-        private const string ConnectionString = "Data Source=ASUS_X512JA\\SQLEXPRESS;Initial Catalog=Hospital;Integrated Security=True";
+        private DatabaseManager dbManager;
 
-        private SqlConnection con;
-        private SqlCommand cmd;
-
-        public Insert()
+        public Insert(DatabaseManager databaseManager)
         {
             InitializeComponent();
-
-            con = new SqlConnection(ConnectionString);
-            cmd = new SqlCommand();
-            cmd.Connection = con;
+            dbManager = databaseManager;
             BindMakeComboBox();
             BindModelComboBox();
         }
@@ -24,23 +18,24 @@ namespace BME_Inventory
         {
             try
             {
-                con.Open();
+                dbManager.OpenConnection(); // Use the DatabaseManager for opening the connection
 
                 var uniqueMakes = new HashSet<string>();
 
                 string query = "SELECT make FROM parts_data WHERE make IS NOT NULL";
-                cmd.CommandText = query;
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection())) // Use the DatabaseManager for SqlCommand
                 {
-                    while (reader.Read())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        string makeValue = reader["make"].ToString() ?? string.Empty;
-
-                        if (!uniqueMakes.Contains(makeValue))
+                        while (reader.Read())
                         {
-                            make_combo1.Items.Add(makeValue);
-                            uniqueMakes.Add(makeValue);
+                            string makeValue = reader["make"].ToString() ?? string.Empty;
+
+                            if (!uniqueMakes.Contains(makeValue))
+                            {
+                                make_combo1.Items.Add(makeValue);
+                                uniqueMakes.Add(makeValue);
+                            }
                         }
                     }
                 }
@@ -51,32 +46,32 @@ namespace BME_Inventory
             }
             finally
             {
-                con.Close();
+                dbManager.CloseConnection(); // Use the DatabaseManager for closing the connection
             }
-
         }
 
         private void BindModelComboBox()
         {
             try
             {
-                con.Open();
+                dbManager.OpenConnection(); // Use the DatabaseManager for opening the connection
 
                 var uniqueModels = new HashSet<string>();
 
                 string query = "SELECT model FROM parts_data WHERE model IS NOT NULL";
-                cmd.CommandText = query;
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection())) // Use the DatabaseManager for SqlCommand
                 {
-                    while (reader.Read())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        string modelValue = reader["model"].ToString() ?? string.Empty;
-
-                        if (!uniqueModels.Contains(modelValue))
+                        while (reader.Read())
                         {
-                            model_combo1.Items.Add(modelValue);
-                            uniqueModels.Add(modelValue);
+                            string modelValue = reader["model"].ToString() ?? string.Empty;
+
+                            if (!uniqueModels.Contains(modelValue))
+                            {
+                                model_combo1.Items.Add(modelValue);
+                                uniqueModels.Add(modelValue);
+                            }
                         }
                     }
                 }
@@ -87,16 +82,15 @@ namespace BME_Inventory
             }
             finally
             {
-                con.Close();
+                dbManager.CloseConnection(); // Use the DatabaseManager for closing the connection
             }
-
         }
 
         private void insert_btn_Click(object sender, EventArgs e)
         {
             try
             {
-                con.Open();
+                dbManager.OpenConnection();
 
                 string partId = part_id_txt.Text;
                 string partName = part_name_txt.Text;
@@ -108,7 +102,6 @@ namespace BME_Inventory
                 string make = make_combo1.SelectedItem?.ToString() ?? "";
                 string model = model_combo1.SelectedItem?.ToString() ?? "";
 
-
                 if (string.IsNullOrEmpty(partId) || string.IsNullOrEmpty(partName) || string.IsNullOrEmpty(equipName) || string.IsNullOrEmpty(upper) || string.IsNullOrEmpty(lower) || string.IsNullOrEmpty(stock) || string.IsNullOrEmpty(description) || string.IsNullOrEmpty(make) || string.IsNullOrEmpty(model))
                 {
                     success_lbl1.Text = "Enter All the fields";
@@ -118,19 +111,25 @@ namespace BME_Inventory
                     return;
                 }
 
-                cmd.CommandText = "INSERT INTO spare_parts(part_id, part_name, equip_name, upper, lower, stock, description, make, model, date_time) " + "VALUES(@part_id, @part_name, @equip_name, @upper, @lower, @stock, @description, @make, @model, GETDATE())";
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@part_id", part_id_txt.Text);
-                cmd.Parameters.AddWithValue("@part_name", part_name_txt.Text);
-                cmd.Parameters.AddWithValue("@equip_name", equip_name_txt.Text);
-                cmd.Parameters.AddWithValue("@upper", upper_txt.Text);
-                cmd.Parameters.AddWithValue("@lower", lower_txt.Text);
-                cmd.Parameters.AddWithValue("@stock", stock_txt.Text);
-                cmd.Parameters.AddWithValue("@description", desc_txt.Text);
-                cmd.Parameters.AddWithValue("@make", make_combo1.SelectedItem.ToString() ?? "");
-                cmd.Parameters.AddWithValue("@model", model_combo1.SelectedItem.ToString() ?? "");
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = dbManager.GetConnection();
+                    cmd.CommandText = "INSERT INTO spare_parts(part_id, part_name, equip_name, upper, lower, stock, description, make, model, date_time) " +
+                        "VALUES(@part_id, @part_name, @equip_name, @upper, @lower, @stock, @description, @make, @model, GETDATE())";
 
-                cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@part_id", part_id_txt.Text);
+                    cmd.Parameters.AddWithValue("@part_name", part_name_txt.Text);
+                    cmd.Parameters.AddWithValue("@equip_name", equip_name_txt.Text);
+                    cmd.Parameters.AddWithValue("@upper", upper_txt.Text);
+                    cmd.Parameters.AddWithValue("@lower", lower_txt.Text);
+                    cmd.Parameters.AddWithValue("@stock", stock_txt.Text);
+                    cmd.Parameters.AddWithValue("@description", desc_txt.Text);
+                    cmd.Parameters.AddWithValue("@make", make_combo1.SelectedItem.ToString() ?? "");
+                    cmd.Parameters.AddWithValue("@model", model_combo1.SelectedItem.ToString() ?? "");
+
+                    cmd.ExecuteNonQuery();
+                }
+
                 success_lbl1.Text = "Entry Successfully Added";
                 success_lbl1.Visible = true;
 
@@ -142,7 +141,7 @@ namespace BME_Inventory
             }
             finally
             {
-                con.Close();
+                dbManager.CloseConnection();
             }
         }
 
@@ -163,21 +162,21 @@ namespace BME_Inventory
 
         private void view_btn_Click(object sender, EventArgs e)
         {
-            View view = new View();
+            View view = new View(dbManager);
             view.Show();
             this.Hide();
         }
 
         private void load_btn_Click(object sender, EventArgs e)
         {
-            Recieve show_data = new Recieve();
+            Recieve show_data = new Recieve(dbManager);
             show_data.Show();
             this.Hide();
         }
 
         private void home_btn1_Click(object sender, EventArgs e)
         {
-            AdminHome home = new AdminHome();
+            AdminHome home = new AdminHome(dbManager);
             home.Show();
             this.Hide();
         }
@@ -186,18 +185,24 @@ namespace BME_Inventory
         {
             try
             {
-                if (string.IsNullOrEmpty(make_txt1.Text) || string.IsNullOrEmpty(model_txt1.Text))
+                string make = make_txt1.Text;
+                string model = model_txt1.Text;
+
+                if (string.IsNullOrEmpty(make) || string.IsNullOrEmpty(model))
                 {
                     MessageBox.Show("Both 'Make' and 'Model' fields must be filled.");
                 }
                 else
                 {
-                    con.Open();
-                    cmd.CommandText = "INSERT INTO parts_data(make, model) VALUES(@make, @model)";
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@make", make_txt1.Text);
-                    cmd.Parameters.AddWithValue("@model", model_txt1.Text);
-                    cmd.ExecuteNonQuery();
+                    dbManager.OpenConnection();
+
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO parts_data(make, model) VALUES(@make, @model)", dbManager.GetConnection()))
+                    {
+                        cmd.Parameters.AddWithValue("@make", make);
+                        cmd.Parameters.AddWithValue("@model", model);
+                        cmd.ExecuteNonQuery();
+                    }
+
                     ClearTextBoxes(this);
                 }
             }
@@ -207,9 +212,10 @@ namespace BME_Inventory
             }
             finally
             {
-                con.Close();
+                dbManager.CloseConnection();
             }
         }
+
 
         private void exit_btn6_Click(object sender, EventArgs e)
         {
@@ -223,28 +229,28 @@ namespace BME_Inventory
 
         private void home_btn1_Click_1(object sender, EventArgs e)
         {
-            AdminHome home = new AdminHome();
+            AdminHome home = new AdminHome(dbManager);
             home.Show();
             this.Hide();
         }
 
         private void edit_btn_Click(object sender, EventArgs e)
         {
-            View view = new View();
+            View view = new View(dbManager);
             view.Show();
             this.Hide();
         }
 
         private void table_btn6_Click(object sender, EventArgs e)
         {
-            Table table = new Table();
+            Table table = new Table(dbManager);
             table.Show();
             this.Hide();
         }
 
         private void distribute_btn_Click(object sender, EventArgs e)
         {
-            Distribute distribute = new Distribute();
+            Distribute distribute = new Distribute(dbManager);
             distribute.Show();
             this.Hide();
         }

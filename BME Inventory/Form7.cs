@@ -7,17 +7,12 @@ namespace BME_Inventory
 {
     public partial class login : Form
     {
-        private string ConnectionString;
-        private SqlConnection con;
-        private SqlCommand cmd;
+        private DatabaseManager dbManager; // Replace 'DatabaseManager' with your actual class name
 
-        public login(string connectionString)
+        public login(DatabaseManager databaseManager)
         {
             InitializeComponent();
-            this.ConnectionString = connectionString;
-            con = new SqlConnection(ConnectionString);
-            cmd = new SqlCommand();
-            cmd.Connection = con;
+            dbManager = databaseManager;
             password_txt.PasswordChar = '*';
         }
 
@@ -34,51 +29,51 @@ namespace BME_Inventory
 
             try
             {
-                con.Open();
-                cmd.Parameters.Clear();
-                cmd.CommandText = "SELECT password, user_role FROM users WHERE username = @username";
-                cmd.Parameters.AddWithValue("@username", username);
+                dbManager.OpenConnection();
 
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
+                using (var cmd = new SqlCommand("SELECT password, user_role FROM users WHERE username = @username", dbManager.GetConnection()))
                 {
-                    string storedPassword = reader["password"].ToString();
-                    string userRole = reader["user_role"].ToString();
+                    cmd.Parameters.AddWithValue("@username", username);
 
-                    if (storedPassword == password)
+                    using (var reader = cmd.ExecuteReader())
                     {
+                        if (reader.Read())
+                        {
+                            string storedPassword = reader["password"].ToString();
+                            string userRole = reader["user_role"].ToString();
 
-                        if (userRole == "user")
-                        {
-                            this.Hide();
-                            UserHome userHome = new UserHome();
-                            userHome.Show();
+                            if (storedPassword == password)
+                            {
+                                if (userRole == "user")
+                                {
+                                    this.Hide();
+                                    UserHome userHome = new UserHome();
+                                    userHome.Show();
+                                }
+                                else if (userRole == "admin")
+                                {
+                                    this.Hide();
+                                    AdminHome adminHome = new AdminHome(dbManager);
+                                    adminHome.Show();
+                                }
+                                else if (userRole == "maintenance")
+                                {
+                                    this.Hide();
+                                    MaintenanceHome maintenanceHome = new MaintenanceHome();
+                                    maintenanceHome.Show();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid username or password.");
+                            }
                         }
-                        else if (userRole == "admin")
+                        else
                         {
-                            this.Hide();
-                            AdminHome adminHome = new AdminHome();
-                            adminHome.Show();
-                        }
-                        else if (userRole == "maintenance")
-                        {
-                            this.Hide();
-                            MaintenanceHome maintenanceHome = new MaintenanceHome();
-                            maintenanceHome.Show();
+                            MessageBox.Show("Invalid username or password.");
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Invalid username or password.");
-                    }
                 }
-                else
-                {
-                    MessageBox.Show("Invalid username or password.");
-                }
-
-                reader.Close();
             }
             catch (Exception ex)
             {
@@ -86,7 +81,7 @@ namespace BME_Inventory
             }
             finally
             {
-                con.Close();
+                dbManager.CloseConnection();
             }
         }
     }

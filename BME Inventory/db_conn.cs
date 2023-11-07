@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace BME_Inventory
 {
     public partial class db_conn : Form
     {
-        public string ConnectionString { get; private set; }
-
         public db_conn()
         {
             InitializeComponent();
@@ -24,18 +21,14 @@ namespace BME_Inventory
                 return;
             }
 
-            ConnectionString = $"Data Source={serverName};Initial Catalog={databaseName};Integrated Security=True";
+            string connectionString = $"Data Source={serverName};Initial Catalog={databaseName};Integrated Security=True";
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
-                {
-                    connection.Open();
-                }
-
-                login loginForm = new login(ConnectionString);
-                loginForm.Show();
                 this.Hide();
+                DatabaseManager dbManager = new DatabaseManager(connectionString); // Create a DatabaseManager with the connection string
+                login login = new login(dbManager); // Pass the DatabaseManager as an argument
+                login.Show();
             }
             catch (Exception ex)
             {

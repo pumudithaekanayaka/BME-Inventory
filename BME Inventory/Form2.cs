@@ -7,16 +7,16 @@ namespace BME_Inventory
 {
     public partial class View : Form
     {
-        SqlConnection connection = new SqlConnection("Data Source=ASUS_X512JA\\SQLEXPRESS;Initial Catalog=Hospital;Integrated Security=True");
+        private DatabaseManager dbManager;
 
-        public View()
+        public View(DatabaseManager databaseManager)
         {
             InitializeComponent();
+            dbManager = databaseManager;
         }
 
         private void LoadData()
         {
-            
         }
 
         private void load_btn_Click(object sender, EventArgs e)
@@ -26,64 +26,89 @@ namespace BME_Inventory
 
         private void update_btn_Click(object sender, EventArgs e)
         {
-            connection.Open();
-            string query = "UPDATE spare_parts SET part_name = @part_name, equip_name = @equipment_name, stock = @stock, description = @description WHERE part_id = @part_id";
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@part_id", part_id_txt1.Text);
-            cmd.Parameters.AddWithValue("@part_name", part_name_txt1.Text);
-            cmd.Parameters.AddWithValue("@equipment_name", equip_name_txt1.Text);
-            cmd.Parameters.AddWithValue("@stock", stock_txt1.Text);
-            cmd.Parameters.AddWithValue("@description", desc_txt1.Text);
-            int rowsAffected = cmd.ExecuteNonQuery();
-            connection.Close();
+            try
+            {
+                dbManager.OpenConnection(); // Open the database connection using DatabaseManager
 
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("Record updated successfully!");
+                string query = "UPDATE spare_parts SET part_name = @part_name, equip_name = @equipment_name, stock = @stock, description = @description WHERE part_id = @part_id";
+                using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
+                {
+                    cmd.Parameters.AddWithValue("@part_id", part_id_txt1.Text);
+                    cmd.Parameters.AddWithValue("@part_name", part_name_txt1.Text);
+                    cmd.Parameters.AddWithValue("@equipment_name", equip_name_txt1.Text);
+                    cmd.Parameters.AddWithValue("@stock", stock_txt1.Text);
+                    cmd.Parameters.AddWithValue("@description", desc_txt1.Text);
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Record updated successfully!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Record not found!");
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Record not found!");
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                dbManager.CloseConnection(); // Close the database connection using DatabaseManager
             }
         }
 
         private void delete_btn_Click(object sender, EventArgs e)
         {
-            connection.Open();
-            string query = "DELETE FROM spare_parts WHERE part_id = @part_id";
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@part_id", part_id_txt1.Text);
-
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this record?", "Confirmation", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                int rowsAffected = cmd.ExecuteNonQuery();
-                connection.Close();
+                dbManager.OpenConnection(); // Open the database connection using DatabaseManager
 
-                if (rowsAffected > 0)
+                string query = "DELETE FROM spare_parts WHERE part_id = @part_id";
+                using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
-                    MessageBox.Show("Record deleted successfully!");
-                }
-                else
-                {
-                    MessageBox.Show("Record not found!");
+                    cmd.Parameters.AddWithValue("@part_id", part_id_txt1.Text);
+
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this record?", "Confirmation", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Record deleted successfully!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Record not found!");
+                        }
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        Hide();
+                        Insert form1 = new Insert(dbManager); // Pass the DatabaseManager object to the Insert form
+                        form1.Show();
+                    }
                 }
             }
-            else if (dialogResult == DialogResult.No)
+            catch (Exception ex)
             {
-                Hide();
-                Insert form1 = new Insert();
-                form1.Show();
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                dbManager.CloseConnection(); // Close the database connection using DatabaseManager
             }
         }
 
         private void home_btn2_Click(object sender, EventArgs e)
         {
             Hide();
-            AdminHome home = new AdminHome();
+            AdminHome home = new AdminHome(dbManager);
             home.Show();
         }
-
-
     }
 }
+
