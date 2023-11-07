@@ -257,7 +257,7 @@
             insert_btn.BackColor = SystemColors.Window;
             insert_btn.BackgroundImageLayout = ImageLayout.Zoom;
             insert_btn.Image = (Image)resources.GetObject("insert_btn.Image");
-            insert_btn.Location = new Point(374, 630);
+            insert_btn.Location = new Point(1101, 403);
             insert_btn.Name = "insert_btn";
             insert_btn.Size = new Size(78, 70);
             insert_btn.TabIndex = 14;
@@ -333,7 +333,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(341, 755);
+            panel1.Size = new Size(341, 712);
             panel1.TabIndex = 51;
             // 
             // exit_btn6
@@ -421,7 +421,7 @@
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1481, 755);
+            ClientSize = new Size(1481, 712);
             Controls.Add(panel1);
             Controls.Add(success_lbl1);
             Controls.Add(groupBox2);

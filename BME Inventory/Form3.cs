@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace BME_Inventory
 {
-    public partial class Show_Data : Form
+    public partial class Recieve : Form
     {
         SqlConnection connection = new SqlConnection("Data Source=ASUS_X512JA\\SQLEXPRESS;Initial Catalog=Hospital;Integrated Security=True");
 
-        public Show_Data()
+        public Recieve()
         {
             InitializeComponent();
         }

@@ -48,9 +48,7 @@
             upper_lbl1 = new Label();
             lower_lbl1 = new Label();
             delete_btn = new Button();
-            dataGridView1 = new DataGridView();
             home_btn2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // load_btn
@@ -224,16 +222,6 @@
             delete_btn.UseVisualStyleBackColor = true;
             delete_btn.Click += delete_btn_Click;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(390, 48);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(265, 230);
-            dataGridView1.TabIndex = 21;
-            // 
             // home_btn2
             // 
             home_btn2.Location = new Point(488, 313);
@@ -251,7 +239,6 @@
             BackColor = SystemColors.Window;
             ClientSize = new Size(686, 390);
             Controls.Add(home_btn2);
-            Controls.Add(dataGridView1);
             Controls.Add(delete_btn);
             Controls.Add(lower_lbl1);
             Controls.Add(upper_lbl1);
@@ -275,7 +262,6 @@
             Font = new Font("Berlin Sans FB", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "View";
             Text = "View Data";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -301,7 +287,6 @@
         private Label upper_lbl1;
         private Label lower_lbl1;
         private Button delete_btn;
-        private DataGridView dataGridView1;
         private Button home_btn2;
     }
 }

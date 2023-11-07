@@ -170,7 +170,7 @@ namespace BME_Inventory
 
         private void load_btn_Click(object sender, EventArgs e)
         {
-            Show_Data show_data = new Show_Data();
+            Recieve show_data = new Recieve();
             show_data.Show();
             this.Hide();
         }

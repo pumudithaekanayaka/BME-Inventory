@@ -36,6 +36,7 @@
             label1 = new Label();
             table_btn6 = new Button();
             panel1 = new Panel();
+            receive_btn6 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             add_btn.FlatStyle = FlatStyle.Flat;
             add_btn.Image = (Image)resources.GetObject("add_btn.Image");
             add_btn.ImageAlign = ContentAlignment.MiddleLeft;
-            add_btn.Location = new Point(16, 158);
+            add_btn.Location = new Point(16, 274);
             add_btn.Name = "add_btn";
             add_btn.Size = new Size(319, 58);
             add_btn.TabIndex = 1;
@@ -73,7 +74,7 @@
             edit_btn.FlatStyle = FlatStyle.Flat;
             edit_btn.Image = (Image)resources.GetObject("edit_btn.Image");
             edit_btn.ImageAlign = ContentAlignment.MiddleLeft;
-            edit_btn.Location = new Point(16, 222);
+            edit_btn.Location = new Point(16, 338);
             edit_btn.Name = "edit_btn";
             edit_btn.Size = new Size(319, 58);
             edit_btn.TabIndex = 2;
@@ -87,7 +88,7 @@
             exit_btn6.FlatStyle = FlatStyle.Flat;
             exit_btn6.Image = (Image)resources.GetObject("exit_btn6.Image");
             exit_btn6.ImageAlign = ContentAlignment.MiddleLeft;
-            exit_btn6.Location = new Point(16, 350);
+            exit_btn6.Location = new Point(12, 466);
             exit_btn6.Name = "exit_btn6";
             exit_btn6.Size = new Size(319, 58);
             exit_btn6.TabIndex = 5;
@@ -111,7 +112,7 @@
             table_btn6.FlatStyle = FlatStyle.Flat;
             table_btn6.Image = (Image)resources.GetObject("table_btn6.Image");
             table_btn6.ImageAlign = ContentAlignment.MiddleLeft;
-            table_btn6.Location = new Point(16, 286);
+            table_btn6.Location = new Point(16, 402);
             table_btn6.Name = "table_btn6";
             table_btn6.Size = new Size(319, 58);
             table_btn6.TabIndex = 3;
@@ -124,6 +125,7 @@
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
             panel1.BackColor = Color.Azure;
+            panel1.Controls.Add(receive_btn6);
             panel1.Controls.Add(exit_btn6);
             panel1.Controls.Add(distribute_btn);
             panel1.Controls.Add(edit_btn);
@@ -135,6 +137,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(341, 689);
             panel1.TabIndex = 9;
+            // 
+            // receive_btn6
+            // 
+            receive_btn6.FlatAppearance.BorderSize = 0;
+            receive_btn6.FlatStyle = FlatStyle.Flat;
+            receive_btn6.Image = (Image)resources.GetObject("receive_btn6.Image");
+            receive_btn6.ImageAlign = ContentAlignment.MiddleLeft;
+            receive_btn6.Location = new Point(12, 158);
+            receive_btn6.Name = "receive_btn6";
+            receive_btn6.Size = new Size(322, 58);
+            receive_btn6.TabIndex = 6;
+            receive_btn6.Text = "Receive";
+            receive_btn6.UseVisualStyleBackColor = true;
+            receive_btn6.Click += button1_Click_1;
             // 
             // Home
             // 
@@ -165,5 +181,6 @@
         private Button table_btn6;
         private Button exit_btn6;
         private Panel panel1;
+        private Button receive_btn6;
     }
 }

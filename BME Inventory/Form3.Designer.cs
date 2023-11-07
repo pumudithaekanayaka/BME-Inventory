@@ -1,6 +1,6 @@
 ﻿namespace BME_Inventory
 {
-    partial class Show_Data
+    partial class Recieve
     {
         /// <summary>
         /// Required designer variable.
@@ -222,7 +222,7 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
-            // Show_Data
+            // Recieve
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -249,8 +249,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Font = new Font("Berlin Sans FB", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            Name = "Show_Data";
-            Text = "Viewer";
+            Name = "Recieve";
+            Text = "Recieve";
+            WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
             PerformLayout();
         }

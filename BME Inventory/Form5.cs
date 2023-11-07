@@ -132,5 +132,10 @@ namespace BME_Inventory
             home.Show();
             this.Hide();
         }
+
+        private void Distribute_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -292,6 +292,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "Distribute";
             Text = "Distribution Form";
+            Load += Distribute_Load;
             ResumeLayout(false);
             PerformLayout();
         }

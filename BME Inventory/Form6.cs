@@ -67,5 +67,12 @@ namespace BME_Inventory
         {
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Recieve recieve = new Recieve();
+            recieve.Show();
+            this.Hide();
+        }
     }
 }
