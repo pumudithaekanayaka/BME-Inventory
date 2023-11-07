@@ -71,7 +71,6 @@ namespace BME_Inventory
             }
             else if (dialogResult == DialogResult.No)
             {
-                // Redirect back to the main form (Insert)
                 Hide();
                 Insert form1 = new Insert();
                 form1.Show();
@@ -80,13 +79,11 @@ namespace BME_Inventory
 
         private void home_btn2_Click(object sender, EventArgs e)
         {
-            // Navigate to the Home form
             Hide();
-            Home home = new Home();
+            AdminHome home = new AdminHome();
             home.Show();
         }
 
-        // Other event handlers remain the same
 
     }
 }

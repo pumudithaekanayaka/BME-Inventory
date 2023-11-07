@@ -46,13 +46,12 @@ namespace BME_Inventory
                 MessageBox.Show("Record not found!");
             }
 
-            reader.Close(); // Close the SqlDataReader
+            reader.Close();
             connection.Close();
         }
 
         private void back_btn_Click(object sender, EventArgs e)
         {
-            // Redirect to the Insert form
             Hide();
             Insert form1 = new Insert();
             form1.Show();
@@ -60,7 +59,6 @@ namespace BME_Inventory
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Redirect to the Table form
             Hide();
             Table table = new Table();
             table.Show();
@@ -68,7 +66,6 @@ namespace BME_Inventory
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            // Redirect to the Distribute form
             Hide();
             Distribute distribute = new Distribute();
             distribute.Show();

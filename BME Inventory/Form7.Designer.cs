@@ -49,7 +49,7 @@
             // 
             // login_btn
             // 
-            login_btn.Location = new Point(257, 213);
+            login_btn.Location = new Point(259, 294);
             login_btn.Name = "login_btn";
             login_btn.Size = new Size(149, 57);
             login_btn.TabIndex = 2;

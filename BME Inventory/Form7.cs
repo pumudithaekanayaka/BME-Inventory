@@ -14,7 +14,7 @@ namespace BME_Inventory
 {
     public partial class login : Form
     {
-        private const string ConnectionString = "Data Source=ASUS_X512JA\\SQLEXPRESS;Initial Catalog=Badulla Inventory;Integrated Security=True";
+        private const string ConnectionString = "Data Source=ASUS_X512JA\\SQLEXPRESS;Initial Catalog=Hospital;Integrated Security=True";
         private SqlConnection con;
         private SqlCommand cmd;
 
@@ -41,7 +41,7 @@ namespace BME_Inventory
             {
                 con.Open();
                 cmd.Parameters.Clear();
-                cmd.CommandText = "SELECT password, user_level FROM users WHERE username = @username";
+                cmd.CommandText = "SELECT password, user_role FROM users WHERE username = @username";
                 cmd.Parameters.AddWithValue("@username", username);
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -49,7 +49,7 @@ namespace BME_Inventory
                 if (reader.Read())
                 {
                     string storedPassword = reader["password"].ToString();
-                    string userRole = reader["user_level"].ToString();
+                    string userRole = reader["user_role"].ToString();
 
                     if (storedPassword == password)
                     {
@@ -57,21 +57,18 @@ namespace BME_Inventory
 
                         if (userRole == "user")
                         {
-                            // User-specific actions
                             this.Hide();
                             UserHome userHome = new UserHome();
                             userHome.Show();
                         }
                         else if (userRole == "admin")
                         {
-                            // Admin-specific actions
                             this.Hide();
                             AdminHome adminHome = new AdminHome();
                             adminHome.Show();
                         }
                         else if (userRole == "maintenance")
                         {
-                            // Maintenance-specific actions
                             this.Hide();
                             MaintenanceHome maintenanceHome = new MaintenanceHome();
                             maintenanceHome.Show();

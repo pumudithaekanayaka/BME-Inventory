@@ -140,7 +140,7 @@ namespace BME_Inventory
 
         private void home_btn4_Click(object sender, EventArgs e)
         {
-            Home home = new Home();
+            AdminHome home = new AdminHome();
             home.Show();
             this.Hide();
         }

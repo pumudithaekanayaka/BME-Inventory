@@ -1,6 +1,6 @@
 ﻿namespace BME_Inventory
 {
-    partial class Home
+    partial class AdminHome
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminHome));
             distribute_btn = new Button();
             add_btn = new Button();
             edit_btn = new Button();

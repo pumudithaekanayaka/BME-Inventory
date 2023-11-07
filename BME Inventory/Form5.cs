@@ -128,7 +128,7 @@ namespace BME_Inventory
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Home home = new Home();
+            AdminHome home = new AdminHome();
             home.Show();
             this.Hide();
         }

@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace BME_Inventory
 {
-    public partial class Home : Form
+    public partial class AdminHome : Form
     {
 
 
-        public Home()
+        public AdminHome()
         {
             InitializeComponent();
         }
