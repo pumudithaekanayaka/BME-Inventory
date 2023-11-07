@@ -21,12 +21,15 @@ namespace BME_Inventory
                 return;
             }
 
-            string connectionString = $"Data Source={serverName};Initial Catalog={databaseName};Integrated Security=True";
+            // Save the server and database information to application settings
+            Properties.Settings.Default.ServerName = serverName;
+            Properties.Settings.Default.DatabaseName = databaseName;
+            Properties.Settings.Default.Save();
 
             try
             {
                 this.Hide();
-                DatabaseManager dbManager = new DatabaseManager(connectionString); // Create a DatabaseManager with the connection string
+                DatabaseManager dbManager = new DatabaseManager(GetConnectionString()); // Create a DatabaseManager with the connection string
                 login login = new login(dbManager); // Pass the DatabaseManager as an argument
                 login.Show();
             }
@@ -34,6 +37,16 @@ namespace BME_Inventory
             {
                 MessageBox.Show("Connection failed. Error: " + ex.Message);
             }
+        }
+
+        private string GetConnectionString()
+        {
+            // Retrieve the server and database information from application settings
+            string serverName = Properties.Settings.Default.ServerName;
+            string databaseName = Properties.Settings.Default.DatabaseName;
+
+            // Create the connection string
+            return $"Data Source={serverName};Initial Catalog={databaseName};Integrated Security=True";
         }
     }
 }
