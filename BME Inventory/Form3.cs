@@ -18,7 +18,7 @@ namespace BME_Inventory
         {
             try
             {
-                dbManager.OpenConnection(); // Open the database connection using DatabaseManager
+                dbManager.OpenConnection();
 
                 string query = "SELECT * FROM spare_parts WHERE part_id LIKE '%' + @part_id + '%' OR part_name LIKE '%' + @part_name + '%' OR equip_name LIKE '%' + @equip_name + '%'";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
@@ -60,14 +60,14 @@ namespace BME_Inventory
             }
             finally
             {
-                dbManager.CloseConnection(); // Close the database connection using DatabaseManager
+                dbManager.CloseConnection();
             }
         }
 
         private void back_btn_Click(object sender, EventArgs e)
         {
             Hide();
-            Insert form1 = new Insert(dbManager); // Pass the DatabaseManager object to the Insert form
+            Insert form1 = new Insert(dbManager);
             form1.Show();
         }
 

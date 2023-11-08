@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.IO;
 
 namespace BME_Inventory
 {
     public partial class login : Form
     {
-        private DatabaseManager dbManager; // Replace 'DatabaseManager' with your actual class name
+        private DatabaseManager dbManager;
+        private string loggedInUsername;
 
         public login(DatabaseManager databaseManager)
         {
@@ -15,6 +16,24 @@ namespace BME_Inventory
             dbManager = databaseManager;
             password_txt.PasswordChar = '*';
         }
+
+        private void RedirectBasedOnUserRole(string userRole)
+        {
+            if (userRole == "user" || userRole == "admin" || userRole == "maintenance")
+            {
+                UserRoles.CurrentUserRole = userRole;
+
+                Form targetForm = new Dashboard(dbManager);
+
+                this.Hide();
+                targetForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password.");
+            }
+        }
+
 
         private void login_btn_Click(object sender, EventArgs e)
         {
@@ -44,24 +63,8 @@ namespace BME_Inventory
 
                             if (storedPassword == password)
                             {
-                                if (userRole == "user")
-                                {
-                                    this.Hide();
-                                    UserHome userHome = new UserHome();
-                                    userHome.Show();
-                                }
-                                else if (userRole == "admin")
-                                {
-                                    this.Hide();
-                                    AdminHome adminHome = new AdminHome(dbManager);
-                                    adminHome.Show();
-                                }
-                                else if (userRole == "maintenance")
-                                {
-                                    this.Hide();
-                                    MaintenanceHome maintenanceHome = new MaintenanceHome();
-                                    maintenanceHome.Show();
-                                }
+                                loggedInUsername = username;
+                                RedirectBasedOnUserRole(userRole);
                             }
                             else
                             {
@@ -84,5 +87,29 @@ namespace BME_Inventory
                 dbManager.CloseConnection();
             }
         }
+
+        private void LogLogin(string username)
+        {
+            string logFolderPath = "C:\\Inventory logs";
+            string logFileName = "login_log.txt";
+            string logFilePath = Path.Combine(logFolderPath, logFileName);
+            string logMessage = $"{username} logged in at {DateTime.Now}";
+
+            try
+            {
+                // Ensure the log folder exists
+                Directory.CreateDirectory(logFolderPath);
+
+                using (StreamWriter writer = File.AppendText(logFilePath))
+                {
+                    writer.WriteLine(logMessage);
+                }
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show("Failed to write to the log file: " + ex.Message);
+            }
+        }
+
     }
 }

@@ -21,7 +21,6 @@ namespace BME_Inventory
                 return;
             }
 
-            // Save the server and database information to application settings
             Properties.Settings.Default.ServerName = serverName;
             Properties.Settings.Default.DatabaseName = databaseName;
             Properties.Settings.Default.Save();
@@ -29,8 +28,8 @@ namespace BME_Inventory
             try
             {
                 this.Hide();
-                DatabaseManager dbManager = new DatabaseManager(GetConnectionString()); // Create a DatabaseManager with the connection string
-                login login = new login(dbManager); // Pass the DatabaseManager as an argument
+                DatabaseManager dbManager = new DatabaseManager(GetConnectionString());
+                login login = new login(dbManager);
                 login.Show();
             }
             catch (Exception ex)
@@ -41,11 +40,9 @@ namespace BME_Inventory
 
         private string GetConnectionString()
         {
-            // Retrieve the server and database information from application settings
             string serverName = Properties.Settings.Default.ServerName;
             string databaseName = Properties.Settings.Default.DatabaseName;
 
-            // Create the connection string
             return $"Data Source={serverName};Initial Catalog={databaseName};Integrated Security=True";
         }
     }

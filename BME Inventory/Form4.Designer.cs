@@ -28,23 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
             export_btn = new Button();
             exit_btn4 = new Button();
-            mail_btn4 = new Button();
+            export_all_btn4 = new Button();
             home_btn4 = new Button();
+            dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(33, 41);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(889, 260);
-            dataGridView1.TabIndex = 0;
             // 
             // export_btn
             // 
@@ -66,14 +56,15 @@
             exit_btn4.UseVisualStyleBackColor = true;
             exit_btn4.Click += exit_btn4_Click;
             // 
-            // mail_btn4
+            // export_all_btn4
             // 
-            mail_btn4.Location = new Point(92, 336);
-            mail_btn4.Name = "mail_btn4";
-            mail_btn4.Size = new Size(93, 38);
-            mail_btn4.TabIndex = 4;
-            mail_btn4.Text = "Mail";
-            mail_btn4.UseVisualStyleBackColor = true;
+            export_all_btn4.Location = new Point(92, 336);
+            export_all_btn4.Name = "export_all_btn4";
+            export_all_btn4.Size = new Size(93, 38);
+            export_all_btn4.TabIndex = 4;
+            export_all_btn4.Text = "Export All";
+            export_all_btn4.UseVisualStyleBackColor = true;
+            export_all_btn4.Click += export_all_btn4_Click;
             // 
             // home_btn4
             // 
@@ -85,31 +76,47 @@
             home_btn4.UseVisualStyleBackColor = true;
             home_btn4.Click += home_btn4_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(62, 35);
+            dataGridView1.MultiSelect = false;
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(897, 284);
+            dataGridView1.TabIndex = 6;
+            // 
             // Table
             // 
             AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(1082, 630);
+            Controls.Add(dataGridView1);
             Controls.Add(home_btn4);
-            Controls.Add(mail_btn4);
+            Controls.Add(export_all_btn4);
             Controls.Add(exit_btn4);
             Controls.Add(export_btn);
-            Controls.Add(dataGridView1);
             Font = new Font("Candara", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "Table";
             Text = "Table";
+            WindowState = FormWindowState.Maximized;
             Load += Table_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private DataGridView dataGridView1;
         private Button export_btn;
         private Button exit_btn4;
-        private Button mail_btn4;
+        private Button export_all_btn4;
         private Button home_btn4;
+        private DataGridView dataGridView1;
     }
 }

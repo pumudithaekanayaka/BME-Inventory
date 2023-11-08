@@ -1,6 +1,6 @@
 ﻿namespace BME_Inventory
 {
-    partial class AdminHome
+    partial class Dashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,73 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminHome));
-            distribute_btn = new Button();
-            add_btn = new Button();
-            edit_btn = new Button();
-            exit_btn6 = new Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+            btn_distribute = new Button();
+            btn_add = new Button();
+            btn_edit = new Button();
+            btn_exit = new Button();
             label1 = new Label();
-            table_btn6 = new Button();
+            btn_table = new Button();
             panel1 = new Panel();
-            receive_btn6 = new Button();
+            btn_receive = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // distribute_btn
+            // btn_distribute
             // 
-            distribute_btn.FlatAppearance.BorderSize = 0;
-            distribute_btn.FlatStyle = FlatStyle.Flat;
-            distribute_btn.Image = (Image)resources.GetObject("distribute_btn.Image");
-            distribute_btn.ImageAlign = ContentAlignment.MiddleLeft;
-            distribute_btn.Location = new Point(16, 94);
-            distribute_btn.Name = "distribute_btn";
-            distribute_btn.Size = new Size(322, 58);
-            distribute_btn.TabIndex = 0;
-            distribute_btn.Text = "Distribute";
-            distribute_btn.UseVisualStyleBackColor = true;
-            distribute_btn.Click += button1_Click;
+            btn_distribute.FlatAppearance.BorderSize = 0;
+            btn_distribute.FlatStyle = FlatStyle.Flat;
+            btn_distribute.Image = (Image)resources.GetObject("btn_distribute.Image");
+            btn_distribute.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_distribute.Location = new Point(16, 94);
+            btn_distribute.Name = "btn_distribute";
+            btn_distribute.Size = new Size(322, 58);
+            btn_distribute.TabIndex = 0;
+            btn_distribute.Text = "Distribute";
+            btn_distribute.UseVisualStyleBackColor = true;
+            btn_distribute.Click += button1_Click;
             // 
-            // add_btn
+            // btn_add
             // 
-            add_btn.FlatAppearance.BorderSize = 0;
-            add_btn.FlatStyle = FlatStyle.Flat;
-            add_btn.Image = (Image)resources.GetObject("add_btn.Image");
-            add_btn.ImageAlign = ContentAlignment.MiddleLeft;
-            add_btn.Location = new Point(16, 274);
-            add_btn.Name = "add_btn";
-            add_btn.Size = new Size(319, 58);
-            add_btn.TabIndex = 1;
-            add_btn.Text = "Add New";
-            add_btn.UseVisualStyleBackColor = true;
-            add_btn.Click += button2_Click;
+            btn_add.FlatAppearance.BorderSize = 0;
+            btn_add.FlatStyle = FlatStyle.Flat;
+            btn_add.Image = (Image)resources.GetObject("btn_add.Image");
+            btn_add.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_add.Location = new Point(12, 222);
+            btn_add.Name = "btn_add";
+            btn_add.Size = new Size(319, 58);
+            btn_add.TabIndex = 1;
+            btn_add.Text = "Add New";
+            btn_add.UseVisualStyleBackColor = true;
+            btn_add.Click += button2_Click;
             // 
-            // edit_btn
+            // btn_edit
             // 
-            edit_btn.FlatAppearance.BorderSize = 0;
-            edit_btn.FlatStyle = FlatStyle.Flat;
-            edit_btn.Image = (Image)resources.GetObject("edit_btn.Image");
-            edit_btn.ImageAlign = ContentAlignment.MiddleLeft;
-            edit_btn.Location = new Point(16, 338);
-            edit_btn.Name = "edit_btn";
-            edit_btn.Size = new Size(319, 58);
-            edit_btn.TabIndex = 2;
-            edit_btn.Text = "Edit Entries";
-            edit_btn.UseVisualStyleBackColor = true;
-            edit_btn.Click += button3_Click;
+            btn_edit.FlatAppearance.BorderSize = 0;
+            btn_edit.FlatStyle = FlatStyle.Flat;
+            btn_edit.Image = (Image)resources.GetObject("btn_edit.Image");
+            btn_edit.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_edit.Location = new Point(16, 286);
+            btn_edit.Name = "btn_edit";
+            btn_edit.Size = new Size(319, 58);
+            btn_edit.TabIndex = 2;
+            btn_edit.Text = "Edit Entries";
+            btn_edit.UseVisualStyleBackColor = true;
+            btn_edit.Click += button3_Click;
             // 
-            // exit_btn6
+            // btn_exit
             // 
-            exit_btn6.FlatAppearance.BorderSize = 0;
-            exit_btn6.FlatStyle = FlatStyle.Flat;
-            exit_btn6.Image = (Image)resources.GetObject("exit_btn6.Image");
-            exit_btn6.ImageAlign = ContentAlignment.MiddleLeft;
-            exit_btn6.Location = new Point(12, 466);
-            exit_btn6.Name = "exit_btn6";
-            exit_btn6.Size = new Size(319, 58);
-            exit_btn6.TabIndex = 5;
-            exit_btn6.Text = "Exit";
-            exit_btn6.UseVisualStyleBackColor = true;
-            exit_btn6.Click += exit_btn6_Click;
+            btn_exit.FlatAppearance.BorderSize = 0;
+            btn_exit.FlatStyle = FlatStyle.Flat;
+            btn_exit.Image = (Image)resources.GetObject("btn_exit.Image");
+            btn_exit.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_exit.Location = new Point(12, 423);
+            btn_exit.Name = "btn_exit";
+            btn_exit.Size = new Size(319, 58);
+            btn_exit.TabIndex = 5;
+            btn_exit.Text = "Exit";
+            btn_exit.UseVisualStyleBackColor = true;
+            btn_exit.Click += exit_btn6_Click;
             // 
             // label1
             // 
@@ -106,31 +106,31 @@
             label1.TabIndex = 4;
             label1.Text = "DASHBOARD";
             // 
-            // table_btn6
+            // btn_table
             // 
-            table_btn6.FlatAppearance.BorderSize = 0;
-            table_btn6.FlatStyle = FlatStyle.Flat;
-            table_btn6.Image = (Image)resources.GetObject("table_btn6.Image");
-            table_btn6.ImageAlign = ContentAlignment.MiddleLeft;
-            table_btn6.Location = new Point(16, 402);
-            table_btn6.Name = "table_btn6";
-            table_btn6.Size = new Size(319, 58);
-            table_btn6.TabIndex = 3;
-            table_btn6.Text = "Show Table";
-            table_btn6.UseVisualStyleBackColor = true;
-            table_btn6.Click += table_btn6_Click;
+            btn_table.FlatAppearance.BorderSize = 0;
+            btn_table.FlatStyle = FlatStyle.Flat;
+            btn_table.Image = (Image)resources.GetObject("btn_table.Image");
+            btn_table.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_table.Location = new Point(12, 359);
+            btn_table.Name = "btn_table";
+            btn_table.Size = new Size(319, 58);
+            btn_table.TabIndex = 3;
+            btn_table.Text = "Show Table";
+            btn_table.UseVisualStyleBackColor = true;
+            btn_table.Click += table_btn6_Click;
             // 
             // panel1
             // 
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
             panel1.BackColor = Color.Azure;
-            panel1.Controls.Add(receive_btn6);
-            panel1.Controls.Add(exit_btn6);
-            panel1.Controls.Add(distribute_btn);
-            panel1.Controls.Add(edit_btn);
-            panel1.Controls.Add(add_btn);
-            panel1.Controls.Add(table_btn6);
+            panel1.Controls.Add(btn_receive);
+            panel1.Controls.Add(btn_exit);
+            panel1.Controls.Add(btn_distribute);
+            panel1.Controls.Add(btn_edit);
+            panel1.Controls.Add(btn_add);
+            panel1.Controls.Add(btn_table);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -138,21 +138,21 @@
             panel1.Size = new Size(341, 689);
             panel1.TabIndex = 9;
             // 
-            // receive_btn6
+            // btn_receive
             // 
-            receive_btn6.FlatAppearance.BorderSize = 0;
-            receive_btn6.FlatStyle = FlatStyle.Flat;
-            receive_btn6.Image = (Image)resources.GetObject("receive_btn6.Image");
-            receive_btn6.ImageAlign = ContentAlignment.MiddleLeft;
-            receive_btn6.Location = new Point(12, 158);
-            receive_btn6.Name = "receive_btn6";
-            receive_btn6.Size = new Size(322, 58);
-            receive_btn6.TabIndex = 6;
-            receive_btn6.Text = "Receive";
-            receive_btn6.UseVisualStyleBackColor = true;
-            receive_btn6.Click += button1_Click_1;
+            btn_receive.FlatAppearance.BorderSize = 0;
+            btn_receive.FlatStyle = FlatStyle.Flat;
+            btn_receive.Image = (Image)resources.GetObject("btn_receive.Image");
+            btn_receive.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_receive.Location = new Point(12, 158);
+            btn_receive.Name = "btn_receive";
+            btn_receive.Size = new Size(322, 58);
+            btn_receive.TabIndex = 6;
+            btn_receive.Text = "Receive";
+            btn_receive.UseVisualStyleBackColor = true;
+            btn_receive.Click += btn_receive_Click;
             // 
-            // Home
+            // Dashboard
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -161,11 +161,11 @@
             Controls.Add(panel1);
             Font = new Font("Nunito", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Home";
+            Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             TransparencyKey = Color.Cyan;
             WindowState = FormWindowState.Maximized;
-            Load += Home_Load;
+            Load += Dashboard_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -174,13 +174,13 @@
 
         #endregion
 
-        private Button distribute_btn;
-        private Button add_btn;
-        private Button edit_btn;
+        private Button btn_distribute;
+        private Button btn_add;
+        private Button btn_edit;
         private Label label1;
-        private Button table_btn6;
-        private Button exit_btn6;
+        private Button btn_table;
+        private Button btn_exit;
         private Panel panel1;
-        private Button receive_btn6;
+        private Button btn_receive;
     }
 }

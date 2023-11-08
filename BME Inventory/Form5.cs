@@ -1,12 +1,12 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 
 namespace BME_Inventory
 {
     public partial class Distribute : Form
     {
         private DatabaseManager dbManager;
+        private string loggedInUsername;
+        private string username;
 
         public Distribute(DatabaseManager databaseManager)
         {
@@ -18,7 +18,7 @@ namespace BME_Inventory
         {
             try
             {
-                dbManager.OpenConnection(); // Open the database connection using DatabaseManager
+                dbManager.OpenConnection();
 
                 string query = "UPDATE spare_parts SET stock = stock - @stock5 + @stock6 WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
@@ -39,15 +39,15 @@ namespace BME_Inventory
 
                             if (stockValue5 > 0 && stockValue6 > 0)
                             {
-                                logMessage = $"Record with part ID {part_id_txt5.Text} updated successfully with an increase of {stockValue6} and a reduction from {stockValue5} to the stock value of {stock_lbl.Text} at {DateTime.Now}";
+                                logMessage = $"{loggedInUsername} updated record with part ID {part_id_txt5.Text} successfully with an increase of {stockValue6} and a reduction from {stockValue5} to the stock value of {stock_lbl.Text} at {DateTime.Now}";
                             }
                             else if (stockValue5 > 0)
                             {
-                                logMessage = $"Record with part ID {part_id_txt5.Text} updated successfully with a reduction of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now}";
+                                logMessage = $"{loggedInUsername} updated record with part ID {part_id_txt5.Text} successfully with a reduction of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now}";
                             }
                             else
                             {
-                                logMessage = $"Record with part ID {part_id_txt5.Text} updated successfully with an increase of {stockValue6} to the stock value of {stock_lbl.Text} at {DateTime.Now}";
+                                logMessage = $"{loggedInUsername} updated record with part ID {part_id_txt5.Text} successfully with an increase of {stockValue6} to the stock value of {stock_lbl.Text} at {DateTime.Now}";
                             }
 
                             LogChanges(logMessage);
@@ -74,7 +74,7 @@ namespace BME_Inventory
             }
             finally
             {
-                dbManager.CloseConnection(); // Close the database connection using DatabaseManager
+                dbManager.CloseConnection();
             }
         }
 
@@ -103,7 +103,6 @@ namespace BME_Inventory
 
             if (logLines.Count > maxRows)
             {
-                // Trim the log file to keep a maximum of maxRows
                 File.WriteAllLines(logFilePath, logLines.Skip(logLines.Count - maxRows));
             }
         }
@@ -112,7 +111,7 @@ namespace BME_Inventory
         {
             try
             {
-                dbManager.OpenConnection(); // Open the database connection using DatabaseManager
+                dbManager.OpenConnection();
 
                 string query = "SELECT * FROM spare_parts WHERE part_id LIKE '%' + @part_id + '%'";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
@@ -152,13 +151,13 @@ namespace BME_Inventory
             }
             finally
             {
-                dbManager.CloseConnection(); // Close the database connection using DatabaseManager
+                dbManager.CloseConnection();
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AdminHome home = new AdminHome(dbManager);
+            Dashboard home = new Dashboard(dbManager);
             home.Show();
             this.Hide();
         }

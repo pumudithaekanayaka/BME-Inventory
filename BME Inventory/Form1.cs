@@ -18,12 +18,12 @@ namespace BME_Inventory
         {
             try
             {
-                dbManager.OpenConnection(); // Use the DatabaseManager for opening the connection
+                dbManager.OpenConnection();
 
                 var uniqueMakes = new HashSet<string>();
 
                 string query = "SELECT make FROM parts_data WHERE make IS NOT NULL";
-                using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection())) // Use the DatabaseManager for SqlCommand
+                using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -46,7 +46,7 @@ namespace BME_Inventory
             }
             finally
             {
-                dbManager.CloseConnection(); // Use the DatabaseManager for closing the connection
+                dbManager.CloseConnection();
             }
         }
 
@@ -54,12 +54,12 @@ namespace BME_Inventory
         {
             try
             {
-                dbManager.OpenConnection(); // Use the DatabaseManager for opening the connection
+                dbManager.OpenConnection();
 
                 var uniqueModels = new HashSet<string>();
 
                 string query = "SELECT model FROM parts_data WHERE model IS NOT NULL";
-                using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection())) // Use the DatabaseManager for SqlCommand
+                using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -82,7 +82,7 @@ namespace BME_Inventory
             }
             finally
             {
-                dbManager.CloseConnection(); // Use the DatabaseManager for closing the connection
+                dbManager.CloseConnection();
             }
         }
 
@@ -176,7 +176,7 @@ namespace BME_Inventory
 
         private void home_btn1_Click(object sender, EventArgs e)
         {
-            AdminHome home = new AdminHome(dbManager);
+            Dashboard home = new Dashboard(dbManager);
             home.Show();
             this.Hide();
         }
@@ -229,7 +229,7 @@ namespace BME_Inventory
 
         private void home_btn1_Click_1(object sender, EventArgs e)
         {
-            AdminHome home = new AdminHome(dbManager);
+            Dashboard home = new Dashboard(dbManager);
             home.Show();
             this.Hide();
         }

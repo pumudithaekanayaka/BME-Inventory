@@ -28,7 +28,7 @@ namespace BME_Inventory
         {
             try
             {
-                dbManager.OpenConnection(); // Open the database connection using DatabaseManager
+                dbManager.OpenConnection();
 
                 string query = "UPDATE spare_parts SET part_name = @part_name, equip_name = @equipment_name, stock = @stock, description = @description WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
@@ -56,7 +56,7 @@ namespace BME_Inventory
             }
             finally
             {
-                dbManager.CloseConnection(); // Close the database connection using DatabaseManager
+                dbManager.CloseConnection();
             }
         }
 
@@ -64,7 +64,7 @@ namespace BME_Inventory
         {
             try
             {
-                dbManager.OpenConnection(); // Open the database connection using DatabaseManager
+                dbManager.OpenConnection();
 
                 string query = "DELETE FROM spare_parts WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
@@ -88,7 +88,7 @@ namespace BME_Inventory
                     else if (dialogResult == DialogResult.No)
                     {
                         Hide();
-                        Insert form1 = new Insert(dbManager); // Pass the DatabaseManager object to the Insert form
+                        Insert form1 = new Insert(dbManager);
                         form1.Show();
                     }
                 }
@@ -99,14 +99,14 @@ namespace BME_Inventory
             }
             finally
             {
-                dbManager.CloseConnection(); // Close the database connection using DatabaseManager
+                dbManager.CloseConnection();
             }
         }
 
         private void home_btn2_Click(object sender, EventArgs e)
         {
             Hide();
-            AdminHome home = new AdminHome(dbManager);
+            Dashboard home = new Dashboard(dbManager);
             home.Show();
         }
     }
