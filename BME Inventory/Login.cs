@@ -11,7 +11,7 @@ namespace BME_Inventory
         private login loginForm;
         private string loggedInUsername = string.Empty;
 
-        public login(DatabaseManager databaseManager, db_conn dbConnForm)
+        public login(DatabaseManager databaseManager, DatabaseConnection dbConnForm)
         {
             InitializeComponent();
             dbManager = databaseManager;

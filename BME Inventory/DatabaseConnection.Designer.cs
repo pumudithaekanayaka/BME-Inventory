@@ -1,6 +1,6 @@
 ﻿namespace BME_Inventory
 {
-    partial class db_conn
+    partial class DatabaseConnection
     {
         /// <summary>
         /// Required designer variable.

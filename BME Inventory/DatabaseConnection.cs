@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace BME_Inventory
 {
-    public partial class db_conn : Form
+    public partial class DatabaseConnection : Form
     {
-        public db_conn()
+        public DatabaseConnection()
         {
             InitializeComponent();
         }

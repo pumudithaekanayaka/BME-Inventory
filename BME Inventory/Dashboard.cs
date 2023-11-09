@@ -57,7 +57,7 @@ namespace BME_Inventory
         private void button1_Click(object sender, EventArgs e)
         {
             string currentUserRole = UserRoles.CurrentUserRole;
-            if (currentUserRole != "user") // Check user role here
+            if (currentUserRole != "user")
             {
                 Distribute distribute = new Distribute(dbManager);
                 distribute.Show();
@@ -68,7 +68,7 @@ namespace BME_Inventory
         private void button3_Click(object sender, EventArgs e)
         {
             string currentUserRole = UserRoles.CurrentUserRole;
-            if (currentUserRole != "user") // Check user role here
+            if (currentUserRole != "user")
             {
                 View view = new View(dbManager);
                 view.Show();
@@ -79,7 +79,7 @@ namespace BME_Inventory
         private void button2_Click(object sender, EventArgs e)
         {
             string currentUserRole = UserRoles.CurrentUserRole;
-            if (currentUserRole != "user") // Check user role here
+            if (currentUserRole != "user")
             {
                 Insert insert = new Insert(dbManager);
                 insert.Show();
@@ -90,7 +90,7 @@ namespace BME_Inventory
         private void table_btn6_Click(object sender, EventArgs e)
         {
             string currentUserRole = UserRoles.CurrentUserRole;
-            if (currentUserRole != "user") // Check user role here
+            if (currentUserRole != "user")
             {
                 Table table = new Table(dbManager);
                 table.Show();
