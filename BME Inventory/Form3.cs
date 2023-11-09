@@ -1,57 +1,87 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.Windows.Forms;
+﻿using System.Data.SqlClient;
 
 namespace BME_Inventory
 {
     public partial class Recieve : Form
     {
         private DatabaseManager dbManager;
+        private string loggedInUsername;
+        private string username;
 
         public Recieve(DatabaseManager databaseManager)
         {
             InitializeComponent();
             dbManager = databaseManager;
         }
+        private void LogChanges(string logMessage)
+        {
+            string logFilePath = @"C:\Inventory Logs\recived_log.txt";
+            int maxRows = 100;
+            List<string> logLines = new List<string>();
 
-        private void load_btn_Click(object sender, EventArgs e)
+            if (File.Exists(logFilePath))
+            {
+                using (StreamReader reader = new StreamReader(logFilePath))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        logLines.Add(line);
+                    }
+                }
+            }
+
+            using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            {
+                writer.WriteLine(logMessage);
+            }
+
+            if (logLines.Count > maxRows)
+            {
+                File.WriteAllLines(logFilePath, logLines.Skip(logLines.Count - maxRows));
+            }
+        }
+
+        private void update_btn3_Click_1(object sender, EventArgs e)
         {
             try
             {
                 dbManager.OpenConnection();
 
-                string query = "SELECT * FROM spare_parts WHERE part_id LIKE '%' + @part_id + '%' OR part_name LIKE '%' + @part_name + '%' OR equip_name LIKE '%' + @equip_name + '%'";
+                string query = "UPDATE spare_parts SET stock = stock + @stock6 WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
-                    cmd.Parameters.AddWithValue("@part_id", part_id_txt2.Text);
-                    cmd.Parameters.AddWithValue("@part_name", part_name_txt2.Text);
-                    cmd.Parameters.AddWithValue("@equip_name", equip_name_txt2.Text);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.HasRows)
+                    cmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
+                    decimal stockValue6 = 0;
+                    if (decimal.TryParse(stock_txt6.Text, out stockValue6))
                     {
-                        while (reader.Read())
-                        {
-                            part_name_txt2.Text = reader.GetString(1);
-                            equip_name_txt2.Text = reader.GetString(2);
-                            upper_lbl2.Text = reader.GetDecimal(3).ToString();
-                            lower_lbl2.Text = reader.GetDecimal(4).ToString();
-                            stock_txt2.Text = reader.GetDecimal(5).ToString();
-                            desc_txt2.Text = reader.GetString(6);
+                        cmd.Parameters.AddWithValue("@stock6", stockValue6);
 
-                            if (Convert.ToDecimal(stock_txt2.Text) < Convert.ToDecimal(lower_lbl2.Text))
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            string logMessage = "";
+
+                            if (stockValue6 > 0)
                             {
-                                MessageBox.Show("Stock value is less than the lower limit!");
+                                logMessage = $"{loggedInUsername} updated record with part ID {part_id_txt5.Text} successfully with an increase of {stockValue6} to the stock value of {stock_lbl.Text} at {DateTime.Now}";
                             }
+                            LogChanges(logMessage);
+
+                            MessageBox.Show("Record updated successfully!");
+                            stock_txt6.Text = "";
+                            stock_lbl.Text = (decimal.Parse(stock_lbl.Text) + stockValue6).ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Record not found!");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Record not found!");
+                        MessageBox.Show("Invalid input for stock value!");
                     }
-
-                    reader.Close();
                 }
             }
             catch (Exception ex)
@@ -64,25 +94,59 @@ namespace BME_Inventory
             }
         }
 
-        private void back_btn_Click(object sender, EventArgs e)
+        private void load_btn3_Click(object sender, EventArgs e)
         {
-            Hide();
-            Insert form1 = new Insert(dbManager);
-            form1.Show();
+            try
+            {
+                dbManager.OpenConnection();
+
+                string query = "SELECT * FROM spare_parts WHERE part_id LIKE '%' + @part_id + '%'";
+                using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
+                {
+                    cmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            part_name_lbl.Text = reader.GetString(1);
+                            equip_name_lbl.Text = reader.GetString(2);
+                            upper_lbl5.Text = reader.GetDecimal(3).ToString();
+                            lower_lbl5.Text = reader.GetDecimal(4).ToString();
+                            stock_lbl.Text = reader.GetDecimal(5).ToString();
+                            description_lbl.Text = reader.GetString(6);
+
+                            decimal stockValue;
+                            if (decimal.TryParse(stock_lbl.Text, out stockValue) && decimal.TryParse(lower_lbl5.Text, out decimal lowerValue))
+                            {
+                                if (stockValue < lowerValue)
+                                {
+                                    MessageBox.Show("Stock value is less than lower limit!");
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Record not found!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                dbManager.CloseConnection();
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_home3_Click(object sender, EventArgs e)
         {
-            Hide();
-            Table table = new Table(dbManager);
-            table.Show();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            Hide();
-            Distribute distribute = new Distribute(dbManager);
-            distribute.Show();
+            Dashboard home = new Dashboard(dbManager);
+            home.Show();
+            this.Hide();
         }
     }
 }

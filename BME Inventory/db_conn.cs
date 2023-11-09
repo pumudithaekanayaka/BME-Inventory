@@ -29,7 +29,7 @@ namespace BME_Inventory
             {
                 this.Hide();
                 DatabaseManager dbManager = new DatabaseManager(GetConnectionString());
-                login login = new login(dbManager);
+                login login = new login(dbManager, this);
                 login.Show();
             }
             catch (Exception ex)

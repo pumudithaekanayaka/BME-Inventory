@@ -8,13 +8,19 @@ namespace BME_Inventory
     public partial class login : Form
     {
         private DatabaseManager dbManager;
-        private string loggedInUsername;
+        private login loginForm;
+        private string loggedInUsername = string.Empty;
 
-        public login(DatabaseManager databaseManager)
+        public login(DatabaseManager databaseManager, db_conn dbConnForm)
         {
             InitializeComponent();
             dbManager = databaseManager;
             password_txt.PasswordChar = '*';
+        }
+
+        public string LoggedInUsername
+        {
+            get { return loggedInUsername; }
         }
 
         private void RedirectBasedOnUserRole(string userRole)

@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace BME_Inventory
 {
-    public partial class MaintenanceHome : Form
+    public partial class dev_dash : Form
     {
         private DatabaseManager dbManager;
         private SqlConnection connection;
 
-        public MaintenanceHome(DatabaseManager databaseManager)
+        public dev_dash(DatabaseManager databaseManager)
         {
             InitializeComponent();
             dbManager = databaseManager;

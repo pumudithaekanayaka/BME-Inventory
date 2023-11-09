@@ -7,12 +7,15 @@ namespace BME_Inventory
     public partial class Dashboard : Form
     {
         private DatabaseManager dbManager;
+        private string loggedInUsername;
         private string username;
+        private login loginForm;
 
         public Dashboard(DatabaseManager databaseManager)
         {
             InitializeComponent();
             dbManager = databaseManager;
+            this.loginForm = loginForm;
             UpdateUIBasedOnUserRole();
         }
 
@@ -22,14 +25,21 @@ namespace BME_Inventory
 
             if (currentUserRole == "user")
             {
-                btn_distribute.Enabled = false;
+                btn_receive.Enabled = false;
+                btn_receive.Visible = false;
                 btn_edit.Enabled = false;
+                btn_edit.Visible = false;
                 btn_add.Enabled = false;
+                btn_add.Visible = false;
                 btn_table.Enabled = true;
+                btn_dev6.Enabled = false;
+                btn_dev6.Visible = false;
             }
             else if (currentUserRole == "admin")
             {
                 btn_distribute.Enabled = true;
+                btn_dev6.Enabled = false;
+                btn_dev6.Visible = false;
                 btn_edit.Enabled = true;
                 btn_add.Enabled = true;
                 btn_table.Enabled = true;
@@ -37,6 +47,7 @@ namespace BME_Inventory
             else if (currentUserRole == "maintenance")
             {
                 btn_distribute.Enabled = true;
+                btn_dev6.Enabled = true;
                 btn_edit.Enabled = true;
                 btn_add.Enabled = true;
                 btn_table.Enabled = true;
@@ -97,20 +108,31 @@ namespace BME_Inventory
             }
         }
 
-        private void connect_btn6_Click(object sender, EventArgs e)
-        {
-            // Add your code to handle database connections if needed.
-        }
-
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            // Add your initialization code if needed.
+            string username = loginForm.LoggedInUsername;
+
+            if (username != null)
+            {
+                user_lbl6.Text = $"Logged in user: {username}";
+            }
+            else
+            {
+                user_lbl6.Text = $"Unable to retrieve logged-in username.";
+            }
         }
 
         private void btn_receive_Click(object sender, EventArgs e)
         {
             Recieve recieve = new Recieve(dbManager);
             recieve.Show();
+            this.Hide();
+        }
+
+        private void btn_dev6_Click(object sender, EventArgs e)
+        {
+            dev_dash developer = new dev_dash(dbManager);
+            developer.Show();
             this.Hide();
         }
     }
