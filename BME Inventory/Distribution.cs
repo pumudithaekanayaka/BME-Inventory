@@ -24,33 +24,33 @@ namespace BME_Inventory
 
             if (currentUserRole == "user")
             {
-                btn_receive5.Enabled = false;
-                btn_receive5.Visible = false;
-                btn_edit5.Enabled = false;
-                btn_edit5.Visible = false;
-                btn_add5.Enabled = false;
-                btn_add5.Visible = false;
-                btn_home5.Enabled = true;
-                btn_table5.Enabled = true;
-                btn_dev5.Enabled = false;
-                btn_dev5.Visible = false;
+                btn_receive_distribute.Enabled = false;
+                btn_receive_distribute.Visible = false;
+                btn_edit_distribute.Enabled = false;
+                btn_edit_distribute.Visible = false;
+                btn_add_distribute.Enabled = false;
+                btn_add_distribute.Visible = false;
+                btn_home_distribute.Enabled = true;
+                btn_table_distribute.Enabled = true;
+                btn_dev_distribute.Enabled = false;
+                btn_dev_distribute.Visible = false;
             }
             else if (currentUserRole == "admin")
             {
-                btn_home5.Enabled = true;
-                btn_dev5.Enabled = false;
-                btn_dev5.Visible = false;
-                btn_edit5.Enabled = true;
-                btn_add5.Enabled = true;
-                btn_table5.Enabled = true;
+                btn_home_distribute.Enabled = true;
+                btn_dev_distribute.Enabled = false;
+                btn_dev_distribute.Visible = false;
+                btn_edit_distribute.Enabled = true;
+                btn_add_distribute.Enabled = true;
+                btn_table_distribute.Enabled = true;
             }
             else if (currentUserRole == "maintenance")
             {
-                btn_home5.Enabled = true;
-                btn_dev5.Enabled = true;
-                btn_edit5.Enabled = true;
-                btn_add5.Enabled = true;
-                btn_table5.Enabled = true;
+                btn_home_distribute.Enabled = true;
+                btn_dev_distribute.Enabled = true;
+                btn_edit_distribute.Enabled = true;
+                btn_add_distribute.Enabled = true;
+                btn_table_distribute.Enabled = true;
             }
         }
 
@@ -60,7 +60,7 @@ namespace BME_Inventory
             {
                 dbManager.OpenConnection();
 
-                string query = "UPDATE spare_parts SET stock = stock - @stock5 WHERE part_id = @part_id";
+                string query = "UPDATE inventory SET stock = stock - @stock5 WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
@@ -73,18 +73,34 @@ namespace BME_Inventory
 
                         if (rowsAffected > 0)
                         {
-                            string logMessage = "";
-
-                            if (stockValue5 > 0)
-                            {
-                                logMessage = $"{loggedInUsername} updated record with part ID {part_id_txt5.Text} successfully with a reduction of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now}";
-                            }
-
+                            string logMessage = $"{user_lbl_distribute.Text} updated record with part ID {part_id_txt5.Text} successfully with a reduction of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now},the Book page ID of the 500 book is{book_txt_distribute.Text}";
                             LogChanges(logMessage);
 
-                            MessageBox.Show("Record updated successfully!");
-                            stock_txt5.Text = "";
-                            stock_lbl.Text = (decimal.Parse(stock_lbl.Text) - stockValue5).ToString();
+                            string distributionQuery = "INSERT INTO distribution (part_id, make, model, equip_name, issued_by, issued_quantity, time, book_page_id) VALUES (@part_id, @make, @model, @equip_name, @issued_by, @issued_quantity, @time, @book_page_id)";
+                            using (SqlCommand distributionCmd = new SqlCommand(distributionQuery, dbManager.GetConnection()))
+                            {
+                                distributionCmd.Parameters.AddWithValue("@book_page_id",book_txt_distribute.Text);
+                                distributionCmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
+                                distributionCmd.Parameters.AddWithValue("@make", make_lbl.Text);
+                                distributionCmd.Parameters.AddWithValue("@model", model_lbl.Text);
+                                distributionCmd.Parameters.AddWithValue("@equip_name", equip_name_lbl.Text);
+                                distributionCmd.Parameters.AddWithValue("@issued_by", user_lbl_distribute.Text);
+                                distributionCmd.Parameters.AddWithValue("@issued_quantity", stockValue5);
+                                distributionCmd.Parameters.AddWithValue("@time", DateTime.Now);
+
+                                int distributionRowsAffected = distributionCmd.ExecuteNonQuery();
+
+                                if (distributionRowsAffected > 0)
+                                {
+                                    MessageBox.Show("Data distributed and logged successfully!");
+                                    stock_txt5.Text = "";
+                                    stock_lbl.Text = (decimal.Parse(stock_lbl.Text) - stockValue5).ToString();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Failed to log distribution data!");
+                                }
+                            }
                         }
                         else
                         {
@@ -107,9 +123,10 @@ namespace BME_Inventory
             }
         }
 
+
         private void LogChanges(string logMessage)
         {
-            string logFilePath = @"C:\Inventory Logs\distribute_log.txt";
+            string logFilePath = $"C:\\Inventory Logs\\distribute_log_{DateTime.Now:yyyyMMdd}.txt";
             int maxRows = 100;
             List<string> logLines = new List<string>();
 
@@ -142,7 +159,7 @@ namespace BME_Inventory
             {
                 dbManager.OpenConnection();
 
-                string query = "SELECT * FROM spare_parts WHERE part_id LIKE '%' + @part_id + '%'";
+                string query = "SELECT * FROM inventory WHERE part_id LIKE '%' + @part_id + '%'";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
@@ -157,6 +174,8 @@ namespace BME_Inventory
                             lower_lbl5.Text = reader.GetDecimal(4).ToString();
                             stock_lbl.Text = reader.GetDecimal(5).ToString();
                             description_lbl.Text = reader.GetString(6);
+                            make_lbl.Text = reader.GetString(7);
+                            model_lbl.Text = reader.GetString(8);
 
                             decimal stockValue;
                             if (decimal.TryParse(stock_lbl.Text, out stockValue) && decimal.TryParse(lower_lbl5.Text, out decimal lowerValue))
@@ -186,15 +205,15 @@ namespace BME_Inventory
 
         private void Distribute_Load(object sender, EventArgs e)
         {
-            string username = (this.Owner as login)?.LoggedInUsername;
+            string username = CurrentUser.Username;
 
             if (username != null)
             {
-                user_lbl5.Text = $"Logged in user: {username}";
+                user_lbl_distribute.Text = $"{username}";
             }
             else
             {
-                user_lbl5.Text = $"Unable to retrieve logged-in username.";
+                user_lbl_distribute.Text = $"Unable to retrieve logged-in username.";
             }
         }
 
@@ -218,13 +237,9 @@ namespace BME_Inventory
 
         private void btn_table6_Click(object sender, EventArgs e)
         {
-            string currentUserRole = UserRoles.CurrentUserRole;
-            if (currentUserRole != "user") // Check user role here
-            {
-                Table table = new Table(dbManager);
-                table.Show();
-                this.Hide();
-            }
+            Table table = new Table(dbManager);
+            table.Show();
+            this.Hide();
         }
 
         private void btn_receive6_Click(object sender, EventArgs e)
@@ -236,24 +251,16 @@ namespace BME_Inventory
 
         private void btn_edit6_Click(object sender, EventArgs e)
         {
-            string currentUserRole = UserRoles.CurrentUserRole;
-            if (currentUserRole != "user") // Check user role here
-            {
-                View view = new View(dbManager);
-                view.Show();
-                this.Hide();
-            }
+            View view = new View(dbManager);
+            view.Show();
+            this.Hide();
         }
 
         private void btn_add6_Click(object sender, EventArgs e)
         {
-            string currentUserRole = UserRoles.CurrentUserRole;
-            if (currentUserRole != "user") // Check user role here
-            {
-                Insert insert = new Insert(dbManager);
-                insert.Show();
-                this.Hide();
-            }
+            Insert insert = new Insert(dbManager);
+            insert.Show();
+            this.Hide();
         }
 
         private void btn_dev6_Click(object sender, EventArgs e)

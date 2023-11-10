@@ -5,41 +5,36 @@ using System.IO;
 
 namespace BME_Inventory
 {
-    public partial class login : Form
+    public partial class Login : Form
     {
         private DatabaseManager dbManager;
-        private login loginForm;
         private string loggedInUsername = string.Empty;
 
-        public login(DatabaseManager databaseManager, DatabaseConnection dbConnForm)
+        public Login(DatabaseManager databaseManager)
         {
             InitializeComponent();
             dbManager = databaseManager;
             password_txt.PasswordChar = '*';
         }
 
-        public string LoggedInUsername
-        {
-            get { return loggedInUsername; }
-        }
+        public string LoggedInUsername => loggedInUsername;
 
-        private void RedirectBasedOnUserRole(string userRole)
+        private void RedirectBasedOnUserRole(string userRole, string username)
         {
             if (userRole == "user" || userRole == "admin" || userRole == "maintenance")
             {
                 UserRoles.CurrentUserRole = userRole;
+                CurrentUser.Username = username;
+                Dashboard dashboard = new Dashboard(dbManager);
 
-                Form targetForm = new Dashboard(dbManager);
-
-                this.Hide();
-                targetForm.Show();
+                Hide();
+                dashboard.Show();
             }
             else
             {
                 MessageBox.Show("Invalid username or password.");
             }
         }
-
 
         private void login_btn_Click(object sender, EventArgs e)
         {
@@ -70,7 +65,8 @@ namespace BME_Inventory
                             if (storedPassword == password)
                             {
                                 loggedInUsername = username;
-                                RedirectBasedOnUserRole(userRole);
+                                RedirectBasedOnUserRole(userRole, username);
+                                LogLogin(username); // Log the login
                             }
                             else
                             {
@@ -96,26 +92,27 @@ namespace BME_Inventory
 
         private void LogLogin(string username)
         {
-            string logFolderPath = "C:\\Inventory logs";
-            string logFileName = "login_log.txt";
-            string logFilePath = Path.Combine(logFolderPath, logFileName);
+            string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string logFolderPath = Path.Combine(documentsFolder, "Inventory Logs");
+            string logFilePath = Path.Combine(logFolderPath, $"user_log_{DateTime.Now:yyyyMMdd}.txt");
             string logMessage = $"{username} logged in at {DateTime.Now}";
 
             try
             {
-                // Ensure the log folder exists
-                Directory.CreateDirectory(logFolderPath);
+                if (!Directory.Exists(logFolderPath))
+                {
+                    Directory.CreateDirectory(logFolderPath);
+                }
 
                 using (StreamWriter writer = File.AppendText(logFilePath))
                 {
                     writer.WriteLine(logMessage);
                 }
             }
-            catch (IOException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Failed to write to the log file: " + ex.Message);
             }
         }
-
     }
 }

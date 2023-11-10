@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace BME_Inventory
 {
@@ -19,18 +21,36 @@ namespace BME_Inventory
             return connection;
         }
 
+        public bool TestConnection()
+        {
+            try
+            {
+                OpenConnection();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+
         public void OpenConnection()
         {
             try
             {
-                if (connection.State != System.Data.ConnectionState.Open)
+                if (CheckConnectionState() != System.Data.ConnectionState.Open)
                 {
                     connection.Open();
                 }
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("Error while opening connection: " + ex.Message);
+                MessageBox.Show("Error while opening connection: " + ex.Message);
             }
         }
 
@@ -38,14 +58,14 @@ namespace BME_Inventory
         {
             try
             {
-                if (connection.State != System.Data.ConnectionState.Closed)
+                if (CheckConnectionState() != System.Data.ConnectionState.Closed)
                 {
                     connection.Close();
                 }
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("Error while closing connection: " + ex.Message);
+                MessageBox.Show("Error while closing connection: " + ex.Message);
             }
         }
 
@@ -53,6 +73,11 @@ namespace BME_Inventory
         {
             CloseConnection();
             connection.Dispose();
+        }
+
+        private ConnectionState CheckConnectionState()
+        {
+            return connection.State;
         }
     }
 }

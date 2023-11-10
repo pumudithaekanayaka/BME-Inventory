@@ -22,7 +22,7 @@ namespace BME_Inventory
 
                 var uniqueMakes = new HashSet<string>();
 
-                string query = "SELECT make FROM parts_data WHERE make IS NOT NULL";
+                string query = "SELECT make FROM parts WHERE make IS NOT NULL";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -58,7 +58,7 @@ namespace BME_Inventory
 
                 var uniqueModels = new HashSet<string>();
 
-                string query = "SELECT model FROM parts_data WHERE model IS NOT NULL";
+                string query = "SELECT model FROM parts WHERE model IS NOT NULL";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -114,7 +114,7 @@ namespace BME_Inventory
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = dbManager.GetConnection();
-                    cmd.CommandText = "INSERT INTO spare_parts(part_id, part_name, equip_name, upper, lower, stock, description, make, model, date_time) " +
+                    cmd.CommandText = "INSERT INTO inventory(part_id, part_name, equip_name, upper, lower, stock, description, make, model, date_time) " +
                         "VALUES(@part_id, @part_name, @equip_name, @upper, @lower, @stock, @description, @make, @model, GETDATE())";
 
                     cmd.Parameters.AddWithValue("@part_id", part_id_txt.Text);
@@ -196,7 +196,7 @@ namespace BME_Inventory
                 {
                     dbManager.OpenConnection();
 
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO parts_data(make, model) VALUES(@make, @model)", dbManager.GetConnection()))
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO parts(make, model) VALUES(@make, @model)", dbManager.GetConnection()))
                     {
                         cmd.Parameters.AddWithValue("@make", make);
                         cmd.Parameters.AddWithValue("@model", model);

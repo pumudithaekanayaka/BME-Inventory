@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace BME_Inventory
 {
@@ -27,10 +28,23 @@ namespace BME_Inventory
 
             try
             {
-                this.Hide();
-                DatabaseManager dbManager = new DatabaseManager(GetConnectionString());
-                login login = new login(dbManager, this);
-                login.Show();
+                string connectionString = GetConnectionString();
+
+                using (DatabaseManager dbManager = new DatabaseManager(connectionString))
+                {
+                    if (dbManager.TestConnection())
+                    {
+                        this.Hide();
+                        Login login = new Login(dbManager);
+                        login.Show();
+
+                        MessageBox.Show("Connection successful!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Connection failed. Check your settings and try again.");
+                    }
+                }
             }
             catch (Exception ex)
             {

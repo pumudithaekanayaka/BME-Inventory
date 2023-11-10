@@ -1,6 +1,6 @@
 ﻿namespace BME_Inventory
 {
-    partial class login
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -57,7 +57,7 @@
             login_btn.UseVisualStyleBackColor = true;
             login_btn.Click += login_btn_Click;
             // 
-            // login
+            // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -65,7 +65,7 @@
             Controls.Add(login_btn);
             Controls.Add(password_txt);
             Controls.Add(username_txt);
-            Name = "login";
+            Name = "Login";
             Text = "Login";
             ResumeLayout(false);
             PerformLayout();

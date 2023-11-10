@@ -29,74 +29,74 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
-            btn_distribute = new Button();
-            btn_add = new Button();
-            btn_edit = new Button();
-            btn_exit = new Button();
+            btn_distribute_dashboard = new Button();
+            btn_add_dashboard = new Button();
+            btn_edit_dashboard = new Button();
+            btn_exit_dashboard = new Button();
             label1 = new Label();
-            btn_table = new Button();
+            btn_table_dashboard = new Button();
             panel1 = new Panel();
-            btn_dev6 = new Button();
-            btn_receive = new Button();
-            user_lbl6 = new Label();
+            btn_dev_dashboard = new Button();
+            btn_receive_dashboard = new Button();
+            user_lbl_dashboard = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // btn_distribute
+            // btn_distribute_dashboard
             // 
-            btn_distribute.FlatAppearance.BorderSize = 0;
-            btn_distribute.FlatStyle = FlatStyle.Flat;
-            btn_distribute.Image = (Image)resources.GetObject("btn_distribute.Image");
-            btn_distribute.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_distribute.Location = new Point(12, 157);
-            btn_distribute.Name = "btn_distribute";
-            btn_distribute.Size = new Size(322, 58);
-            btn_distribute.TabIndex = 0;
-            btn_distribute.Text = "Distribute";
-            btn_distribute.UseVisualStyleBackColor = true;
-            btn_distribute.Click += button1_Click;
+            btn_distribute_dashboard.FlatAppearance.BorderSize = 0;
+            btn_distribute_dashboard.FlatStyle = FlatStyle.Flat;
+            btn_distribute_dashboard.Image = (Image)resources.GetObject("btn_distribute_dashboard.Image");
+            btn_distribute_dashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_distribute_dashboard.Location = new Point(12, 157);
+            btn_distribute_dashboard.Name = "btn_distribute_dashboard";
+            btn_distribute_dashboard.Size = new Size(322, 58);
+            btn_distribute_dashboard.TabIndex = 0;
+            btn_distribute_dashboard.Text = "Distribute";
+            btn_distribute_dashboard.UseVisualStyleBackColor = true;
+            btn_distribute_dashboard.Click += button1_Click;
             // 
-            // btn_add
+            // btn_add_dashboard
             // 
-            btn_add.FlatAppearance.BorderSize = 0;
-            btn_add.FlatStyle = FlatStyle.Flat;
-            btn_add.Image = (Image)resources.GetObject("btn_add.Image");
-            btn_add.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_add.Location = new Point(16, 350);
-            btn_add.Name = "btn_add";
-            btn_add.Size = new Size(319, 58);
-            btn_add.TabIndex = 1;
-            btn_add.Text = "Add New";
-            btn_add.UseVisualStyleBackColor = true;
-            btn_add.Click += button2_Click;
+            btn_add_dashboard.FlatAppearance.BorderSize = 0;
+            btn_add_dashboard.FlatStyle = FlatStyle.Flat;
+            btn_add_dashboard.Image = (Image)resources.GetObject("btn_add_dashboard.Image");
+            btn_add_dashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_add_dashboard.Location = new Point(16, 350);
+            btn_add_dashboard.Name = "btn_add_dashboard";
+            btn_add_dashboard.Size = new Size(319, 58);
+            btn_add_dashboard.TabIndex = 1;
+            btn_add_dashboard.Text = "Add New";
+            btn_add_dashboard.UseVisualStyleBackColor = true;
+            btn_add_dashboard.Click += button2_Click;
             // 
-            // btn_edit
+            // btn_edit_dashboard
             // 
-            btn_edit.FlatAppearance.BorderSize = 0;
-            btn_edit.FlatStyle = FlatStyle.Flat;
-            btn_edit.Image = (Image)resources.GetObject("btn_edit.Image");
-            btn_edit.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_edit.Location = new Point(16, 286);
-            btn_edit.Name = "btn_edit";
-            btn_edit.Size = new Size(319, 58);
-            btn_edit.TabIndex = 2;
-            btn_edit.Text = "Edit Entries";
-            btn_edit.UseVisualStyleBackColor = true;
-            btn_edit.Click += button3_Click;
+            btn_edit_dashboard.FlatAppearance.BorderSize = 0;
+            btn_edit_dashboard.FlatStyle = FlatStyle.Flat;
+            btn_edit_dashboard.Image = (Image)resources.GetObject("btn_edit_dashboard.Image");
+            btn_edit_dashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_edit_dashboard.Location = new Point(16, 286);
+            btn_edit_dashboard.Name = "btn_edit_dashboard";
+            btn_edit_dashboard.Size = new Size(319, 58);
+            btn_edit_dashboard.TabIndex = 2;
+            btn_edit_dashboard.Text = "Edit Entries";
+            btn_edit_dashboard.UseVisualStyleBackColor = true;
+            btn_edit_dashboard.Click += button3_Click;
             // 
-            // btn_exit
+            // btn_exit_dashboard
             // 
-            btn_exit.FlatAppearance.BorderSize = 0;
-            btn_exit.FlatStyle = FlatStyle.Flat;
-            btn_exit.Image = (Image)resources.GetObject("btn_exit.Image");
-            btn_exit.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_exit.Location = new Point(12, 619);
-            btn_exit.Name = "btn_exit";
-            btn_exit.Size = new Size(319, 58);
-            btn_exit.TabIndex = 5;
-            btn_exit.Text = "Exit";
-            btn_exit.UseVisualStyleBackColor = true;
-            btn_exit.Click += exit_btn6_Click;
+            btn_exit_dashboard.FlatAppearance.BorderSize = 0;
+            btn_exit_dashboard.FlatStyle = FlatStyle.Flat;
+            btn_exit_dashboard.Image = (Image)resources.GetObject("btn_exit_dashboard.Image");
+            btn_exit_dashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_exit_dashboard.Location = new Point(12, 619);
+            btn_exit_dashboard.Name = "btn_exit_dashboard";
+            btn_exit_dashboard.Size = new Size(319, 58);
+            btn_exit_dashboard.TabIndex = 5;
+            btn_exit_dashboard.Text = "Exit";
+            btn_exit_dashboard.UseVisualStyleBackColor = true;
+            btn_exit_dashboard.Click += exit_btn6_Click;
             // 
             // label1
             // 
@@ -108,32 +108,32 @@
             label1.TabIndex = 4;
             label1.Text = "DASHBOARD";
             // 
-            // btn_table
+            // btn_table_dashboard
             // 
-            btn_table.FlatAppearance.BorderSize = 0;
-            btn_table.FlatStyle = FlatStyle.Flat;
-            btn_table.Image = (Image)resources.GetObject("btn_table.Image");
-            btn_table.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_table.Location = new Point(12, 104);
-            btn_table.Name = "btn_table";
-            btn_table.Size = new Size(319, 58);
-            btn_table.TabIndex = 3;
-            btn_table.Text = "Show Table";
-            btn_table.UseVisualStyleBackColor = true;
-            btn_table.Click += table_btn6_Click;
+            btn_table_dashboard.FlatAppearance.BorderSize = 0;
+            btn_table_dashboard.FlatStyle = FlatStyle.Flat;
+            btn_table_dashboard.Image = (Image)resources.GetObject("btn_table_dashboard.Image");
+            btn_table_dashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_table_dashboard.Location = new Point(12, 104);
+            btn_table_dashboard.Name = "btn_table_dashboard";
+            btn_table_dashboard.Size = new Size(319, 58);
+            btn_table_dashboard.TabIndex = 3;
+            btn_table_dashboard.Text = "Show Table";
+            btn_table_dashboard.UseVisualStyleBackColor = true;
+            btn_table_dashboard.Click += table_btn6_Click;
             // 
             // panel1
             // 
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
             panel1.BackColor = Color.Azure;
-            panel1.Controls.Add(btn_dev6);
-            panel1.Controls.Add(btn_receive);
-            panel1.Controls.Add(btn_exit);
-            panel1.Controls.Add(btn_distribute);
-            panel1.Controls.Add(btn_edit);
-            panel1.Controls.Add(btn_add);
-            panel1.Controls.Add(btn_table);
+            panel1.Controls.Add(btn_dev_dashboard);
+            panel1.Controls.Add(btn_receive_dashboard);
+            panel1.Controls.Add(btn_exit_dashboard);
+            panel1.Controls.Add(btn_distribute_dashboard);
+            panel1.Controls.Add(btn_edit_dashboard);
+            panel1.Controls.Add(btn_add_dashboard);
+            panel1.Controls.Add(btn_table_dashboard);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -141,42 +141,42 @@
             panel1.Size = new Size(341, 689);
             panel1.TabIndex = 9;
             // 
-            // btn_dev6
+            // btn_dev_dashboard
             // 
-            btn_dev6.FlatAppearance.BorderSize = 0;
-            btn_dev6.FlatStyle = FlatStyle.Flat;
-            btn_dev6.Image = (Image)resources.GetObject("btn_dev6.Image");
-            btn_dev6.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_dev6.Location = new Point(15, 414);
-            btn_dev6.Name = "btn_dev6";
-            btn_dev6.Size = new Size(319, 58);
-            btn_dev6.TabIndex = 7;
-            btn_dev6.Text = "Developer Mode";
-            btn_dev6.UseVisualStyleBackColor = true;
-            btn_dev6.Click += btn_dev6_Click;
+            btn_dev_dashboard.FlatAppearance.BorderSize = 0;
+            btn_dev_dashboard.FlatStyle = FlatStyle.Flat;
+            btn_dev_dashboard.Image = (Image)resources.GetObject("btn_dev_dashboard.Image");
+            btn_dev_dashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_dev_dashboard.Location = new Point(15, 414);
+            btn_dev_dashboard.Name = "btn_dev_dashboard";
+            btn_dev_dashboard.Size = new Size(319, 58);
+            btn_dev_dashboard.TabIndex = 7;
+            btn_dev_dashboard.Text = "Developer Mode";
+            btn_dev_dashboard.UseVisualStyleBackColor = true;
+            btn_dev_dashboard.Click += btn_dev6_Click;
             // 
-            // btn_receive
+            // btn_receive_dashboard
             // 
-            btn_receive.FlatAppearance.BorderSize = 0;
-            btn_receive.FlatStyle = FlatStyle.Flat;
-            btn_receive.Image = (Image)resources.GetObject("btn_receive.Image");
-            btn_receive.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_receive.Location = new Point(16, 222);
-            btn_receive.Name = "btn_receive";
-            btn_receive.Size = new Size(322, 58);
-            btn_receive.TabIndex = 6;
-            btn_receive.Text = "Receive";
-            btn_receive.UseVisualStyleBackColor = true;
-            btn_receive.Click += btn_receive_Click;
+            btn_receive_dashboard.FlatAppearance.BorderSize = 0;
+            btn_receive_dashboard.FlatStyle = FlatStyle.Flat;
+            btn_receive_dashboard.Image = (Image)resources.GetObject("btn_receive_dashboard.Image");
+            btn_receive_dashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_receive_dashboard.Location = new Point(16, 222);
+            btn_receive_dashboard.Name = "btn_receive_dashboard";
+            btn_receive_dashboard.Size = new Size(322, 58);
+            btn_receive_dashboard.TabIndex = 6;
+            btn_receive_dashboard.Text = "Receive";
+            btn_receive_dashboard.UseVisualStyleBackColor = true;
+            btn_receive_dashboard.Click += btn_receive_Click;
             // 
-            // user_lbl6
+            // user_lbl_dashboard
             // 
-            user_lbl6.AutoSize = true;
-            user_lbl6.Location = new Point(693, 44);
-            user_lbl6.Name = "user_lbl6";
-            user_lbl6.Size = new Size(49, 20);
-            user_lbl6.TabIndex = 10;
-            user_lbl6.Text = "label2";
+            user_lbl_dashboard.AutoSize = true;
+            user_lbl_dashboard.Location = new Point(693, 44);
+            user_lbl_dashboard.Name = "user_lbl_dashboard";
+            user_lbl_dashboard.Size = new Size(80, 20);
+            user_lbl_dashboard.TabIndex = 10;
+            user_lbl_dashboard.Text = "UserName";
             // 
             // Dashboard
             // 
@@ -184,7 +184,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
             ClientSize = new Size(1287, 689);
-            Controls.Add(user_lbl6);
+            Controls.Add(user_lbl_dashboard);
             Controls.Add(panel1);
             Font = new Font("Nunito", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -201,15 +201,15 @@
 
         #endregion
 
-        private Button btn_distribute;
-        private Button btn_add;
-        private Button btn_edit;
+        private Button btn_distribute_dashboard;
+        private Button btn_add_dashboard;
+        private Button btn_edit_dashboard;
         private Label label1;
-        private Button btn_table;
-        private Button btn_exit;
+        private Button btn_table_dashboard;
+        private Button btn_exit_dashboard;
         private Panel panel1;
-        private Button btn_receive;
-        private Button btn_dev6;
-        private Label user_lbl6;
+        private Button btn_receive_dashboard;
+        private Button btn_dev_dashboard;
+        private Label user_lbl_dashboard;
     }
 }

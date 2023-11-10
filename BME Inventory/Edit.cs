@@ -30,7 +30,7 @@ namespace BME_Inventory
             {
                 dbManager.OpenConnection();
 
-                string query = "UPDATE spare_parts SET part_name = @part_name, equip_name = @equipment_name, stock = @stock, description = @description WHERE part_id = @part_id";
+                string query = "UPDATE inventory SET part_name = @part_name, equip_name = @equipment_name, stock = @stock, description = @description WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("@part_id", part_id_txt1.Text);
@@ -66,7 +66,7 @@ namespace BME_Inventory
             {
                 dbManager.OpenConnection();
 
-                string query = "DELETE FROM spare_parts WHERE part_id = @part_id";
+                string query = "DELETE FROM inventory WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("@part_id", part_id_txt1.Text);

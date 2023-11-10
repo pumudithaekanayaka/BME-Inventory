@@ -15,7 +15,7 @@ namespace BME_Inventory
         }
         private void LogChanges(string logMessage)
         {
-            string logFilePath = @"C:\Inventory Logs\recived_log.txt";
+            string logFilePath = $"C:\\Inventory Logs\\recieved_log_{DateTime.Now:yyyyMMdd}.txt";
             int maxRows = 100;
             List<string> logLines = new List<string>();
 
@@ -48,30 +48,46 @@ namespace BME_Inventory
             {
                 dbManager.OpenConnection();
 
-                string query = "UPDATE spare_parts SET stock = stock + @stock6 WHERE part_id = @part_id";
+                string query = "UPDATE inventory SET stock = stock + @stock5 WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
-                    cmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
-                    decimal stockValue6 = 0;
-                    if (decimal.TryParse(stock_txt6.Text, out stockValue6))
+                    cmd.Parameters.AddWithValue("@part_id", part_id_txt_recieve.Text);
+                    decimal stockValue5 = 0;
+                    if (decimal.TryParse(stock_txt_recieve.Text, out stockValue5))
                     {
-                        cmd.Parameters.AddWithValue("@stock6", stockValue6);
+                        cmd.Parameters.AddWithValue("@stock5", stockValue5);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
-                            string logMessage = "";
-
-                            if (stockValue6 > 0)
-                            {
-                                logMessage = $"{loggedInUsername} updated record with part ID {part_id_txt5.Text} successfully with an increase of {stockValue6} to the stock value of {stock_lbl.Text} at {DateTime.Now}";
-                            }
+                            string logMessage = $"{user_lbl_recived.Text} updated record with part ID {part_id_txt_recieve.Text} successfully with a increase of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now}";
                             LogChanges(logMessage);
 
-                            MessageBox.Show("Record updated successfully!");
-                            stock_txt6.Text = "";
-                            stock_lbl.Text = (decimal.Parse(stock_lbl.Text) + stockValue6).ToString();
+                            string distributionQuery = "INSERT INTO recived (part_id, make, model, equip_name, add_by, add_quantity, time) VALUES (@part_id, @make, @model, @equip_name, @add_by, @add_quantity, @time)";
+                            using (SqlCommand distributionCmd = new SqlCommand(distributionQuery, dbManager.GetConnection()))
+                            {
+                                distributionCmd.Parameters.AddWithValue("@part_id", part_id_txt_recieve.Text);
+                                distributionCmd.Parameters.AddWithValue("@make", make_lbl_recieve.Text);
+                                distributionCmd.Parameters.AddWithValue("@model", model_lbl_recieve.Text);
+                                distributionCmd.Parameters.AddWithValue("@equip_name", equip_name_lbl_recieve.Text);
+                                distributionCmd.Parameters.AddWithValue("@add_by", user_lbl_recived.Text);
+                                distributionCmd.Parameters.AddWithValue("@add_quantity", stockValue5);
+                                distributionCmd.Parameters.AddWithValue("@time", DateTime.Now);
+
+                                int distributionRowsAffected = distributionCmd.ExecuteNonQuery();
+
+                                if (distributionRowsAffected > 0)
+                                {
+                                    MessageBox.Show("Data recieved and logged successfully!");
+                                    stock_txt_recieve.Text = "";
+                                    stock_lbl.Text = (decimal.Parse(stock_lbl.Text) - stockValue5).ToString();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Failed to log recieve data!");
+                                }
+                            }
                         }
                         else
                         {
@@ -100,24 +116,24 @@ namespace BME_Inventory
             {
                 dbManager.OpenConnection();
 
-                string query = "SELECT * FROM spare_parts WHERE part_id LIKE '%' + @part_id + '%'";
+                string query = "SELECT * FROM inventory WHERE part_id LIKE '%' + @part_id + '%'";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
-                    cmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
+                    cmd.Parameters.AddWithValue("@part_id", part_id_txt_recieve.Text);
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
-                            part_name_lbl.Text = reader.GetString(1);
-                            equip_name_lbl.Text = reader.GetString(2);
-                            upper_lbl5.Text = reader.GetDecimal(3).ToString();
-                            lower_lbl5.Text = reader.GetDecimal(4).ToString();
+                            part_name_lbl_recieve.Text = reader.GetString(1);
+                            equip_name_lbl_recieve.Text = reader.GetString(2);
+                            upper_lbl_recieve.Text = reader.GetDecimal(3).ToString();
+                            lower_lbl_recieve.Text = reader.GetDecimal(4).ToString();
                             stock_lbl.Text = reader.GetDecimal(5).ToString();
-                            description_lbl.Text = reader.GetString(6);
+                            description_lbl_recieve.Text = reader.GetString(6);
 
                             decimal stockValue;
-                            if (decimal.TryParse(stock_lbl.Text, out stockValue) && decimal.TryParse(lower_lbl5.Text, out decimal lowerValue))
+                            if (decimal.TryParse(stock_lbl.Text, out stockValue) && decimal.TryParse(lower_lbl_recieve.Text, out decimal lowerValue))
                             {
                                 if (stockValue < lowerValue)
                                 {
@@ -147,6 +163,20 @@ namespace BME_Inventory
             Dashboard home = new Dashboard(dbManager);
             home.Show();
             this.Hide();
+        }
+
+        private void Recieve_Load(object sender, EventArgs e)
+        {
+            string username = CurrentUser.Username;
+
+            if (username != null)
+            {
+                user_lbl_recived.Text = $"{username}";
+            }
+            else
+            {
+                user_lbl_recived.Text = $"Unable to retrieve logged-in username.";
+            }
         }
     }
 }

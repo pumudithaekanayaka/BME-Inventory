@@ -50,22 +50,28 @@
             stock_lbl = new Label();
             label8 = new Label();
             panel1 = new Panel();
-            btn_dev5 = new Button();
-            btn_receive5 = new Button();
-            btn_exit5 = new Button();
-            btn_home5 = new Button();
-            btn_edit5 = new Button();
-            btn_add5 = new Button();
-            btn_table5 = new Button();
+            btn_dev_distribute = new Button();
+            btn_receive_distribute = new Button();
+            btn_exit_distribute = new Button();
+            btn_home_distribute = new Button();
+            btn_edit_distribute = new Button();
+            btn_add_distribute = new Button();
+            btn_table_distribute = new Button();
             label10 = new Label();
-            user_lbl5 = new Label();
+            user_lbl_distribute = new Label();
+            label9 = new Label();
+            make_lbl = new Label();
+            model_lbl = new Label();
+            label11 = new Label();
+            book_txt_distribute = new TextBox();
+            label12 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // lower_lbl5
             // 
             lower_lbl5.AutoSize = true;
-            lower_lbl5.Location = new Point(512, 352);
+            lower_lbl5.Location = new Point(506, 444);
             lower_lbl5.Name = "lower_lbl5";
             lower_lbl5.Size = new Size(83, 20);
             lower_lbl5.TabIndex = 35;
@@ -74,7 +80,7 @@
             // upper_lbl5
             // 
             upper_lbl5.AutoSize = true;
-            upper_lbl5.Location = new Point(512, 308);
+            upper_lbl5.Location = new Point(506, 400);
             upper_lbl5.Name = "upper_lbl5";
             upper_lbl5.Size = new Size(85, 20);
             upper_lbl5.TabIndex = 34;
@@ -83,7 +89,7 @@
             // lower_lbl
             // 
             lower_lbl.AutoSize = true;
-            lower_lbl.Location = new Point(506, 352);
+            lower_lbl.Location = new Point(500, 444);
             lower_lbl.Name = "lower_lbl";
             lower_lbl.Size = new Size(0, 20);
             lower_lbl.TabIndex = 33;
@@ -91,14 +97,14 @@
             // upper_lbl
             // 
             upper_lbl.AutoSize = true;
-            upper_lbl.Location = new Point(506, 308);
+            upper_lbl.Location = new Point(500, 400);
             upper_lbl.Name = "upper_lbl";
             upper_lbl.Size = new Size(0, 20);
             upper_lbl.TabIndex = 32;
             // 
             // stock_txt5
             // 
-            stock_txt5.Location = new Point(650, 384);
+            stock_txt5.Location = new Point(644, 476);
             stock_txt5.Margin = new Padding(3, 4, 3, 4);
             stock_txt5.Name = "stock_txt5";
             stock_txt5.Size = new Size(241, 27);
@@ -107,7 +113,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(382, 436);
+            label7.Location = new Point(376, 528);
             label7.Name = "label7";
             label7.Size = new Size(82, 20);
             label7.TabIndex = 26;
@@ -116,7 +122,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(382, 394);
+            label6.Location = new Point(376, 486);
             label6.Name = "label6";
             label6.Size = new Size(97, 20);
             label6.TabIndex = 25;
@@ -125,7 +131,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(382, 352);
+            label5.Location = new Point(376, 444);
             label5.Name = "label5";
             label5.Size = new Size(83, 20);
             label5.TabIndex = 24;
@@ -134,7 +140,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(382, 308);
+            label4.Location = new Point(376, 400);
             label4.Name = "label4";
             label4.Size = new Size(85, 20);
             label4.TabIndex = 23;
@@ -143,7 +149,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(382, 260);
+            label3.Location = new Point(376, 352);
             label3.Name = "label3";
             label3.Size = new Size(124, 20);
             label3.TabIndex = 22;
@@ -169,7 +175,7 @@
             // 
             // update_btn3
             // 
-            update_btn3.Location = new Point(911, 384);
+            update_btn3.Location = new Point(905, 476);
             update_btn3.Margin = new Padding(3, 4, 3, 4);
             update_btn3.Name = "update_btn3";
             update_btn3.Size = new Size(74, 31);
@@ -201,7 +207,7 @@
             // equip_name_lbl
             // 
             equip_name_lbl.AutoSize = true;
-            equip_name_lbl.Location = new Point(512, 260);
+            equip_name_lbl.Location = new Point(506, 352);
             equip_name_lbl.Name = "equip_name_lbl";
             equip_name_lbl.Size = new Size(124, 20);
             equip_name_lbl.TabIndex = 40;
@@ -210,7 +216,7 @@
             // description_lbl
             // 
             description_lbl.AutoSize = true;
-            description_lbl.Location = new Point(512, 436);
+            description_lbl.Location = new Point(506, 528);
             description_lbl.Name = "description_lbl";
             description_lbl.Size = new Size(82, 20);
             description_lbl.TabIndex = 41;
@@ -227,7 +233,7 @@
             // stock_lbl
             // 
             stock_lbl.AutoSize = true;
-            stock_lbl.Location = new Point(512, 394);
+            stock_lbl.Location = new Point(506, 486);
             stock_lbl.Name = "stock_lbl";
             stock_lbl.Size = new Size(108, 20);
             stock_lbl.TabIndex = 43;
@@ -236,7 +242,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(712, 352);
+            label8.Location = new Point(706, 444);
             label8.Name = "label8";
             label8.Size = new Size(33, 20);
             label8.TabIndex = 45;
@@ -247,13 +253,13 @@
             panel1.AutoScroll = true;
             panel1.AutoSize = true;
             panel1.BackColor = Color.Azure;
-            panel1.Controls.Add(btn_dev5);
-            panel1.Controls.Add(btn_receive5);
-            panel1.Controls.Add(btn_exit5);
-            panel1.Controls.Add(btn_home5);
-            panel1.Controls.Add(btn_edit5);
-            panel1.Controls.Add(btn_add5);
-            panel1.Controls.Add(btn_table5);
+            panel1.Controls.Add(btn_dev_distribute);
+            panel1.Controls.Add(btn_receive_distribute);
+            panel1.Controls.Add(btn_exit_distribute);
+            panel1.Controls.Add(btn_home_distribute);
+            panel1.Controls.Add(btn_edit_distribute);
+            panel1.Controls.Add(btn_add_distribute);
+            panel1.Controls.Add(btn_table_distribute);
             panel1.Controls.Add(label10);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -261,103 +267,103 @@
             panel1.Size = new Size(341, 733);
             panel1.TabIndex = 48;
             // 
-            // btn_dev5
+            // btn_dev_distribute
             // 
-            btn_dev5.FlatAppearance.BorderSize = 0;
-            btn_dev5.FlatStyle = FlatStyle.Flat;
-            btn_dev5.Image = (Image)resources.GetObject("btn_dev5.Image");
-            btn_dev5.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_dev5.Location = new Point(15, 414);
-            btn_dev5.Name = "btn_dev5";
-            btn_dev5.Size = new Size(319, 58);
-            btn_dev5.TabIndex = 7;
-            btn_dev5.Text = "Developer Mode";
-            btn_dev5.UseVisualStyleBackColor = true;
-            btn_dev5.Click += btn_dev6_Click;
+            btn_dev_distribute.FlatAppearance.BorderSize = 0;
+            btn_dev_distribute.FlatStyle = FlatStyle.Flat;
+            btn_dev_distribute.Image = (Image)resources.GetObject("btn_dev_distribute.Image");
+            btn_dev_distribute.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_dev_distribute.Location = new Point(15, 414);
+            btn_dev_distribute.Name = "btn_dev_distribute";
+            btn_dev_distribute.Size = new Size(319, 58);
+            btn_dev_distribute.TabIndex = 7;
+            btn_dev_distribute.Text = "Developer Mode";
+            btn_dev_distribute.UseVisualStyleBackColor = true;
+            btn_dev_distribute.Click += btn_dev6_Click;
             // 
-            // btn_receive5
+            // btn_receive_distribute
             // 
-            btn_receive5.FlatAppearance.BorderSize = 0;
-            btn_receive5.FlatStyle = FlatStyle.Flat;
-            btn_receive5.Image = (Image)resources.GetObject("btn_receive5.Image");
-            btn_receive5.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_receive5.Location = new Point(16, 222);
-            btn_receive5.Name = "btn_receive5";
-            btn_receive5.Size = new Size(322, 58);
-            btn_receive5.TabIndex = 6;
-            btn_receive5.Text = "Receive";
-            btn_receive5.UseVisualStyleBackColor = true;
-            btn_receive5.Click += btn_receive6_Click;
+            btn_receive_distribute.FlatAppearance.BorderSize = 0;
+            btn_receive_distribute.FlatStyle = FlatStyle.Flat;
+            btn_receive_distribute.Image = (Image)resources.GetObject("btn_receive_distribute.Image");
+            btn_receive_distribute.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_receive_distribute.Location = new Point(16, 222);
+            btn_receive_distribute.Name = "btn_receive_distribute";
+            btn_receive_distribute.Size = new Size(322, 58);
+            btn_receive_distribute.TabIndex = 6;
+            btn_receive_distribute.Text = "Receive";
+            btn_receive_distribute.UseVisualStyleBackColor = true;
+            btn_receive_distribute.Click += btn_receive6_Click;
             // 
-            // btn_exit5
+            // btn_exit_distribute
             // 
-            btn_exit5.FlatAppearance.BorderSize = 0;
-            btn_exit5.FlatStyle = FlatStyle.Flat;
-            btn_exit5.Image = (Image)resources.GetObject("btn_exit5.Image");
-            btn_exit5.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_exit5.Location = new Point(12, 619);
-            btn_exit5.Name = "btn_exit5";
-            btn_exit5.Size = new Size(319, 58);
-            btn_exit5.TabIndex = 5;
-            btn_exit5.Text = "Exit";
-            btn_exit5.UseVisualStyleBackColor = true;
-            btn_exit5.Click += btn_exit_Click;
+            btn_exit_distribute.FlatAppearance.BorderSize = 0;
+            btn_exit_distribute.FlatStyle = FlatStyle.Flat;
+            btn_exit_distribute.Image = (Image)resources.GetObject("btn_exit_distribute.Image");
+            btn_exit_distribute.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_exit_distribute.Location = new Point(12, 619);
+            btn_exit_distribute.Name = "btn_exit_distribute";
+            btn_exit_distribute.Size = new Size(319, 58);
+            btn_exit_distribute.TabIndex = 5;
+            btn_exit_distribute.Text = "Exit";
+            btn_exit_distribute.UseVisualStyleBackColor = true;
+            btn_exit_distribute.Click += btn_exit_Click;
             // 
-            // btn_home5
+            // btn_home_distribute
             // 
-            btn_home5.FlatAppearance.BorderSize = 0;
-            btn_home5.FlatStyle = FlatStyle.Flat;
-            btn_home5.Image = (Image)resources.GetObject("btn_home5.Image");
-            btn_home5.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_home5.Location = new Point(12, 157);
-            btn_home5.Name = "btn_home5";
-            btn_home5.Size = new Size(322, 58);
-            btn_home5.TabIndex = 0;
-            btn_home5.Text = "Home";
-            btn_home5.UseVisualStyleBackColor = true;
-            btn_home5.Click += btn_home5_Click;
+            btn_home_distribute.FlatAppearance.BorderSize = 0;
+            btn_home_distribute.FlatStyle = FlatStyle.Flat;
+            btn_home_distribute.Image = (Image)resources.GetObject("btn_home_distribute.Image");
+            btn_home_distribute.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_home_distribute.Location = new Point(12, 157);
+            btn_home_distribute.Name = "btn_home_distribute";
+            btn_home_distribute.Size = new Size(322, 58);
+            btn_home_distribute.TabIndex = 0;
+            btn_home_distribute.Text = "Home";
+            btn_home_distribute.UseVisualStyleBackColor = true;
+            btn_home_distribute.Click += btn_home5_Click;
             // 
-            // btn_edit5
+            // btn_edit_distribute
             // 
-            btn_edit5.FlatAppearance.BorderSize = 0;
-            btn_edit5.FlatStyle = FlatStyle.Flat;
-            btn_edit5.Image = (Image)resources.GetObject("btn_edit5.Image");
-            btn_edit5.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_edit5.Location = new Point(16, 286);
-            btn_edit5.Name = "btn_edit5";
-            btn_edit5.Size = new Size(319, 58);
-            btn_edit5.TabIndex = 2;
-            btn_edit5.Text = "Edit Entries";
-            btn_edit5.UseVisualStyleBackColor = true;
-            btn_edit5.Click += btn_edit6_Click;
+            btn_edit_distribute.FlatAppearance.BorderSize = 0;
+            btn_edit_distribute.FlatStyle = FlatStyle.Flat;
+            btn_edit_distribute.Image = (Image)resources.GetObject("btn_edit_distribute.Image");
+            btn_edit_distribute.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_edit_distribute.Location = new Point(16, 286);
+            btn_edit_distribute.Name = "btn_edit_distribute";
+            btn_edit_distribute.Size = new Size(319, 58);
+            btn_edit_distribute.TabIndex = 2;
+            btn_edit_distribute.Text = "Edit Entries";
+            btn_edit_distribute.UseVisualStyleBackColor = true;
+            btn_edit_distribute.Click += btn_edit6_Click;
             // 
-            // btn_add5
+            // btn_add_distribute
             // 
-            btn_add5.FlatAppearance.BorderSize = 0;
-            btn_add5.FlatStyle = FlatStyle.Flat;
-            btn_add5.Image = (Image)resources.GetObject("btn_add5.Image");
-            btn_add5.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_add5.Location = new Point(16, 350);
-            btn_add5.Name = "btn_add5";
-            btn_add5.Size = new Size(319, 58);
-            btn_add5.TabIndex = 1;
-            btn_add5.Text = "Add New";
-            btn_add5.UseVisualStyleBackColor = true;
-            btn_add5.Click += btn_add6_Click;
+            btn_add_distribute.FlatAppearance.BorderSize = 0;
+            btn_add_distribute.FlatStyle = FlatStyle.Flat;
+            btn_add_distribute.Image = (Image)resources.GetObject("btn_add_distribute.Image");
+            btn_add_distribute.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_add_distribute.Location = new Point(16, 350);
+            btn_add_distribute.Name = "btn_add_distribute";
+            btn_add_distribute.Size = new Size(319, 58);
+            btn_add_distribute.TabIndex = 1;
+            btn_add_distribute.Text = "Add New";
+            btn_add_distribute.UseVisualStyleBackColor = true;
+            btn_add_distribute.Click += btn_add6_Click;
             // 
-            // btn_table5
+            // btn_table_distribute
             // 
-            btn_table5.FlatAppearance.BorderSize = 0;
-            btn_table5.FlatStyle = FlatStyle.Flat;
-            btn_table5.Image = (Image)resources.GetObject("btn_table5.Image");
-            btn_table5.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_table5.Location = new Point(12, 104);
-            btn_table5.Name = "btn_table5";
-            btn_table5.Size = new Size(319, 58);
-            btn_table5.TabIndex = 3;
-            btn_table5.Text = "Show Table";
-            btn_table5.UseVisualStyleBackColor = true;
-            btn_table5.Click += btn_table6_Click;
+            btn_table_distribute.FlatAppearance.BorderSize = 0;
+            btn_table_distribute.FlatStyle = FlatStyle.Flat;
+            btn_table_distribute.Image = (Image)resources.GetObject("btn_table_distribute.Image");
+            btn_table_distribute.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_table_distribute.Location = new Point(12, 104);
+            btn_table_distribute.Name = "btn_table_distribute";
+            btn_table_distribute.Size = new Size(319, 58);
+            btn_table_distribute.TabIndex = 3;
+            btn_table_distribute.Text = "Show Table";
+            btn_table_distribute.UseVisualStyleBackColor = true;
+            btn_table_distribute.Click += btn_table6_Click;
             // 
             // label10
             // 
@@ -369,15 +375,68 @@
             label10.TabIndex = 4;
             label10.Text = "DASHBOARD";
             // 
-            // user_lbl5
+            // user_lbl_distribute
             // 
-            user_lbl5.AutoSize = true;
-            user_lbl5.Location = new Point(867, 37);
-            user_lbl5.Name = "user_lbl5";
-            user_lbl5.Size = new Size(48, 20);
-            user_lbl5.TabIndex = 49;
-            user_lbl5.Text = "label9";
-            user_lbl5.Click += user_lbl5_Click;
+            user_lbl_distribute.AutoSize = true;
+            user_lbl_distribute.Location = new Point(867, 37);
+            user_lbl_distribute.Name = "user_lbl_distribute";
+            user_lbl_distribute.Size = new Size(48, 20);
+            user_lbl_distribute.TabIndex = 49;
+            user_lbl_distribute.Text = "label9";
+            user_lbl_distribute.Click += user_lbl5_Click;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(382, 260);
+            label9.Name = "label9";
+            label9.Size = new Size(45, 20);
+            label9.TabIndex = 50;
+            label9.Text = "Make";
+            // 
+            // make_lbl
+            // 
+            make_lbl.AutoSize = true;
+            make_lbl.Location = new Point(512, 260);
+            make_lbl.Name = "make_lbl";
+            make_lbl.Size = new Size(45, 20);
+            make_lbl.TabIndex = 51;
+            make_lbl.Text = "Make";
+            // 
+            // model_lbl
+            // 
+            model_lbl.AutoSize = true;
+            model_lbl.Location = new Point(512, 305);
+            model_lbl.Name = "model_lbl";
+            model_lbl.Size = new Size(51, 20);
+            model_lbl.TabIndex = 52;
+            model_lbl.Text = "Model";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(382, 305);
+            label11.Name = "label11";
+            label11.Size = new Size(51, 20);
+            label11.TabIndex = 53;
+            label11.Text = "Model";
+            // 
+            // book_txt_distribute
+            // 
+            book_txt_distribute.Location = new Point(509, 116);
+            book_txt_distribute.Margin = new Padding(3, 4, 3, 4);
+            book_txt_distribute.Name = "book_txt_distribute";
+            book_txt_distribute.Size = new Size(241, 27);
+            book_txt_distribute.TabIndex = 77;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(375, 123);
+            label12.Name = "label12";
+            label12.Size = new Size(125, 20);
+            label12.TabIndex = 76;
+            label12.Text = "500 Book Page ID";
             // 
             // Distribute
             // 
@@ -385,7 +444,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(1256, 733);
-            Controls.Add(user_lbl5);
+            Controls.Add(book_txt_distribute);
+            Controls.Add(label12);
+            Controls.Add(label11);
+            Controls.Add(model_lbl);
+            Controls.Add(make_lbl);
+            Controls.Add(label9);
+            Controls.Add(user_lbl_distribute);
             Controls.Add(panel1);
             Controls.Add(label8);
             Controls.Add(stock_lbl);
@@ -441,14 +506,20 @@
         private Label stock_lbl;
         private Label label8;
         private Panel panel1;
-        private Button btn_dev5;
-        private Button btn_receive5;
-        private Button btn_exit5;
-        private Button btn_home5;
-        private Button btn_edit5;
-        private Button btn_add5;
-        private Button btn_table5;
+        private Button btn_dev_distribute;
+        private Button btn_receive_distribute;
+        private Button btn_exit_distribute;
+        private Button btn_home_distribute;
+        private Button btn_edit_distribute;
+        private Button btn_add_distribute;
+        private Button btn_table_distribute;
         private Label label10;
-        private Label user_lbl5;
+        private Label user_lbl_distribute;
+        private Label label9;
+        private Label make_lbl;
+        private Label model_lbl;
+        private Label label11;
+        private TextBox book_txt_distribute;
+        private Label label12;
     }
 }

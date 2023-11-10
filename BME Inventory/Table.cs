@@ -63,7 +63,7 @@ namespace BME_Inventory
 
         private void LoadDataForStockCheck()
         {
-            string query = "SELECT * FROM spare_parts WHERE stock < lower";
+            string query = "SELECT * FROM inventory WHERE stock < lower";
             DataTable table = new DataTable();
             LoadDataIntoGrid(query, table);
         }
@@ -76,7 +76,7 @@ namespace BME_Inventory
         private void mail_btn_Click(object sender, EventArgs e)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            string query = "SELECT * FROM spare_parts WHERE stock < lower";
+            string query = "SELECT * FROM inventory WHERE stock < lower";
             DataTable table = new DataTable();
             LoadDataIntoGrid(query, table);
 
@@ -128,7 +128,7 @@ namespace BME_Inventory
 
         private void Table_Load(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM spare_parts";
+            string query = "SELECT * FROM inventory";
             LoadDataIntoGrid(query, new DataTable());
         }
 
@@ -152,7 +152,7 @@ namespace BME_Inventory
         private void export_all_btn4_Click(object sender, EventArgs e)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            string query = "SELECT * FROM spare_parts";
+            string query = "SELECT * FROM inventory";
             DataTable table = new DataTable();
             LoadDataIntoGrid(query, table);
 

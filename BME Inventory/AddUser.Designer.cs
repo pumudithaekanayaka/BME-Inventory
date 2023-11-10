@@ -1,6 +1,6 @@
 ﻿namespace BME_Inventory
 {
-    partial class UserHome
+    partial class AddUser
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserHome));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUser));
             exit_btn6 = new Button();
             distribute_btn = new Button();
             edit_btn = new Button();
@@ -37,6 +37,11 @@
             label1 = new Label();
             panel1 = new Panel();
             receive_btn6 = new Button();
+            user_add_btn_add = new Button();
+            password_txt_add = new TextBox();
+            username_txt_add = new TextBox();
+            confirm_password_txt_add = new TextBox();
+            user_level_add = new ComboBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -146,14 +151,59 @@
             receive_btn6.Text = "Receive";
             receive_btn6.UseVisualStyleBackColor = true;
             // 
-            // UserHome
+            // user_add_btn_add
+            // 
+            user_add_btn_add.Location = new Point(678, 300);
+            user_add_btn_add.Name = "user_add_btn_add";
+            user_add_btn_add.Size = new Size(149, 57);
+            user_add_btn_add.TabIndex = 13;
+            user_add_btn_add.Text = "Save User";
+            user_add_btn_add.UseVisualStyleBackColor = true;
+            user_add_btn_add.Click += login_btn_Click;
+            // 
+            // password_txt_add
+            // 
+            password_txt_add.Location = new Point(589, 143);
+            password_txt_add.Name = "password_txt_add";
+            password_txt_add.Size = new Size(328, 27);
+            password_txt_add.TabIndex = 12;
+            // 
+            // username_txt_add
+            // 
+            username_txt_add.Location = new Point(589, 82);
+            username_txt_add.Name = "username_txt_add";
+            username_txt_add.Size = new Size(328, 27);
+            username_txt_add.TabIndex = 11;
+            // 
+            // confirm_password_txt_add
+            // 
+            confirm_password_txt_add.Location = new Point(589, 189);
+            confirm_password_txt_add.Name = "confirm_password_txt_add";
+            confirm_password_txt_add.Size = new Size(328, 27);
+            confirm_password_txt_add.TabIndex = 14;
+            // 
+            // user_level_add
+            // 
+            user_level_add.FormattingEnabled = true;
+            user_level_add.Items.AddRange(new object[] { "user", "admin", "maintenance" });
+            user_level_add.Location = new Point(598, 249);
+            user_level_add.Name = "user_level_add";
+            user_level_add.Size = new Size(146, 28);
+            user_level_add.TabIndex = 15;
+            // 
+            // AddUser
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 724);
+            Controls.Add(user_level_add);
+            Controls.Add(confirm_password_txt_add);
+            Controls.Add(user_add_btn_add);
+            Controls.Add(password_txt_add);
+            Controls.Add(username_txt_add);
             Controls.Add(panel1);
-            Name = "UserHome";
-            Text = "User Dashboard";
+            Name = "AddUser";
+            Text = "Add Users";
             WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -171,5 +221,10 @@
         private Label label1;
         private Panel panel1;
         private Button receive_btn6;
+        private Button user_add_btn_add;
+        private TextBox password_txt_add;
+        private TextBox username_txt_add;
+        private TextBox confirm_password_txt_add;
+        private ComboBox user_level_add;
     }
 }
