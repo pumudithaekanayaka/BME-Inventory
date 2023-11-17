@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Recieve));
-            panel1 = new Panel();
-            btn_dev6 = new Button();
-            btn_home3 = new Button();
-            btn_exit = new Button();
-            btn_distribute = new Button();
-            btn_edit = new Button();
-            btn_add = new Button();
-            btn_table = new Button();
-            label8 = new Label();
             label9 = new Label();
             stock_txt_recieve = new TextBox();
             stock_lbl = new Label();
@@ -58,201 +49,99 @@
             label3 = new Label();
             label2 = new Label();
             label10 = new Label();
-            user_lbl_recived = new Label();
             label11 = new Label();
             model_lbl_recieve = new Label();
             make_lbl_recieve = new Label();
             label1 = new Label();
             label12 = new Label();
-            book_txt_recieve = new TextBox();
+            issue_txt_recieve = new TextBox();
+            pnl_menu_dashboard = new Panel();
+            btn_home_recieve = new Button();
+            btn_dev_recieve = new Button();
+            btn_edit_recieve = new Button();
+            btn_adduser_recieve = new Button();
+            btn_add_recieve = new Button();
+            btn_distribute_recieve = new Button();
+            btn_database_recieve = new Button();
+            pnl_home = new Panel();
+            label8 = new Label();
+            btn_logout_recieve = new Button();
+            btn_exit_recieve = new Button();
+            panel1 = new Panel();
+            label13 = new Label();
+            label14 = new Label();
+            user_lbl_recieve = new Label();
+            panel2 = new Panel();
+            pnl_menu_dashboard.SuspendLayout();
+            pnl_home.SuspendLayout();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.AutoScroll = true;
-            panel1.AutoSize = true;
-            panel1.BackColor = Color.Azure;
-            panel1.Controls.Add(btn_dev6);
-            panel1.Controls.Add(btn_home3);
-            panel1.Controls.Add(btn_exit);
-            panel1.Controls.Add(btn_distribute);
-            panel1.Controls.Add(btn_edit);
-            panel1.Controls.Add(btn_add);
-            panel1.Controls.Add(btn_table);
-            panel1.Controls.Add(label8);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(341, 728);
-            panel1.TabIndex = 40;
-            // 
-            // btn_dev6
-            // 
-            btn_dev6.FlatAppearance.BorderSize = 0;
-            btn_dev6.FlatStyle = FlatStyle.Flat;
-            btn_dev6.Image = (Image)resources.GetObject("btn_dev6.Image");
-            btn_dev6.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_dev6.Location = new Point(15, 414);
-            btn_dev6.Name = "btn_dev6";
-            btn_dev6.Size = new Size(319, 58);
-            btn_dev6.TabIndex = 7;
-            btn_dev6.Text = "Developer Mode";
-            btn_dev6.UseVisualStyleBackColor = true;
-            // 
-            // btn_home3
-            // 
-            btn_home3.FlatAppearance.BorderSize = 0;
-            btn_home3.FlatStyle = FlatStyle.Flat;
-            btn_home3.Image = (Image)resources.GetObject("btn_home3.Image");
-            btn_home3.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_home3.Location = new Point(16, 222);
-            btn_home3.Name = "btn_home3";
-            btn_home3.Size = new Size(322, 58);
-            btn_home3.TabIndex = 6;
-            btn_home3.Text = "Home";
-            btn_home3.UseVisualStyleBackColor = true;
-            btn_home3.Click += btn_home3_Click;
-            // 
-            // btn_exit
-            // 
-            btn_exit.FlatAppearance.BorderSize = 0;
-            btn_exit.FlatStyle = FlatStyle.Flat;
-            btn_exit.Image = (Image)resources.GetObject("btn_exit.Image");
-            btn_exit.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_exit.Location = new Point(12, 619);
-            btn_exit.Name = "btn_exit";
-            btn_exit.Size = new Size(319, 58);
-            btn_exit.TabIndex = 5;
-            btn_exit.Text = "Exit";
-            btn_exit.UseVisualStyleBackColor = true;
-            // 
-            // btn_distribute
-            // 
-            btn_distribute.FlatAppearance.BorderSize = 0;
-            btn_distribute.FlatStyle = FlatStyle.Flat;
-            btn_distribute.Image = (Image)resources.GetObject("btn_distribute.Image");
-            btn_distribute.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_distribute.Location = new Point(12, 157);
-            btn_distribute.Name = "btn_distribute";
-            btn_distribute.Size = new Size(322, 58);
-            btn_distribute.TabIndex = 0;
-            btn_distribute.Text = "Distribute";
-            btn_distribute.UseVisualStyleBackColor = true;
-            // 
-            // btn_edit
-            // 
-            btn_edit.FlatAppearance.BorderSize = 0;
-            btn_edit.FlatStyle = FlatStyle.Flat;
-            btn_edit.Image = (Image)resources.GetObject("btn_edit.Image");
-            btn_edit.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_edit.Location = new Point(16, 286);
-            btn_edit.Name = "btn_edit";
-            btn_edit.Size = new Size(319, 58);
-            btn_edit.TabIndex = 2;
-            btn_edit.Text = "Edit Entries";
-            btn_edit.UseVisualStyleBackColor = true;
-            // 
-            // btn_add
-            // 
-            btn_add.FlatAppearance.BorderSize = 0;
-            btn_add.FlatStyle = FlatStyle.Flat;
-            btn_add.Image = (Image)resources.GetObject("btn_add.Image");
-            btn_add.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_add.Location = new Point(16, 350);
-            btn_add.Name = "btn_add";
-            btn_add.Size = new Size(319, 58);
-            btn_add.TabIndex = 1;
-            btn_add.Text = "Add New";
-            btn_add.UseVisualStyleBackColor = true;
-            // 
-            // btn_table
-            // 
-            btn_table.FlatAppearance.BorderSize = 0;
-            btn_table.FlatStyle = FlatStyle.Flat;
-            btn_table.Image = (Image)resources.GetObject("btn_table.Image");
-            btn_table.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_table.Location = new Point(12, 104);
-            btn_table.Name = "btn_table";
-            btn_table.Size = new Size(319, 58);
-            btn_table.TabIndex = 3;
-            btn_table.Text = "Show Table";
-            btn_table.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Nunito", 25.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(3, 32);
-            label8.Name = "label8";
-            label8.Size = new Size(304, 59);
-            label8.TabIndex = 4;
-            label8.Text = "DASHBOARD";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(728, 486);
+            label9.Location = new Point(509, 356);
             label9.Name = "label9";
-            label9.Size = new Size(19, 17);
+            label9.Size = new Size(78, 21);
             label9.TabIndex = 68;
-            label9.Text = "In";
+            label9.Text = "Quantity";
             // 
             // stock_txt_recieve
             // 
-            stock_txt_recieve.Location = new Point(660, 518);
+            stock_txt_recieve.Location = new Point(441, 388);
             stock_txt_recieve.Margin = new Padding(3, 4, 3, 4);
             stock_txt_recieve.Name = "stock_txt_recieve";
-            stock_txt_recieve.Size = new Size(241, 24);
+            stock_txt_recieve.Size = new Size(241, 29);
             stock_txt_recieve.TabIndex = 66;
             // 
             // stock_lbl
             // 
             stock_lbl.AutoSize = true;
-            stock_lbl.Location = new Point(531, 525);
+            stock_lbl.Location = new Point(312, 395);
             stock_lbl.Name = "stock_lbl";
-            stock_lbl.Size = new Size(102, 17);
+            stock_lbl.Size = new Size(126, 21);
             stock_lbl.TabIndex = 65;
             stock_lbl.Text = "Stock Available";
             // 
             // part_id_txt_recieve
             // 
-            part_id_txt_recieve.Location = new Point(531, 205);
+            part_id_txt_recieve.Location = new Point(312, 75);
             part_id_txt_recieve.Margin = new Padding(3, 4, 3, 4);
             part_id_txt_recieve.Name = "part_id_txt_recieve";
-            part_id_txt_recieve.Size = new Size(241, 24);
+            part_id_txt_recieve.Size = new Size(241, 29);
             part_id_txt_recieve.TabIndex = 64;
             // 
             // description_lbl_recieve
             // 
             description_lbl_recieve.AutoSize = true;
-            description_lbl_recieve.Location = new Point(531, 567);
+            description_lbl_recieve.Location = new Point(312, 437);
             description_lbl_recieve.Name = "description_lbl_recieve";
-            description_lbl_recieve.Size = new Size(75, 17);
+            description_lbl_recieve.Size = new Size(99, 21);
             description_lbl_recieve.TabIndex = 63;
             description_lbl_recieve.Text = "Description";
             // 
             // equip_name_lbl_recieve
             // 
             equip_name_lbl_recieve.AutoSize = true;
-            equip_name_lbl_recieve.Location = new Point(531, 391);
+            equip_name_lbl_recieve.Location = new Point(312, 261);
             equip_name_lbl_recieve.Name = "equip_name_lbl_recieve";
-            equip_name_lbl_recieve.Size = new Size(119, 17);
+            equip_name_lbl_recieve.Size = new Size(144, 21);
             equip_name_lbl_recieve.TabIndex = 62;
             equip_name_lbl_recieve.Text = "Equipment Name";
             // 
             // part_name_lbl_recieve
             // 
             part_name_lbl_recieve.AutoSize = true;
-            part_name_lbl_recieve.Location = new Point(537, 259);
+            part_name_lbl_recieve.Location = new Point(318, 129);
             part_name_lbl_recieve.Name = "part_name_lbl_recieve";
-            part_name_lbl_recieve.Size = new Size(78, 17);
+            part_name_lbl_recieve.Size = new Size(92, 21);
             part_name_lbl_recieve.TabIndex = 61;
             part_name_lbl_recieve.Text = "Part Name";
             // 
             // load_btn_recieve
             // 
-            load_btn_recieve.Location = new Point(813, 205);
+            load_btn_recieve.Location = new Point(594, 75);
             load_btn_recieve.Margin = new Padding(3, 4, 3, 4);
             load_btn_recieve.Name = "load_btn_recieve";
             load_btn_recieve.Size = new Size(94, 31);
@@ -263,7 +152,7 @@
             // 
             // update_btn_recieve
             // 
-            update_btn_recieve.Location = new Point(919, 518);
+            update_btn_recieve.Location = new Point(700, 388);
             update_btn_recieve.Margin = new Padding(3, 4, 3, 4);
             update_btn_recieve.Name = "update_btn_recieve";
             update_btn_recieve.Size = new Size(74, 31);
@@ -275,217 +164,440 @@
             // lower_lbl_recieve
             // 
             lower_lbl_recieve.AutoSize = true;
-            lower_lbl_recieve.Location = new Point(531, 483);
+            lower_lbl_recieve.Location = new Point(312, 353);
             lower_lbl_recieve.Name = "lower_lbl_recieve";
-            lower_lbl_recieve.Size = new Size(82, 17);
+            lower_lbl_recieve.Size = new Size(100, 21);
             lower_lbl_recieve.TabIndex = 58;
             lower_lbl_recieve.Text = "Lower Limit";
             // 
             // upper_lbl_recieve
             // 
             upper_lbl_recieve.AutoSize = true;
-            upper_lbl_recieve.Location = new Point(531, 439);
+            upper_lbl_recieve.Location = new Point(312, 309);
             upper_lbl_recieve.Name = "upper_lbl_recieve";
-            upper_lbl_recieve.Size = new Size(82, 17);
+            upper_lbl_recieve.Size = new Size(99, 21);
             upper_lbl_recieve.TabIndex = 57;
             upper_lbl_recieve.Text = "Upper Limit";
             // 
             // lower_lbl
             // 
             lower_lbl.AutoSize = true;
-            lower_lbl.Location = new Point(525, 483);
+            lower_lbl.Location = new Point(143, 353);
             lower_lbl.Name = "lower_lbl";
-            lower_lbl.Size = new Size(0, 17);
+            lower_lbl.Size = new Size(0, 21);
             lower_lbl.TabIndex = 56;
             // 
             // upper_lbl
             // 
             upper_lbl.AutoSize = true;
-            upper_lbl.Location = new Point(525, 439);
+            upper_lbl.Location = new Point(143, 309);
             upper_lbl.Name = "upper_lbl";
-            upper_lbl.Size = new Size(0, 17);
+            upper_lbl.Size = new Size(0, 21);
             upper_lbl.TabIndex = 55;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(401, 567);
+            label7.Location = new Point(19, 437);
             label7.Name = "label7";
-            label7.Size = new Size(75, 17);
+            label7.Size = new Size(99, 21);
             label7.TabIndex = 53;
             label7.Text = "Description";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(401, 525);
+            label6.Location = new Point(19, 395);
             label6.Name = "label6";
-            label6.Size = new Size(93, 17);
+            label6.Size = new Size(117, 21);
             label6.TabIndex = 52;
             label6.Text = "Current Stock";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(401, 483);
+            label5.Location = new Point(19, 353);
             label5.Name = "label5";
-            label5.Size = new Size(82, 17);
+            label5.Size = new Size(100, 21);
             label5.TabIndex = 51;
             label5.Text = "Lower Limit";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(401, 439);
+            label4.Location = new Point(19, 309);
             label4.Name = "label4";
-            label4.Size = new Size(82, 17);
+            label4.Size = new Size(99, 21);
             label4.TabIndex = 50;
             label4.Text = "Upper Limit";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(401, 391);
+            label3.Location = new Point(19, 261);
             label3.Name = "label3";
-            label3.Size = new Size(119, 17);
+            label3.Size = new Size(144, 21);
             label3.TabIndex = 49;
             label3.Text = "Equipment Name";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(407, 259);
+            label2.Location = new Point(25, 129);
             label2.Name = "label2";
-            label2.Size = new Size(78, 17);
+            label2.Size = new Size(92, 21);
             label2.TabIndex = 48;
             label2.Text = "Part Name";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(407, 215);
+            label10.Location = new Point(25, 85);
             label10.Name = "label10";
-            label10.Size = new Size(52, 17);
+            label10.Size = new Size(62, 21);
             label10.TabIndex = 47;
             label10.Text = "Part ID";
-            // 
-            // user_lbl_recived
-            // 
-            user_lbl_recived.AutoSize = true;
-            user_lbl_recived.Location = new Point(727, 65);
-            user_lbl_recived.Name = "user_lbl_recived";
-            user_lbl_recived.Size = new Size(45, 17);
-            user_lbl_recived.TabIndex = 69;
-            user_lbl_recived.Text = "label9";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(407, 341);
+            label11.Location = new Point(25, 211);
             label11.Name = "label11";
-            label11.Size = new Size(46, 17);
+            label11.Size = new Size(59, 21);
             label11.TabIndex = 73;
             label11.Text = "Model";
             // 
             // model_lbl_recieve
             // 
             model_lbl_recieve.AutoSize = true;
-            model_lbl_recieve.Location = new Point(537, 341);
+            model_lbl_recieve.Location = new Point(318, 211);
             model_lbl_recieve.Name = "model_lbl_recieve";
-            model_lbl_recieve.Size = new Size(46, 17);
+            model_lbl_recieve.Size = new Size(59, 21);
             model_lbl_recieve.TabIndex = 72;
             model_lbl_recieve.Text = "Model";
             // 
             // make_lbl_recieve
             // 
             make_lbl_recieve.AutoSize = true;
-            make_lbl_recieve.Location = new Point(537, 296);
+            make_lbl_recieve.Location = new Point(319, 166);
             make_lbl_recieve.Name = "make_lbl_recieve";
-            make_lbl_recieve.Size = new Size(43, 17);
+            make_lbl_recieve.Size = new Size(53, 21);
             make_lbl_recieve.TabIndex = 71;
             make_lbl_recieve.Text = "Make";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(407, 296);
+            label1.Location = new Point(25, 166);
             label1.Name = "label1";
-            label1.Size = new Size(43, 17);
+            label1.Size = new Size(53, 21);
             label1.TabIndex = 70;
             label1.Text = "Make";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(397, 178);
+            label12.Location = new Point(23, 48);
             label12.Name = "label12";
-            label12.Size = new Size(123, 17);
+            label12.Size = new Size(266, 21);
             label12.TabIndex = 74;
-            label12.Text = "500 Book Page ID";
+            label12.Text = "Issue Order Number/P.O Number";
             // 
-            // book_txt_recieve
+            // issue_txt_recieve
             // 
-            book_txt_recieve.Location = new Point(531, 171);
-            book_txt_recieve.Margin = new Padding(3, 4, 3, 4);
-            book_txt_recieve.Name = "book_txt_recieve";
-            book_txt_recieve.Size = new Size(241, 24);
-            book_txt_recieve.TabIndex = 75;
+            issue_txt_recieve.Location = new Point(312, 41);
+            issue_txt_recieve.Margin = new Padding(3, 4, 3, 4);
+            issue_txt_recieve.Name = "issue_txt_recieve";
+            issue_txt_recieve.Size = new Size(241, 29);
+            issue_txt_recieve.TabIndex = 75;
+            // 
+            // pnl_menu_dashboard
+            // 
+            pnl_menu_dashboard.BackColor = Color.Azure;
+            pnl_menu_dashboard.BackgroundImageLayout = ImageLayout.None;
+            pnl_menu_dashboard.Controls.Add(btn_home_recieve);
+            pnl_menu_dashboard.Controls.Add(btn_dev_recieve);
+            pnl_menu_dashboard.Controls.Add(btn_edit_recieve);
+            pnl_menu_dashboard.Controls.Add(btn_adduser_recieve);
+            pnl_menu_dashboard.Controls.Add(btn_add_recieve);
+            pnl_menu_dashboard.Controls.Add(btn_distribute_recieve);
+            pnl_menu_dashboard.Controls.Add(btn_database_recieve);
+            pnl_menu_dashboard.Controls.Add(pnl_home);
+            pnl_menu_dashboard.Controls.Add(btn_logout_recieve);
+            pnl_menu_dashboard.Controls.Add(btn_exit_recieve);
+            pnl_menu_dashboard.Dock = DockStyle.Left;
+            pnl_menu_dashboard.Font = new Font("Google Sans", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            pnl_menu_dashboard.Location = new Point(0, 0);
+            pnl_menu_dashboard.Name = "pnl_menu_dashboard";
+            pnl_menu_dashboard.Size = new Size(333, 728);
+            pnl_menu_dashboard.TabIndex = 76;
+            // 
+            // btn_home_recieve
+            // 
+            btn_home_recieve.AutoSize = true;
+            btn_home_recieve.Dock = DockStyle.Bottom;
+            btn_home_recieve.FlatAppearance.BorderSize = 0;
+            btn_home_recieve.FlatStyle = FlatStyle.Flat;
+            btn_home_recieve.Image = (Image)resources.GetObject("btn_home_recieve.Image");
+            btn_home_recieve.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_home_recieve.Location = new Point(0, 548);
+            btn_home_recieve.Name = "btn_home_recieve";
+            btn_home_recieve.Size = new Size(333, 60);
+            btn_home_recieve.TabIndex = 18;
+            btn_home_recieve.Text = "Home";
+            btn_home_recieve.UseVisualStyleBackColor = true;
+            btn_home_recieve.Click += btn_home_recieve_Click;
+            // 
+            // btn_dev_recieve
+            // 
+            btn_dev_recieve.Dock = DockStyle.Top;
+            btn_dev_recieve.FlatAppearance.BorderSize = 0;
+            btn_dev_recieve.FlatStyle = FlatStyle.Flat;
+            btn_dev_recieve.Image = (Image)resources.GetObject("btn_dev_recieve.Image");
+            btn_dev_recieve.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_dev_recieve.Location = new Point(0, 360);
+            btn_dev_recieve.Name = "btn_dev_recieve";
+            btn_dev_recieve.Size = new Size(333, 60);
+            btn_dev_recieve.TabIndex = 17;
+            btn_dev_recieve.Text = "Developer Mode";
+            btn_dev_recieve.UseVisualStyleBackColor = true;
+            btn_dev_recieve.Click += btn_dev_recieve_Click;
+            // 
+            // btn_edit_recieve
+            // 
+            btn_edit_recieve.Dock = DockStyle.Top;
+            btn_edit_recieve.FlatAppearance.BorderSize = 0;
+            btn_edit_recieve.FlatStyle = FlatStyle.Flat;
+            btn_edit_recieve.Image = (Image)resources.GetObject("btn_edit_recieve.Image");
+            btn_edit_recieve.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_edit_recieve.Location = new Point(0, 300);
+            btn_edit_recieve.Name = "btn_edit_recieve";
+            btn_edit_recieve.Size = new Size(333, 60);
+            btn_edit_recieve.TabIndex = 16;
+            btn_edit_recieve.Text = "Edit Entries";
+            btn_edit_recieve.UseVisualStyleBackColor = true;
+            btn_edit_recieve.Click += btn_edit_recieve_Click;
+            // 
+            // btn_adduser_recieve
+            // 
+            btn_adduser_recieve.Dock = DockStyle.Top;
+            btn_adduser_recieve.FlatAppearance.BorderSize = 0;
+            btn_adduser_recieve.FlatStyle = FlatStyle.Flat;
+            btn_adduser_recieve.Image = (Image)resources.GetObject("btn_adduser_recieve.Image");
+            btn_adduser_recieve.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_adduser_recieve.Location = new Point(0, 240);
+            btn_adduser_recieve.Name = "btn_adduser_recieve";
+            btn_adduser_recieve.Size = new Size(333, 60);
+            btn_adduser_recieve.TabIndex = 15;
+            btn_adduser_recieve.Text = "Add New";
+            btn_adduser_recieve.UseVisualStyleBackColor = true;
+            btn_adduser_recieve.Click += btn_adduser_recieve_Click;
+            // 
+            // btn_add_recieve
+            // 
+            btn_add_recieve.Dock = DockStyle.Top;
+            btn_add_recieve.FlatAppearance.BorderSize = 0;
+            btn_add_recieve.FlatStyle = FlatStyle.Flat;
+            btn_add_recieve.Image = (Image)resources.GetObject("btn_add_recieve.Image");
+            btn_add_recieve.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_add_recieve.Location = new Point(0, 180);
+            btn_add_recieve.Name = "btn_add_recieve";
+            btn_add_recieve.Size = new Size(333, 60);
+            btn_add_recieve.TabIndex = 14;
+            btn_add_recieve.Text = "Add New";
+            btn_add_recieve.UseVisualStyleBackColor = true;
+            btn_add_recieve.Click += btn_add_recieve_Click;
+            // 
+            // btn_distribute_recieve
+            // 
+            btn_distribute_recieve.AutoSize = true;
+            btn_distribute_recieve.Dock = DockStyle.Top;
+            btn_distribute_recieve.FlatAppearance.BorderSize = 0;
+            btn_distribute_recieve.FlatStyle = FlatStyle.Flat;
+            btn_distribute_recieve.Image = (Image)resources.GetObject("btn_distribute_recieve.Image");
+            btn_distribute_recieve.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_distribute_recieve.Location = new Point(0, 120);
+            btn_distribute_recieve.Name = "btn_distribute_recieve";
+            btn_distribute_recieve.Size = new Size(333, 60);
+            btn_distribute_recieve.TabIndex = 12;
+            btn_distribute_recieve.Text = "\r\nDistribute";
+            btn_distribute_recieve.TextAlign = ContentAlignment.TopCenter;
+            btn_distribute_recieve.UseVisualStyleBackColor = true;
+            btn_distribute_recieve.Click += btn_distribute_recieve_Click;
+            // 
+            // btn_database_recieve
+            // 
+            btn_database_recieve.Dock = DockStyle.Top;
+            btn_database_recieve.FlatAppearance.BorderSize = 0;
+            btn_database_recieve.FlatStyle = FlatStyle.Flat;
+            btn_database_recieve.Image = (Image)resources.GetObject("btn_database_recieve.Image");
+            btn_database_recieve.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_database_recieve.Location = new Point(0, 60);
+            btn_database_recieve.Name = "btn_database_recieve";
+            btn_database_recieve.Size = new Size(333, 60);
+            btn_database_recieve.TabIndex = 10;
+            btn_database_recieve.Text = "Database";
+            btn_database_recieve.UseVisualStyleBackColor = true;
+            btn_database_recieve.Click += btn_database_recieve_Click;
+            // 
+            // pnl_home
+            // 
+            pnl_home.Controls.Add(label8);
+            pnl_home.Dock = DockStyle.Top;
+            pnl_home.Location = new Point(0, 0);
+            pnl_home.Name = "pnl_home";
+            pnl_home.Size = new Size(333, 60);
+            pnl_home.TabIndex = 0;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Fira Sans Medium", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(75, 18);
+            label8.Name = "label8";
+            label8.Size = new Size(182, 24);
+            label8.TabIndex = 1;
+            label8.Text = "Navigation Panel";
+            label8.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btn_logout_recieve
+            // 
+            btn_logout_recieve.AutoSize = true;
+            btn_logout_recieve.Dock = DockStyle.Bottom;
+            btn_logout_recieve.FlatAppearance.BorderSize = 0;
+            btn_logout_recieve.FlatStyle = FlatStyle.Flat;
+            btn_logout_recieve.Image = (Image)resources.GetObject("btn_logout_recieve.Image");
+            btn_logout_recieve.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_logout_recieve.Location = new Point(0, 608);
+            btn_logout_recieve.Name = "btn_logout_recieve";
+            btn_logout_recieve.Size = new Size(333, 60);
+            btn_logout_recieve.TabIndex = 8;
+            btn_logout_recieve.Text = "Log Out";
+            btn_logout_recieve.UseVisualStyleBackColor = true;
+            btn_logout_recieve.Click += btn_logout_recieve_Click;
+            // 
+            // btn_exit_recieve
+            // 
+            btn_exit_recieve.AutoSize = true;
+            btn_exit_recieve.Dock = DockStyle.Bottom;
+            btn_exit_recieve.FlatAppearance.BorderSize = 0;
+            btn_exit_recieve.FlatStyle = FlatStyle.Flat;
+            btn_exit_recieve.Image = (Image)resources.GetObject("btn_exit_recieve.Image");
+            btn_exit_recieve.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_exit_recieve.Location = new Point(0, 668);
+            btn_exit_recieve.Name = "btn_exit_recieve";
+            btn_exit_recieve.Size = new Size(333, 60);
+            btn_exit_recieve.TabIndex = 9;
+            btn_exit_recieve.Text = "Exit";
+            btn_exit_recieve.UseVisualStyleBackColor = true;
+            btn_exit_recieve.Click += btn_exit_recieve_Click;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Snow;
+            panel1.Controls.Add(label13);
+            panel1.Controls.Add(label14);
+            panel1.Controls.Add(user_lbl_recieve);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(333, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(897, 60);
+            panel1.TabIndex = 77;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Fira Sans Medium", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.Location = new Point(17, 18);
+            label13.Name = "label13";
+            label13.Size = new Size(292, 24);
+            label13.TabIndex = 1;
+            label13.Text = "Enter Item Received Details";
+            label13.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Watch Applemint", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label14.Location = new Point(603, 18);
+            label14.Name = "label14";
+            label14.Size = new Size(109, 22);
+            label14.TabIndex = 13;
+            label14.Text = "Logged in As";
+            // 
+            // user_lbl_recieve
+            // 
+            user_lbl_recieve.AutoSize = true;
+            user_lbl_recieve.Font = new Font("Watch Applemint", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            user_lbl_recieve.Location = new Point(718, 18);
+            user_lbl_recieve.Name = "user_lbl_recieve";
+            user_lbl_recieve.Size = new Size(90, 22);
+            user_lbl_recieve.TabIndex = 12;
+            user_lbl_recieve.Text = "UserName";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FloralWhite;
+            panel2.Controls.Add(issue_txt_recieve);
+            panel2.Controls.Add(label12);
+            panel2.Controls.Add(label11);
+            panel2.Controls.Add(model_lbl_recieve);
+            panel2.Controls.Add(make_lbl_recieve);
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(label9);
+            panel2.Controls.Add(stock_txt_recieve);
+            panel2.Controls.Add(stock_lbl);
+            panel2.Controls.Add(part_id_txt_recieve);
+            panel2.Controls.Add(description_lbl_recieve);
+            panel2.Controls.Add(equip_name_lbl_recieve);
+            panel2.Controls.Add(part_name_lbl_recieve);
+            panel2.Controls.Add(load_btn_recieve);
+            panel2.Controls.Add(update_btn_recieve);
+            panel2.Controls.Add(lower_lbl_recieve);
+            panel2.Controls.Add(upper_lbl_recieve);
+            panel2.Controls.Add(lower_lbl);
+            panel2.Controls.Add(upper_lbl);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(label10);
+            panel2.Dock = DockStyle.Top;
+            panel2.Font = new Font("Google Sans", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            panel2.Location = new Point(333, 60);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(897, 494);
+            panel2.TabIndex = 78;
             // 
             // Recieve
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Window;
+            BackColor = Color.Ivory;
             ClientSize = new Size(1230, 728);
-            Controls.Add(book_txt_recieve);
-            Controls.Add(label12);
-            Controls.Add(label11);
-            Controls.Add(model_lbl_recieve);
-            Controls.Add(make_lbl_recieve);
-            Controls.Add(label1);
-            Controls.Add(user_lbl_recived);
-            Controls.Add(label9);
-            Controls.Add(stock_txt_recieve);
-            Controls.Add(stock_lbl);
-            Controls.Add(part_id_txt_recieve);
-            Controls.Add(description_lbl_recieve);
-            Controls.Add(equip_name_lbl_recieve);
-            Controls.Add(part_name_lbl_recieve);
-            Controls.Add(load_btn_recieve);
-            Controls.Add(update_btn_recieve);
-            Controls.Add(lower_lbl_recieve);
-            Controls.Add(upper_lbl_recieve);
-            Controls.Add(lower_lbl);
-            Controls.Add(upper_lbl);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label10);
+            Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(pnl_menu_dashboard);
             Font = new Font("Berlin Sans FB", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Recieve";
-            Text = "Recieve";
+            Text = "Received Items";
             WindowState = FormWindowState.Maximized;
             Load += Recieve_Load;
+            pnl_menu_dashboard.ResumeLayout(false);
+            pnl_menu_dashboard.PerformLayout();
+            pnl_home.ResumeLayout(false);
+            pnl_home.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private Panel panel1;
-        private Button btn_dev6;
-        private Button btn_home3;
-        private Button btn_exit;
-        private Button btn_distribute;
-        private Button btn_edit;
-        private Button btn_add;
-        private Button btn_table;
-        private Label label8;
         private Label label9;
         private TextBox stock_txt_recieve;
         private Label stock_lbl;
@@ -506,12 +618,28 @@
         private Label label3;
         private Label label2;
         private Label label10;
-        private Label user_lbl_recived;
         private Label label11;
         private Label model_lbl_recieve;
         private Label make_lbl_recieve;
         private Label label1;
         private Label label12;
-        private TextBox book_txt_recieve;
+        private TextBox issue_txt_recieve;
+        private Panel pnl_menu_dashboard;
+        private Button btn_dev_recieve;
+        private Button btn_edit_recieve;
+        private Button btn_adduser_recieve;
+        private Button btn_add_recieve;
+        private Button btn_distribute_recieve;
+        private Button btn_database_recieve;
+        private Panel pnl_home;
+        private Label label8;
+        private Button btn_logout_recieve;
+        private Button btn_exit_recieve;
+        private Panel panel1;
+        private Label label13;
+        private Label label14;
+        private Label user_lbl_recieve;
+        private Button btn_home_recieve;
+        private Panel panel2;
     }
 }

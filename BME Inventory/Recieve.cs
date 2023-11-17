@@ -1,17 +1,38 @@
 ﻿using System.Data.SqlClient;
+using System.IO;
 
 namespace BME_Inventory
 {
     public partial class Recieve : Form
     {
         private DatabaseManager dbManager;
-        private string loggedInUsername;
-        private string username;
 
         public Recieve(DatabaseManager databaseManager)
         {
             InitializeComponent();
             dbManager = databaseManager;
+            UpdateUIBasedOnUserRole();
+        }
+
+        private void UpdateUIBasedOnUserRole()
+        {
+            string currentUserRole = UserRoles.CurrentUserRole;
+
+            if (currentUserRole == "admin")
+            {
+                btn_home_recieve.Enabled = true;
+                btn_dev_recieve.Enabled = false;
+                btn_dev_recieve.Visible = false;
+                btn_add_recieve.Enabled = true;
+                btn_database_recieve.Enabled = true;
+            }
+            else if (currentUserRole == "maintenance")
+            {
+                btn_home_recieve.Enabled = true;
+                btn_dev_recieve.Enabled = true;
+                btn_add_recieve.Enabled = true;
+                btn_database_recieve.Enabled = true;
+            }
         }
         private void LogChanges(string logMessage)
         {
@@ -61,19 +82,20 @@ namespace BME_Inventory
 
                         if (rowsAffected > 0)
                         {
-                            string logMessage = $"{user_lbl_recived.Text} updated record with part ID {part_id_txt_recieve.Text} successfully with a increase of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now}";
+                            string logMessage = $"{user_lbl_recieve.Text} updated record with part ID {part_id_txt_recieve.Text} successfully with a increase of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now}, Issue Order Number/P.O.Number = {issue_txt_recieve.Text}";
                             LogChanges(logMessage);
 
-                            string distributionQuery = "INSERT INTO recived (part_id, make, model, equip_name, add_by, add_quantity, time) VALUES (@part_id, @make, @model, @equip_name, @add_by, @add_quantity, @time)";
+                            string distributionQuery = "INSERT INTO received (part_id, make, model, equip_name, add_by, add_quantity, time, issue_id) VALUES (@part_id, @make, @model, @equip_name, @add_by, @add_quantity, @time, @issue_id)";
                             using (SqlCommand distributionCmd = new SqlCommand(distributionQuery, dbManager.GetConnection()))
                             {
                                 distributionCmd.Parameters.AddWithValue("@part_id", part_id_txt_recieve.Text);
                                 distributionCmd.Parameters.AddWithValue("@make", make_lbl_recieve.Text);
                                 distributionCmd.Parameters.AddWithValue("@model", model_lbl_recieve.Text);
                                 distributionCmd.Parameters.AddWithValue("@equip_name", equip_name_lbl_recieve.Text);
-                                distributionCmd.Parameters.AddWithValue("@add_by", user_lbl_recived.Text);
+                                distributionCmd.Parameters.AddWithValue("@add_by", user_lbl_recieve.Text);
                                 distributionCmd.Parameters.AddWithValue("@add_quantity", stockValue5);
                                 distributionCmd.Parameters.AddWithValue("@time", DateTime.Now);
+                                distributionCmd.Parameters.AddWithValue("@issue_id", issue_txt_recieve.Text);
 
                                 int distributionRowsAffected = distributionCmd.ExecuteNonQuery();
 
@@ -158,24 +180,83 @@ namespace BME_Inventory
             }
         }
 
-        private void btn_home3_Click(object sender, EventArgs e)
-        {
-            Dashboard home = new Dashboard(dbManager);
-            home.Show();
-            this.Hide();
-        }
-
         private void Recieve_Load(object sender, EventArgs e)
         {
             string username = CurrentUser.Username;
 
             if (username != null)
             {
-                user_lbl_recived.Text = $"{username}";
+                user_lbl_recieve.Text = $"{username}";
             }
             else
             {
-                user_lbl_recived.Text = $"Unable to retrieve logged-in username.";
+                user_lbl_recieve.Text = $"Unable to retrieve logged-in username.";
+            }
+        }
+
+        private void btn_database_recieve_Click(object sender, EventArgs e)
+        {
+            Database database = new Database(dbManager);
+            database.Show();
+            this.Close();
+        }
+
+        private void btn_distribute_recieve_Click(object sender, EventArgs e)
+        {
+            Distribute distribute = new Distribute(dbManager);
+            distribute.Show();
+            this.Close();
+        }
+
+        private void btn_add_recieve_Click(object sender, EventArgs e)
+        {
+            Create create = new Create(dbManager);
+            create.Show();
+            this.Close();
+        }
+
+        private void btn_adduser_recieve_Click(object sender, EventArgs e)
+        {
+            AddUser addUser = new AddUser(dbManager);
+            addUser.Show();
+            this.Close();
+        }
+
+        private void btn_edit_recieve_Click(object sender, EventArgs e)
+        {
+            Edit edit = new Edit(dbManager);
+            edit.Show();
+            this.Close();
+        }
+
+        private void btn_dev_recieve_Click(object sender, EventArgs e)
+        {
+            DeveloperDashboard developerDashboard = new DeveloperDashboard(dbManager);
+            developerDashboard.Show();
+            this.Close();
+        }
+
+        private void btn_home_recieve_Click(object sender, EventArgs e)
+        {
+            Dashboard dashboard = new Dashboard(dbManager);
+            dashboard.Show();
+            this.Close();
+        }
+
+        private void btn_logout_recieve_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login loginForm = new Login(dbManager);
+            loginForm.Show();
+        }
+
+        private void btn_exit_recieve_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
             }
         }
     }

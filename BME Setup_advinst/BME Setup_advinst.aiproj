@@ -2,24 +2,24 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">All</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>937cbcb1-6f44-41ae-b34d-1ba79c6b391c</ProjectGuid>
+    <ProjectGuid>14c3971d-d667-47d6-84f5-f5182262dea2</ProjectGuid>
     <OutputType>msi</OutputType>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Invent Mgmt_advinst.aip</StartupFile>
+    <StartupFile>BME Setup_advinst.aip</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <IsWindowsApplication>True</IsWindowsApplication>
-    <AssemblyName>Invent Mgmt_advinst</AssemblyName>
-    <Name>Invent Mgmt_advinst</Name>
-    <RootNamespace>Invent Mgmt_advinst</RootNamespace>
+    <AssemblyName>BME Setup_advinst</AssemblyName>
+    <Name>BME Setup_advinst</Name>
+    <RootNamespace>BME Setup_advinst</RootNamespace>
     <LoadFromTemplate>
     </LoadFromTemplate>
-    <ImportedProject>{53caf843-87c1-4344-8346-c3badcbc5e0c}</ImportedProject>
+    <ImportedProject>{f0ff1175-54ba-4975-ac2c-e8915e78f94c}</ImportedProject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'DefaultBuild' " />
   <ItemGroup>
-    <Compile Include="Invent Mgmt_advinst.aip">
+    <Compile Include="BME Setup_advinst.aip">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

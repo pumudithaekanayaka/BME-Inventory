@@ -2,14 +2,13 @@
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace BME_Inventory
 {
     public partial class Distribute : Form
     {
         private DatabaseManager dbManager;
-        private string loggedInUsername;
-        private string username;
 
         public Distribute(DatabaseManager databaseManager)
         {
@@ -31,7 +30,9 @@ namespace BME_Inventory
                 btn_add_distribute.Enabled = false;
                 btn_add_distribute.Visible = false;
                 btn_home_distribute.Enabled = true;
-                btn_table_distribute.Enabled = true;
+                btn_adduser_distribute.Enabled = false;
+                btn_adduser_distribute.Visible = false;
+                btn_database_distribute.Enabled = true;
                 btn_dev_distribute.Enabled = false;
                 btn_dev_distribute.Visible = false;
             }
@@ -42,7 +43,7 @@ namespace BME_Inventory
                 btn_dev_distribute.Visible = false;
                 btn_edit_distribute.Enabled = true;
                 btn_add_distribute.Enabled = true;
-                btn_table_distribute.Enabled = true;
+                btn_database_distribute.Enabled = true;
             }
             else if (currentUserRole == "maintenance")
             {
@@ -50,7 +51,7 @@ namespace BME_Inventory
                 btn_dev_distribute.Enabled = true;
                 btn_edit_distribute.Enabled = true;
                 btn_add_distribute.Enabled = true;
-                btn_table_distribute.Enabled = true;
+                btn_database_distribute.Enabled = true;
             }
         }
 
@@ -79,7 +80,7 @@ namespace BME_Inventory
                             string distributionQuery = "INSERT INTO distribution (part_id, make, model, equip_name, issued_by, issued_quantity, time, book_page_id) VALUES (@part_id, @make, @model, @equip_name, @issued_by, @issued_quantity, @time, @book_page_id)";
                             using (SqlCommand distributionCmd = new SqlCommand(distributionQuery, dbManager.GetConnection()))
                             {
-                                distributionCmd.Parameters.AddWithValue("@book_page_id",book_txt_distribute.Text);
+                                distributionCmd.Parameters.AddWithValue("@book_page_id", book_txt_distribute.Text);
                                 distributionCmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
                                 distributionCmd.Parameters.AddWithValue("@make", make_lbl.Text);
                                 distributionCmd.Parameters.AddWithValue("@model", model_lbl.Text);
@@ -217,15 +218,63 @@ namespace BME_Inventory
             }
         }
 
-
-        private void btn_home5_Click(object sender, EventArgs e)
+        private void btn_database_distribute_Click(object sender, EventArgs e)
         {
-            Dashboard home = new Dashboard(dbManager);
-            home.Show();
+            Database database = new Database(dbManager);
+            database.Show();
             this.Hide();
         }
 
-        private void btn_exit_Click(object sender, EventArgs e)
+        private void btn_receive_distribute_Click(object sender, EventArgs e)
+        {
+            Recieve recieve = new Recieve(dbManager);
+            recieve.Show();
+            this.Hide();
+        }
+
+        private void btn_add_distribute_Click(object sender, EventArgs e)
+        {
+            Create create = new Create(dbManager);
+            create.Show();
+            this.Hide();
+        }
+
+        private void btn_adduser_distribute_Click(object sender, EventArgs e)
+        {
+            AddUser addUser = new AddUser(dbManager);
+            addUser.Show();
+            this.Hide();
+        }
+
+        private void btn_edit_distribute_Click(object sender, EventArgs e)
+        {
+            Edit edit = new Edit(dbManager);
+            edit.Show();
+            this.Hide();
+        }
+
+        private void btn_dev_dashboard_Click(object sender, EventArgs e)
+        {
+            DeveloperDashboard developerDashboard = new DeveloperDashboard(dbManager);
+            developerDashboard.Show();
+            this.Hide();
+        }
+
+        private void btn_home_distribute_Click(object sender, EventArgs e)
+        {
+            Dashboard dashboard = new Dashboard(dbManager);
+            dashboard.Show();
+            this.Hide();
+        }
+
+        private void btn_logout_distribute_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login loginForm = new Login(dbManager);
+            loginForm.Show();
+        }
+
+        private void btn_exit_distribute_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -233,46 +282,6 @@ namespace BME_Inventory
             {
                 Application.Exit();
             }
-        }
-
-        private void btn_table6_Click(object sender, EventArgs e)
-        {
-            Table table = new Table(dbManager);
-            table.Show();
-            this.Hide();
-        }
-
-        private void btn_receive6_Click(object sender, EventArgs e)
-        {
-            Recieve recieve = new Recieve(dbManager);
-            recieve.Show();
-            this.Hide();
-        }
-
-        private void btn_edit6_Click(object sender, EventArgs e)
-        {
-            View view = new View(dbManager);
-            view.Show();
-            this.Hide();
-        }
-
-        private void btn_add6_Click(object sender, EventArgs e)
-        {
-            Insert insert = new Insert(dbManager);
-            insert.Show();
-            this.Hide();
-        }
-
-        private void btn_dev6_Click(object sender, EventArgs e)
-        {
-            dev_dash developer = new dev_dash(dbManager);
-            developer.Show();
-            this.Hide();
-        }
-
-        private void user_lbl5_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

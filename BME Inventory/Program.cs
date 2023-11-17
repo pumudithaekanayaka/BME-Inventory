@@ -1,34 +1,53 @@
+using System;
+using System.Windows.Forms;
+
 namespace BME_Inventory
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             string serverName = Properties.Settings.Default.ServerName;
             string databaseName = Properties.Settings.Default.DatabaseName;
+
             bool isFirstRun = Properties.Settings.Default.IsFirstRun;
 
             if (isFirstRun)
             {
-                string connectionString = GetConnectionString(serverName, databaseName);
-                DatabaseManager dbManager = new DatabaseManager(connectionString);
-                Application.Run(new Startup(dbManager));
+                DatabaseManager dbManager = new DatabaseManager();
+
+                ShowDatabaseConnectionForm(dbManager);
+
+                Properties.Settings.Default["IsFirstRun"] = false;
+                Properties.Settings.Default.Save();
             }
             else
             {
-                string connectionString = GetConnectionString(serverName, databaseName);
-                DatabaseManager dbManager = new DatabaseManager(connectionString);
-                Application.Run(new UserSelection(dbManager));
+                DatabaseManager dbManager = new DatabaseManager();
+
+                Application.Run(new Login(dbManager));
             }
         }
 
-        private static string GetConnectionString(string serverName, string databaseName)
+        private static void ShowDatabaseConnectionForm(DatabaseManager dbManager)
         {
-            return $"Data Source={serverName};Initial Catalog={databaseName};Integrated Security=True";
+            using (DatabaseConnection databaseConnection = new DatabaseConnection(dbManager, true))
+            {
+                if (databaseConnection.ShowDialog() == DialogResult.OK)
+                {
+                    Properties.Settings.Default.ServerName = databaseConnection.ServerName;
+                    Properties.Settings.Default.DatabaseName = databaseConnection.DatabaseName;
+                    Properties.Settings.Default["IsFirstRun"] = false;
+                    Properties.Settings.Default.Save();
+
+                    Application.Run(new ConfigForm(new DatabaseManager(databaseConnection.ConnectionString)));
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace BME_Inventory
     public partial class Login : Form
     {
         private DatabaseManager dbManager;
-        private string loggedInUsername = string.Empty;
+        private string loggedInUsername;
 
         public Login(DatabaseManager databaseManager)
         {
@@ -66,7 +66,7 @@ namespace BME_Inventory
                             {
                                 loggedInUsername = username;
                                 RedirectBasedOnUserRole(userRole, username);
-                                LogLogin(username); // Log the login
+                                LogLogin(username_txt.Text);
                             }
                             else
                             {
@@ -95,7 +95,7 @@ namespace BME_Inventory
             string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string logFolderPath = Path.Combine(documentsFolder, "Inventory Logs");
             string logFilePath = Path.Combine(logFolderPath, $"user_log_{DateTime.Now:yyyyMMdd}.txt");
-            string logMessage = $"{username} logged in at {DateTime.Now}";
+            string logMessage = $"{username_txt.Text} logged in at {DateTime.Now}";
 
             try
             {
@@ -114,5 +114,18 @@ namespace BME_Inventory
                 MessageBox.Show("Failed to write to the log file: " + ex.Message);
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chng_server_btn_login_Click(object sender, EventArgs e)
+        {
+            DatabaseConnection databaseConnection = new DatabaseConnection(dbManager, false);
+            databaseConnection.Show();
+            this.Hide();
+        }
+
     }
 }

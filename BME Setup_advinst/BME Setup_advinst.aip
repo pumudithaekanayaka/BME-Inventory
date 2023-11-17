@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="21.2.1" version="21.2.1" Modules="simple" RootPath="." Language="en" Id="{F6202129-C722-46F7-AE9D-3FAC1B978921}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="21.2.1" version="21.2.1" Modules="simple" RootPath="." Language="en" Id="{8722D526-611F-49D0-97E4-D1B676B3C404}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
     <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent"/>
   </COMPONENT>
@@ -8,17 +8,15 @@
     <ROW Property="ALLUSERS" Value="1" MultiBuildValue="DefaultBuild:"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="ASUS"/>
-    <ROW Property="ARPHELPLINK" Value="pumuditha123@duck.com"/>
-    <ROW Property="ARPHELPTELEPHONE" Value="+94702256889"/>
-    <ROW Property="ARPPRODUCTICON" Value="_F8B6886A53F443168912361414E06B26.exe" Type="8"/>
+    <ROW Property="ARPPRODUCTICON" Value="_085A2C3A74914F20BC4FADC83E537DA7.exe" Type="8"/>
     <ROW Property="AspNetVersion" Value="4.0.30319.0"/>
-    <ROW Property="Manufacturer" Value="Sn0w_w01f"/>
-    <ROW Property="ProductCode" Value="1033:{060C4DC3-4DB7-4C5D-AF2F-E482F0144B9F} " Type="16"/>
+    <ROW Property="Manufacturer" Value="ASUS"/>
+    <ROW Property="ProductCode" Value="1033:{7FD69C2D-A467-4422-A6AA-6F70C7744C96} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Invent Mgmt"/>
+    <ROW Property="ProductName" Value="BME Inventory"/>
     <ROW Property="ProductVersion" Value="1.0.0" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
-    <ROW Property="UpgradeCode" Value="{6D9674BD-0923-4A33-8D26-96A180004985}"/>
+    <ROW Property="UpgradeCode" Value="{863DFC46-843E-4C86-B669-CD91A34ACF80}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
@@ -34,10 +32,10 @@
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="APPDIR" ComponentId="{5A34EC5D-10DE-433F-852E-96502ED3D8D1}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="C__BAE4C1F40371420A8362CAA117C91757" ComponentId="{6FF1A13F-DE1E-41A6-8E80-F008BE4DEA02}" Directory_="APPDIR" Attributes="0" KeyPath="_BAE4C1F40371420A8362CAA117C91757"/>
-    <ROW Component="C__F8B6886A53F443168912361414E06B26" ComponentId="{BE606179-B99F-4CA2-812D-854509A2CD9A}" Directory_="APPDIR" Attributes="0" KeyPath="_F8B6886A53F443168912361414E06B26"/>
-    <ROW Component="ProductInformation" ComponentId="{F268A87A-7C93-4714-BCA4-53D2A4F016C5}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="APPDIR" ComponentId="{0487F3F7-608E-45F0-8D0E-0D707264FEB6}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="C__085A2C3A74914F20BC4FADC83E537DA7" ComponentId="{934889F0-18D3-4FC8-AE83-FA19369FC90A}" Directory_="APPDIR" Attributes="0" KeyPath="_085A2C3A74914F20BC4FADC83E537DA7"/>
+    <ROW Component="C__E0AD944EA9A446039465886D1BEE9162" ComponentId="{61A342E0-50D0-49DC-8D9E-7457A83A183C}" Directory_="APPDIR" Attributes="0" KeyPath="_E0AD944EA9A446039465886D1BEE9162"/>
+    <ROW Component="ProductInformation" ComponentId="{5FDA0F27-6B7D-4EDF-AF7E-1A4D27D2F05B}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="DefaultFeature" Title="DefaultFeature" Display="2" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -45,8 +43,8 @@
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="_F8B6886A53F443168912361414E06B26" Component_="C__F8B6886A53F443168912361414E06B26" FileName="TOKEN_~1.ICO|token_money_coin_digital_cryptocurrency_icon_251734.ico" Attributes="512" SourcePath="C:\Users\ASUS\Downloads\token_money_coin_digital_cryptocurrency_icon_251734.ico" SelfReg="false"/>
-    <ROW File="_BAE4C1F40371420A8362CAA117C91757" Component_="C__BAE4C1F40371420A8362CAA117C91757" FileName="BMEINV~1.DLL|BME Inventory.dll" Attributes="512" SourcePath="..\BME Inventory\obj\Debug\net6.0-windows10.0.17763.0\BME Inventory.dll" SelfReg="false"/>
+    <ROW File="_085A2C3A74914F20BC4FADC83E537DA7" Component_="C__085A2C3A74914F20BC4FADC83E537DA7" FileName="TOKEN_~1.ICO|token_money_coin_digital_cryptocurrency_icon_251734.ico" Attributes="512" SourcePath="C:\Users\ASUS\Downloads\token_money_coin_digital_cryptocurrency_icon_251734.ico" SelfReg="false"/>
+    <ROW File="_E0AD944EA9A446039465886D1BEE9162" Component_="C__E0AD944EA9A446039465886D1BEE9162" FileName="apphost.exe" Attributes="512" SourcePath="..\BME Inventory\obj\Release\net6.0-windows10.0.17763.0\apphost.exe" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
@@ -121,11 +119,11 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
-    <ROW Feature_="DefaultFeature" Component_="C__F8B6886A53F443168912361414E06B26"/>
-    <ROW Feature_="DefaultFeature" Component_="C__BAE4C1F40371420A8362CAA117C91757"/>
+    <ROW Feature_="DefaultFeature" Component_="C__085A2C3A74914F20BC4FADC83E537DA7"/>
+    <ROW Feature_="DefaultFeature" Component_="C__E0AD944EA9A446039465886D1BEE9162"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="_F8B6886A53F443168912361414E06B26.exe" SourcePath="C:\Users\ASUS\Downloads\token_money_coin_digital_cryptocurrency_icon_251734.ico" Index="0"/>
+    <ROW Name="_085A2C3A74914F20BC4FADC83E537DA7.exe" SourcePath="C:\Users\ASUS\Downloads\token_money_coin_digital_cryptocurrency_icon_251734.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -156,7 +154,7 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="_D7701460384E4AD9B587B3A1EF8E1314" Directory_="DesktopFolder" Name="SHORTC~1|Shortcut to %sPrimary output from BME Inventory (Active)" Component_="C__BAE4C1F40371420A8362CAA117C91757" Target="[#_BAE4C1F40371420A8362CAA117C91757]" Hotkey="0" Icon_="_F8B6886A53F443168912361414E06B26.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" Advertised="true"/>
+    <ROW Shortcut="_93F7728C141742D582E01066F38A4727" Directory_="DesktopFolder" Name="BMEINV~1|BME Inventory" Component_="C__E0AD944EA9A446039465886D1BEE9162" Target="[#_E0AD944EA9A446039465886D1BEE9162]" Hotkey="0" Icon_="_085A2C3A74914F20BC4FADC83E537DA7.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" Advertised="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>

@@ -19,56 +19,18 @@ namespace BME_Inventory
         {
             InitializeComponent();
             dbManager = databaseManager;
+            UpdateUIBasedOnUserRole();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void UpdateUIBasedOnUserRole()
         {
-            Distribute distribute = new Distribute(dbManager);
-            distribute.Show();
-            this.Hide();
-        }
+            string currentUserRole = UserRoles.CurrentUserRole;
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            View view = new View(dbManager);
-            view.Show();
-            this.Hide();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Insert insert = new Insert(dbManager);
-            insert.Show();
-            this.Hide();
-        }
-
-        private void table_btn6_Click(object sender, EventArgs e)
-        {
-            Table table = new Table(dbManager);
-            table.Show();
-            this.Hide();
-        }
-
-        private void exit_btn6_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            if (currentUserRole == "admin")
             {
-                Application.Exit();
+                btn_dev_adduser.Enabled = false;
+                btn_dev_adduser.Visible = false;
             }
-        }
-
-        private void Home_Load(object sender, EventArgs e)
-        {
-            // Add your initialization code if needed.
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            Recieve recieve = new Recieve(dbManager);
-            recieve.Show();
-            this.Hide();
         }
 
         private void login_btn_Click(object sender, EventArgs e)
@@ -115,6 +77,87 @@ namespace BME_Inventory
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void AddUser_Load(object sender, EventArgs e)
+        {
+
+            string username = CurrentUser.Username;
+
+            if (username != null)
+            {
+                user_lbl_adduser.Text = $"{username}";
+            }
+            else
+            {
+                user_lbl_adduser.Text = $"Unable to retrieve username.";
+            }
+        }
+
+        private void btn_database_adduser_Click(object sender, EventArgs e)
+        {
+            Database database = new Database(dbManager);
+            database.Show();
+            this.Hide();
+        }
+
+        private void btn_distribute_adduser_Click(object sender, EventArgs e)
+        {
+            Distribute distribute = new Distribute(dbManager);
+            distribute.Show();
+            this.Hide();
+        }
+
+        private void btn_receive_adduser_Click(object sender, EventArgs e)
+        {
+            Recieve recieve = new Recieve(dbManager);
+            recieve.Show();
+            this.Hide();
+        }
+
+        private void btn_add_adduser_Click(object sender, EventArgs e)
+        {
+            Create insert = new Create(dbManager);
+            insert.Show();
+            this.Hide();
+        }
+
+        private void btn_edit_adduser_Click(object sender, EventArgs e)
+        {
+            Edit edit = new Edit(dbManager);
+            edit.Show();
+            this.Hide();
+        }
+
+        private void btn_dev_adduser_Click_1(object sender, EventArgs e)
+        {
+            DeveloperDashboard developer = new DeveloperDashboard(dbManager);
+            developer.Show();
+            this.Hide();
+        }
+
+        private void btn_home_adduser_Click(object sender, EventArgs e)
+        {
+            Dashboard dashboard = new Dashboard(dbManager);
+            dashboard.Show();
+            this.Hide();
+        }
+
+        private void btn_logout_adduser_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login loginForm = new Login(dbManager);
+            loginForm.Show();
+        }
+
+        private void btn_exit_adduser_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
             }
         }
     }

@@ -1,17 +1,19 @@
 using System.Data.SqlClient;
+using System.IO;
 
 namespace BME_Inventory
 {
-    public partial class Insert : Form
+    public partial class Create : Form
     {
         private DatabaseManager dbManager;
 
-        public Insert(DatabaseManager databaseManager)
+        public Create(DatabaseManager databaseManager)
         {
             InitializeComponent();
             dbManager = databaseManager;
             BindMakeComboBox();
             BindModelComboBox();
+            UpdateUIBasedOnUserRole();
         }
 
         private void BindMakeComboBox()
@@ -86,6 +88,27 @@ namespace BME_Inventory
             }
         }
 
+        private void UpdateUIBasedOnUserRole()
+        {
+            string currentUserRole = UserRoles.CurrentUserRole;
+
+            if (currentUserRole == "admin")
+            {
+                btn_distribute_create.Enabled = true;
+                btn_dev_create.Enabled = false;
+                btn_dev_create.Visible = false;
+                btn_edit_create.Enabled = true;
+                btn_database_create.Enabled = true;
+            }
+            else if (currentUserRole == "maintenance")
+            {
+                btn_distribute_create.Enabled = true;
+                btn_dev_create.Enabled = true;
+                btn_edit_create.Enabled = true;
+                btn_database_create.Enabled = true;
+            }
+        }
+
         private void insert_btn_Click(object sender, EventArgs e)
         {
             try
@@ -124,8 +147,8 @@ namespace BME_Inventory
                     cmd.Parameters.AddWithValue("@lower", lower_txt.Text);
                     cmd.Parameters.AddWithValue("@stock", stock_txt.Text);
                     cmd.Parameters.AddWithValue("@description", desc_txt.Text);
-                    cmd.Parameters.AddWithValue("@make", make_combo1.SelectedItem.ToString() ?? "");
-                    cmd.Parameters.AddWithValue("@model", model_combo1.SelectedItem.ToString() ?? "");
+                    cmd.Parameters.AddWithValue("@make", make_combo1.SelectedItem?.ToString() ?? "");
+                    cmd.Parameters.AddWithValue("@model", model_combo1.SelectedItem?.ToString() ?? "");
 
                     cmd.ExecuteNonQuery();
                 }
@@ -158,27 +181,6 @@ namespace BME_Inventory
                     ClearTextBoxes(c);
                 }
             }
-        }
-
-        private void view_btn_Click(object sender, EventArgs e)
-        {
-            View view = new View(dbManager);
-            view.Show();
-            this.Hide();
-        }
-
-        private void load_btn_Click(object sender, EventArgs e)
-        {
-            Recieve show_data = new Recieve(dbManager);
-            show_data.Show();
-            this.Hide();
-        }
-
-        private void home_btn1_Click(object sender, EventArgs e)
-        {
-            Dashboard home = new Dashboard(dbManager);
-            home.Show();
-            this.Hide();
         }
 
         private void model_btn1_Click(object sender, EventArgs e)
@@ -216,8 +218,56 @@ namespace BME_Inventory
             }
         }
 
+        private void btn_database_adduser_Click(object sender, EventArgs e)
+        {
+            Database database = new Database(dbManager);
+            database.Show();
+            this.Hide();
+        }
 
-        private void exit_btn6_Click(object sender, EventArgs e)
+        private void btn_distribute_adduser_Click(object sender, EventArgs e)
+        {
+            Distribute distribute = new Distribute(dbManager);
+            distribute.Show();
+            this.Hide();
+        }
+
+        private void btn_receive_adduser_Click(object sender, EventArgs e)
+        {
+            Recieve receive = new Recieve(dbManager);
+            receive.Show();
+            this.Hide();
+        }
+
+        private void btn_adduser_adduser_Click(object sender, EventArgs e)
+        {
+            AddUser adduser = new AddUser(dbManager);
+            adduser.Show();
+            this.Hide();
+        }
+
+        private void btn_dev_adduser_Click(object sender, EventArgs e)
+        {
+            DeveloperDashboard developerDashboard = new DeveloperDashboard(dbManager);
+            developerDashboard.Show();
+            this.Hide();
+        }
+
+        private void btn_home_create_Click(object sender, EventArgs e)
+        {
+            Dashboard dashboard = new Dashboard(dbManager);
+            dashboard.Show();
+            this.Hide();
+        }
+
+        private void btn_logout_adduser_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Login loginForm = new Login(dbManager);
+            loginForm.Show();
+        }
+
+        private void btn_exit_adduser_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -227,32 +277,23 @@ namespace BME_Inventory
             }
         }
 
-        private void home_btn1_Click_1(object sender, EventArgs e)
+        private void model_txt1_TextChanged(object sender, EventArgs e)
         {
-            Dashboard home = new Dashboard(dbManager);
-            home.Show();
-            this.Hide();
+
         }
 
-        private void edit_btn_Click(object sender, EventArgs e)
+        private void Create_Load(object sender, EventArgs e)
         {
-            View view = new View(dbManager);
-            view.Show();
-            this.Hide();
-        }
+            string username = CurrentUser.Username;
 
-        private void table_btn6_Click(object sender, EventArgs e)
-        {
-            Table table = new Table(dbManager);
-            table.Show();
-            this.Hide();
-        }
-
-        private void distribute_btn_Click(object sender, EventArgs e)
-        {
-            Distribute distribute = new Distribute(dbManager);
-            distribute.Show();
-            this.Hide();
+            if (username != null)
+            {
+                user_lbl_create.Text = $"{username}";
+            }
+            else
+            {
+                user_lbl_create.Text = $"Unable to retrieve username.";
+            }
         }
     }
 }
