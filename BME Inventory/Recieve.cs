@@ -11,32 +11,15 @@ namespace BME_Inventory
         {
             InitializeComponent();
             dbManager = databaseManager;
-            UpdateUIBasedOnUserRole();
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
-        private void UpdateUIBasedOnUserRole()
-        {
-            string currentUserRole = UserRoles.CurrentUserRole;
-
-            if (currentUserRole == "admin")
-            {
-                btn_home_recieve.Enabled = true;
-                btn_dev_recieve.Enabled = false;
-                btn_dev_recieve.Visible = false;
-                btn_add_recieve.Enabled = true;
-                btn_database_recieve.Enabled = true;
-            }
-            else if (currentUserRole == "maintenance")
-            {
-                btn_home_recieve.Enabled = true;
-                btn_dev_recieve.Enabled = true;
-                btn_add_recieve.Enabled = true;
-                btn_database_recieve.Enabled = true;
-            }
-        }
         private void LogChanges(string logMessage)
         {
-            string logFilePath = $"C:\\Inventory Logs\\recieved_log_{DateTime.Now:yyyyMMdd}.txt";
+            string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string logFolderPath = Path.Combine(documentsFolder, "Inventory Logs/Received Logs");
+            string logFilePath = Path.Combine(logFolderPath, $"Received_log_{DateTime.Now:yyyyMMdd}.txt");
             int maxRows = 100;
             List<string> logLines = new List<string>();
 
@@ -67,12 +50,21 @@ namespace BME_Inventory
         {
             try
             {
+
+                if (string.IsNullOrWhiteSpace(issue_txt_recieve.Text))
+                {
+                    MessageBox.Show("Book ID is required!");
+                    return;
+                }
+
                 dbManager.OpenConnection();
 
                 string query = "UPDATE inventory SET stock = stock + @stock5 WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("@part_id", part_id_txt_recieve.Text);
+                    cmd.Parameters.AddWithValue("@book_id", issue_txt_recieve.Text);
+
                     decimal stockValue5 = 0;
                     if (decimal.TryParse(stock_txt_recieve.Text, out stockValue5))
                     {
@@ -180,20 +172,6 @@ namespace BME_Inventory
             }
         }
 
-        private void Recieve_Load(object sender, EventArgs e)
-        {
-            string username = CurrentUser.Username;
-
-            if (username != null)
-            {
-                user_lbl_recieve.Text = $"{username}";
-            }
-            else
-            {
-                user_lbl_recieve.Text = $"Unable to retrieve logged-in username.";
-            }
-        }
-
         private void btn_database_recieve_Click(object sender, EventArgs e)
         {
             Database database = new Database(dbManager);
@@ -257,6 +235,20 @@ namespace BME_Inventory
             if (result == DialogResult.Yes)
             {
                 Application.Exit();
+            }
+        }
+
+        private void Recieve_Load(object sender, EventArgs e)
+        {
+            string username = CurrentUser.Username;
+
+            if (username != null)
+            {
+                user_lbl_recieve.Text = $"{username}";
+            }
+            else
+            {
+                user_lbl_recieve.Text = $"Unable to retrieve username.";
             }
         }
     }

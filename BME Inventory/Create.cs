@@ -1,5 +1,6 @@
 using System.Data.SqlClient;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace BME_Inventory
 {
@@ -13,8 +14,15 @@ namespace BME_Inventory
             dbManager = databaseManager;
             BindMakeComboBox();
             BindModelComboBox();
-            UpdateUIBasedOnUserRole();
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
 
         private void BindMakeComboBox()
         {
@@ -85,27 +93,6 @@ namespace BME_Inventory
             finally
             {
                 dbManager.CloseConnection();
-            }
-        }
-
-        private void UpdateUIBasedOnUserRole()
-        {
-            string currentUserRole = UserRoles.CurrentUserRole;
-
-            if (currentUserRole == "admin")
-            {
-                btn_distribute_create.Enabled = true;
-                btn_dev_create.Enabled = false;
-                btn_dev_create.Visible = false;
-                btn_edit_create.Enabled = true;
-                btn_database_create.Enabled = true;
-            }
-            else if (currentUserRole == "maintenance")
-            {
-                btn_distribute_create.Enabled = true;
-                btn_dev_create.Enabled = true;
-                btn_edit_create.Enabled = true;
-                btn_database_create.Enabled = true;
             }
         }
 
@@ -274,25 +261,6 @@ namespace BME_Inventory
             if (result == DialogResult.Yes)
             {
                 Application.Exit();
-            }
-        }
-
-        private void model_txt1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Create_Load(object sender, EventArgs e)
-        {
-            string username = CurrentUser.Username;
-
-            if (username != null)
-            {
-                user_lbl_create.Text = $"{username}";
-            }
-            else
-            {
-                user_lbl_create.Text = $"Unable to retrieve username.";
             }
         }
     }

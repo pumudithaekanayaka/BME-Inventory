@@ -21,6 +21,8 @@ namespace BME_Inventory
             InitializeComponent();
             dbManager = databaseManager;
             connection = dbManager.GetConnection();
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
 
@@ -72,17 +74,6 @@ namespace BME_Inventory
         {
             string query = "SELECT * FROM users";
             LoadDataIntoGrid(query, new DataTable());
-
-            string username = CurrentUser.Username;
-
-            if (username != null)
-            {
-                user_lbl_developer.Text = $"{username}";
-            }
-            else
-            {
-                user_lbl_developer.Text = $"Unable to retrieve username.";
-            }
         }
 
         private void btn_table_developer_Click(object sender, EventArgs e)

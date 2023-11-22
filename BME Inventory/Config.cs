@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace BME_Inventory
 {
@@ -12,6 +13,8 @@ namespace BME_Inventory
         {
             InitializeComponent();
             dbManager = databaseManager;
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
         private void cont_btn_select_Click(object sender, EventArgs e)
@@ -25,17 +28,38 @@ namespace BME_Inventory
         {
             try
             {
-                dbManager.OpenConnection();
+                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string inventoryLogsPath = Path.Combine(documentsPath, "Inventory Logs");
+                Directory.CreateDirectory(inventoryLogsPath);
 
-                CreateTable("users", "username NVARCHAR(50), password NVARCHAR(50), user_role NVARCHAR(50)");
-                CreateTable("inventory", "part_id VARCHAR(50), part_name VARCHAR(MAX), equip_name VARCHAR(MAX), upper NUMERIC(18, 0), lower NUMERIC(18, 0), stock NUMERIC(18, 0), description VARCHAR(MAX), make VARCHAR(MAX), model VARCHAR(MAX), date_time DATETIME");
-                CreateTable("parts", "make VARCHAR(MAX), model VARCHAR(MAX)");
-                CreateTable("distribution", "part_id VARCHAR(50), make VARCHAR(MAX), model VARCHAR(MAX), equip_name VARCHAR(MAX), issued_by VARCHAR(MAX), issued_quantity NUMERIC(18, 0), time DATETIME, book_page_id VARCHAR(50)");
-                CreateTable("received", "part_id VARCHAR(50), make VARCHAR(MAX), model VARCHAR(MAX), equip_name VARCHAR(MAX), add_by VARCHAR(MAX), add_quantity NUMERIC(18, 0), time DATETIME, issue_id VARCHAR(50)");
+                string distributionLogsPath = Path.Combine(inventoryLogsPath, "Distribution Logs");
+                string receivedLogsPath = Path.Combine(inventoryLogsPath, "Received Logs");
+                string userLogsPath = Path.Combine(inventoryLogsPath, "User Logs");
+                string applicationLogsPath = Path.Combine(inventoryLogsPath, "Application Logs");
+
+                Directory.CreateDirectory(distributionLogsPath);
+                Directory.CreateDirectory(receivedLogsPath);
+                Directory.CreateDirectory(userLogsPath);
+                Directory.CreateDirectory(applicationLogsPath);
+
+                try
+                {
+                    dbManager.OpenConnection();
+
+                    CreateTable("users", "username NVARCHAR(50) NOT NULL, password NVARCHAR(50) NOT NULL, user_role NVARCHAR(50) NOT NULL");
+                    CreateTable("inventory", "part_id VARCHAR(50) PRIMARY KEY NOT NULL, part_name VARCHAR(MAX) NOT NULL, equip_name VARCHAR(MAX) NOT NULL, upper NUMERIC(18, 0) NOT NULL, lower NUMERIC(18, 0) NOT NULL, stock NUMERIC(18, 0) NOT NULL, description VARCHAR(MAX) NOT NULL, make VARCHAR(MAX), model VARCHAR(MAX), date_time DATETIME NOT NULL");
+                    CreateTable("parts", "make VARCHAR(MAX), model VARCHAR(MAX)");
+                    CreateTable("distribution", "part_id VARCHAR(50) PRIMARY KEY NOT NULL, make VARCHAR(MAX), model VARCHAR(MAX), equip_name VARCHAR(MAX) NOT NULL, issued_by VARCHAR(MAX) NOT NULL, issued_quantity NUMERIC(18, 0) NOT NULL, time DATETIME NOT NULL, book_page_id VARCHAR(50) NOT NULL");
+                    CreateTable("received", "part_id VARCHAR(50) PRIMARY KEY NOT NULL, make VARCHAR(MAX), model VARCHAR(MAX), equip_name VARCHAR(MAX) NOT NULL, add_by VARCHAR(MAX) NOT NULL, add_quantity NUMERIC(18, 0) NOT NULL, time DATETIME NOT NULL, issue_id VARCHAR(50) NOT NULL");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show("An error occurred while creating folders: " + ex.Message);
             }
         }
 

@@ -2,10 +2,7 @@
 using System.IO;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Windows.Forms;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BME_Inventory
 {
@@ -19,42 +16,9 @@ namespace BME_Inventory
             InitializeComponent();
             dbManager = databaseManager;
             connection = dbManager.GetConnection();
-            UpdateUIBasedOnUserRole();
-        }
-
-        private void UpdateUIBasedOnUserRole()
-        {
-            string currentUserRole = UserRoles.CurrentUserRole;
-
-            if (currentUserRole == "user")
-            {
-                btn_receive_dashboard.Enabled = false;
-                btn_receive_dashboard.Visible = false;
-                btn_edit_dashboard.Enabled = false;
-                btn_edit_dashboard.Visible = false;
-                btn_add_dashboard.Enabled = false;
-                btn_add_dashboard.Visible = false;
-                btn_database_dashboard.Enabled = true;
-                btn_dev_dashboard.Enabled = false;
-                btn_dev_dashboard.Visible = false;
-            }
-            else if (currentUserRole == "admin")
-            {
-                btn_distribute_dashboard.Enabled = true;
-                btn_dev_dashboard.Enabled = false;
-                btn_dev_dashboard.Visible = false;
-                btn_edit_dashboard.Enabled = true;
-                btn_add_dashboard.Enabled = true;
-                btn_database_dashboard.Enabled = true;
-            }
-            else if (currentUserRole == "maintenance")
-            {
-                btn_distribute_dashboard.Enabled = true;
-                btn_dev_dashboard.Enabled = true;
-                btn_edit_dashboard.Enabled = true;
-                btn_add_dashboard.Enabled = true;
-                btn_database_dashboard.Enabled = true;
-            }
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            log_lbl_dashboard.AutoSize = true;
         }
 
         private void LoadDataIntoGrid(string query, DataTable table)
@@ -101,91 +65,66 @@ namespace BME_Inventory
             }
         }
 
-        private void exit_btn6_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
-
-        private void Dashboard_Load(object sender, EventArgs e)
-        {
-
-            string username = CurrentUser.Username;
-
-            if (username != null)
-            {
-                user_lbl_dashboard.Text = $"{username}";
-            }
-            else
-            {
-                user_lbl_dashboard.Text = $"Unable to retrieve username.";
-            }
-        }
-
-        private void btn_logout_dashboard_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Login loginForm = new Login(dbManager);
-            loginForm.Show();
-        }
-
-        private void btn_table_dashboard_Click(object sender, EventArgs e)
-        {
-            Database database = new Database(dbManager);
-            database.Show();
-            this.Hide();
-        }
-
-        private void btn_distribute_dashboard_Click(object sender, EventArgs e)
-        {
-            Distribute distribute = new Distribute(dbManager);
-            distribute.Show();
-            this.Hide();
-        }
-
-        private void btn_receive_dashboard_Click(object sender, EventArgs e)
-        {
-            Recieve recieve = new Recieve(dbManager);
-            recieve.Show();
-            this.Hide();
-        }
-
-        private void btn_add_dashboard_Click(object sender, EventArgs e)
-        {
-            Create insert = new Create(dbManager);
-            insert.Show();
-            this.Hide();
-        }
-
-        private void btn_adduser_dashboard_Click_1(object sender, EventArgs e)
-        {
-            AddUser addUser = new AddUser(dbManager);
-            addUser.Show();
-            this.Hide();
-        }
-
-        private void btn_edit_dashboard_Click(object sender, EventArgs e)
-        {
-            Edit edit = new Edit(dbManager);
-            edit.Show();
-            this.Hide();
-        }
-
-        private void btn_dev_dashboard_Click(object sender, EventArgs e)
-        {
-            DeveloperDashboard developer = new DeveloperDashboard(dbManager);
-            developer.Show();
-            this.Hide();
-        }
-
-        private void refresh_btn_dashboard_Click(object sender, EventArgs e)
+        private void refresh_btn_dashboard_Click_1(object sender, EventArgs e)
         {
             string query = "SELECT * FROM inventory WHERE stock < lower";
             LoadDataIntoGrid(query, new DataTable());
+        }
+
+        private void btn_distribute_logs_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string distributionLogsPath = Path.Combine(documentsPath, "Inventory Logs", "Distribution Logs");
+
+                string selectedDate = dateTimePicker1.Value.ToString("yyyyMMdd");
+                string searchPattern = $"Distribution_log_{selectedDate}.txt";
+
+                string[] logFiles = Directory.GetFiles(distributionLogsPath, searchPattern);
+
+                if (logFiles.Length > 0)
+                {
+                    string logContents = File.ReadAllText(logFiles[0]);
+                    log_lbl_dashboard.Text = $"Distribution logs for {selectedDate}:\n{logContents}";
+                }
+                else
+                {
+                    log_lbl_dashboard.Text = $"No distribution logs found for {selectedDate}";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void btn_received_logs_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string receivedLogsPath = Path.Combine(documentsPath, "Inventory Logs", "Received Logs");
+
+                string selectedDate = dateTimePicker1.Value.ToString("yyyyMMdd");
+                string searchPattern = $"Received_log_{selectedDate}.txt";
+
+                string[] logFiles = Directory.GetFiles(receivedLogsPath, searchPattern);
+
+                if (logFiles.Length > 0)
+                {
+                    string logContents = File.ReadAllText(logFiles[0]);
+                    log_lbl_dashboard.Text = $"Received logs for {selectedDate}:\n{logContents}";
+                }
+                else
+                {
+                    log_lbl_dashboard.Text = $"No Received logs found for {selectedDate}";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
         }
     }
 }

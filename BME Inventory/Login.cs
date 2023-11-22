@@ -15,6 +15,8 @@ namespace BME_Inventory
             InitializeComponent();
             dbManager = databaseManager;
             password_txt.PasswordChar = '*';
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
         public string LoggedInUsername => loggedInUsername;
@@ -25,10 +27,10 @@ namespace BME_Inventory
             {
                 UserRoles.CurrentUserRole = userRole;
                 CurrentUser.Username = username;
-                Dashboard dashboard = new Dashboard(dbManager);
+                NavigationHome navigationHome = new NavigationHome(dbManager);
 
                 Hide();
-                dashboard.Show();
+                navigationHome.Show();
             }
             else
             {
@@ -93,8 +95,8 @@ namespace BME_Inventory
         private void LogLogin(string username)
         {
             string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string logFolderPath = Path.Combine(documentsFolder, "Inventory Logs");
-            string logFilePath = Path.Combine(logFolderPath, $"user_log_{DateTime.Now:yyyyMMdd}.txt");
+            string logFolderPath = Path.Combine(documentsFolder, "Inventory Logs/User Logs");
+            string logFilePath = Path.Combine(logFolderPath, $"User_log_{DateTime.Now:yyyyMMdd}.txt");
             string logMessage = $"{username_txt.Text} logged in at {DateTime.Now}";
 
             try

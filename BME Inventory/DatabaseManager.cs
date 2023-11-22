@@ -10,7 +10,6 @@ namespace BME_Inventory
     {
         private SqlConnection connection;
         private string connectionString;
-
         public string ServerName { get; private set; }
         public string DatabaseName { get; private set; }
 

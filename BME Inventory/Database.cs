@@ -16,40 +16,6 @@ namespace BME_Inventory
             InitializeComponent();
             dbManager = databaseManager;
             connection = dbManager.GetConnection();
-            UpdateUIBasedOnUserRole();
-        }
-
-        private void UpdateUIBasedOnUserRole()
-        {
-            string currentUserRole = UserRoles.CurrentUserRole;
-
-            if (currentUserRole == "user")
-            {
-                btn_receive_database.Enabled = false;
-                btn_receive_database.Visible = false;
-                btn_edit_database.Enabled = false;
-                btn_edit_database.Visible = false;
-                btn_add_database.Enabled = false;
-                btn_add_database.Visible = false;
-                btn_home_database.Enabled = true;
-                btn_dev_database.Enabled = false;
-                btn_dev_database.Visible = false;
-            }
-            else if (currentUserRole == "admin")
-            {
-                btn_home_database.Enabled = true;
-                btn_dev_database.Enabled = false;
-                btn_dev_database.Visible = false;
-                btn_edit_database.Enabled = true;
-                btn_add_database.Enabled = true;
-            }
-            else if (currentUserRole == "maintenance")
-            {
-                btn_home_database.Enabled = true;
-                btn_dev_database.Enabled = true;
-                btn_edit_database.Enabled = true;
-                btn_add_database.Enabled = true;
-            }
         }
 
         private void LoadDataIntoGrid(string query, DataTable table)
@@ -119,9 +85,12 @@ namespace BME_Inventory
 
             if (table.Rows.Count > 0)
             {
-                string filePath = "C:\\Inventory Logs\\SparePartsData.xlsx";
 
-                using (var package = new ExcelPackage(new FileInfo(filePath)))
+                string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string FolderPath = Path.Combine(documentsFolder, "Inventory Logs");
+                string FilePath = Path.Combine(FolderPath, $"SparePartsData.xlsx");
+
+                using (var package = new ExcelPackage(new FileInfo(FilePath)))
                 {
                     string worksheetName = "Spare Parts Data";
                     int worksheetNumber = 1;
@@ -152,7 +121,7 @@ namespace BME_Inventory
 
                 Process.Start(new ProcessStartInfo
                 {
-                    FileName = filePath,
+                    FileName = FilePath,
                     UseShellExecute = true,
                     Verb = "open"
                 });
@@ -167,17 +136,6 @@ namespace BME_Inventory
         {
             string query = "SELECT part_id, part_name, equip_name, upper, lower, stock, description, make, model FROM inventory";
             LoadDataIntoGrid(query, new DataTable());
-
-            string username = CurrentUser.Username;
-
-            if (username != null)
-            {
-                user_lbl_database.Text = $"{username}";
-            }
-            else
-            {
-                user_lbl_database.Text = $"Unable to retrieve username.";
-            }
         }
 
         private void export_all_btn4_Click(object sender, EventArgs e)
@@ -189,9 +147,11 @@ namespace BME_Inventory
 
             if (table.Rows.Count > 0)
             {
-                string filePath = "C:\\Inventory Logs\\SparePartsAllData.xlsx";
+                string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string FolderPath = Path.Combine(documentsFolder, "Inventory Logs");
+                string FilePath = Path.Combine(FolderPath, $"SparePartsData.xlsx");
 
-                using (var package = new ExcelPackage(new FileInfo(filePath)))
+                using (var package = new ExcelPackage(new FileInfo(FilePath)))
                 {
                     string worksheetName = "Spare Parts Data";
 
@@ -217,7 +177,7 @@ namespace BME_Inventory
 
                 Process.Start(new ProcessStartInfo
                 {
-                    FileName = filePath,
+                    FileName = FilePath,
                     UseShellExecute = true,
                     Verb = "open"
                 });
@@ -238,7 +198,7 @@ namespace BME_Inventory
             string query = "SELECT * FROM inventory WHERE ";
             bool firstColumn = true;
 
-            string[] columnsToSearch = { "part_id", "part_name", "equip_name", "upper", "lower", "stock", "description", "make", "model" };
+            string[] columnsToSearch = { "part_id", "part_name", "equip_name", "description", "make", "model" };
 
             foreach (string columnName in columnsToSearch)
             {
@@ -273,73 +233,6 @@ namespace BME_Inventory
 
         }
 
-        private void btn_distribute_database_Click(object sender, EventArgs e)
-        {
-            Distribute distribute = new Distribute(dbManager);
-            distribute.Show();
-            this.Close();
-
-        }
-
-        private void btn_receive_database_Click(object sender, EventArgs e)
-        {
-            Recieve recieve = new Recieve(dbManager);
-            recieve.Show();
-            this.Close();
-        }
-
-        private void btn_add_database_Click(object sender, EventArgs e)
-        {
-            Create create = new Create(dbManager);
-            create.Show();
-            this.Close();
-        }
-
-        private void btn_adduser_database_Click(object sender, EventArgs e)
-        {
-            AddUser addUser = new AddUser(dbManager);
-            addUser.Show();
-            this.Close();
-        }
-
-        private void btn_edit_database_Click(object sender, EventArgs e)
-        {
-            Edit edit = new Edit(dbManager);
-            edit.Show();
-            this.Close();
-        }
-
-        private void btn_dev_database_Click(object sender, EventArgs e)
-        {
-            DeveloperDashboard developerDashboard = new DeveloperDashboard(dbManager);
-            developerDashboard.Show();
-            this.Close();
-        }
-
-        private void btn_home_database_Click(object sender, EventArgs e)
-        {
-            Dashboard dashboard = new Dashboard(dbManager);
-            dashboard.Show();
-            this.Close();
-        }
-
-        private void btn_logout_database_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Login loginForm = new Login(dbManager);
-            loginForm.Show();
-        }
-
-        private void btn_exit_database_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
-
         private void attention_btn_database_Click(object sender, EventArgs e)
         {
             LoadDataForStockCheck();
@@ -348,6 +241,11 @@ namespace BME_Inventory
         private void refresh_btn_database_Click(object sender, EventArgs e)
         {
             LoadDataAll();
+        }
+
+        private void print_btn_database_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

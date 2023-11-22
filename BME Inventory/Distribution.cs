@@ -14,58 +14,30 @@ namespace BME_Inventory
         {
             InitializeComponent();
             dbManager = databaseManager;
-            UpdateUIBasedOnUserRole();
-        }
-
-        private void UpdateUIBasedOnUserRole()
-        {
-            string currentUserRole = UserRoles.CurrentUserRole;
-
-            if (currentUserRole == "user")
-            {
-                btn_receive_distribute.Enabled = false;
-                btn_receive_distribute.Visible = false;
-                btn_edit_distribute.Enabled = false;
-                btn_edit_distribute.Visible = false;
-                btn_add_distribute.Enabled = false;
-                btn_add_distribute.Visible = false;
-                btn_home_distribute.Enabled = true;
-                btn_adduser_distribute.Enabled = false;
-                btn_adduser_distribute.Visible = false;
-                btn_database_distribute.Enabled = true;
-                btn_dev_distribute.Enabled = false;
-                btn_dev_distribute.Visible = false;
-            }
-            else if (currentUserRole == "admin")
-            {
-                btn_home_distribute.Enabled = true;
-                btn_dev_distribute.Enabled = false;
-                btn_dev_distribute.Visible = false;
-                btn_edit_distribute.Enabled = true;
-                btn_add_distribute.Enabled = true;
-                btn_database_distribute.Enabled = true;
-            }
-            else if (currentUserRole == "maintenance")
-            {
-                btn_home_distribute.Enabled = true;
-                btn_dev_distribute.Enabled = true;
-                btn_edit_distribute.Enabled = true;
-                btn_add_distribute.Enabled = true;
-                btn_database_distribute.Enabled = true;
-            }
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
         private void update_btn3_Click(object sender, EventArgs e)
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(book_txt_distribute.Text))
+                {
+                    MessageBox.Show("Book ID is required!");
+                    return;
+                }
+
                 dbManager.OpenConnection();
 
                 string query = "UPDATE inventory SET stock = stock - @stock5 WHERE part_id = @part_id";
                 using (SqlCommand cmd = new SqlCommand(query, dbManager.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
+                    cmd.Parameters.AddWithValue("@book_id", book_txt_distribute.Text);
+
                     decimal stockValue5 = 0;
+
                     if (decimal.TryParse(stock_txt5.Text, out stockValue5))
                     {
                         cmd.Parameters.AddWithValue("@stock5", stockValue5);
@@ -74,18 +46,19 @@ namespace BME_Inventory
 
                         if (rowsAffected > 0)
                         {
-                            string logMessage = $"{user_lbl_distribute.Text} updated record with part ID {part_id_txt5.Text} successfully with a reduction of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now},the Book page ID of the 500 book is{book_txt_distribute.Text}";
+                            string logMessage = $"{user_lbl_distribution} updated record with part ID {part_id_txt5.Text} successfully with a reduction of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now}, the Book page ID of the 500 book is {book_combo_distribute.SelectedItem?.ToString()} / {book_txt_distribute.Text}";
                             LogChanges(logMessage);
+
 
                             string distributionQuery = "INSERT INTO distribution (part_id, make, model, equip_name, issued_by, issued_quantity, time, book_page_id) VALUES (@part_id, @make, @model, @equip_name, @issued_by, @issued_quantity, @time, @book_page_id)";
                             using (SqlCommand distributionCmd = new SqlCommand(distributionQuery, dbManager.GetConnection()))
                             {
-                                distributionCmd.Parameters.AddWithValue("@book_page_id", book_txt_distribute.Text);
+                                distributionCmd.Parameters.AddWithValue("@book_page_id", book_txt_distribute.Text + book_combo_distribute.SelectedItem?.ToString() ?? "");
                                 distributionCmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
                                 distributionCmd.Parameters.AddWithValue("@make", make_lbl.Text);
                                 distributionCmd.Parameters.AddWithValue("@model", model_lbl.Text);
                                 distributionCmd.Parameters.AddWithValue("@equip_name", equip_name_lbl.Text);
-                                distributionCmd.Parameters.AddWithValue("@issued_by", user_lbl_distribute.Text);
+                                distributionCmd.Parameters.AddWithValue("@issued_by", user_lbl_distribution);
                                 distributionCmd.Parameters.AddWithValue("@issued_quantity", stockValue5);
                                 distributionCmd.Parameters.AddWithValue("@time", DateTime.Now);
 
@@ -124,10 +97,11 @@ namespace BME_Inventory
             }
         }
 
-
         private void LogChanges(string logMessage)
         {
-            string logFilePath = $"C:\\Inventory Logs\\distribute_log_{DateTime.Now:yyyyMMdd}.txt";
+            string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string logFolderPath = Path.Combine(documentsFolder, "Inventory Logs/Distribution Logs");
+            string logFilePath = Path.Combine(logFolderPath, $"Distribution_log_{DateTime.Now:yyyyMMdd}.txt");
             int maxRows = 100;
             List<string> logLines = new List<string>();
 
@@ -204,20 +178,6 @@ namespace BME_Inventory
             }
         }
 
-        private void Distribute_Load(object sender, EventArgs e)
-        {
-            string username = CurrentUser.Username;
-
-            if (username != null)
-            {
-                user_lbl_distribute.Text = $"{username}";
-            }
-            else
-            {
-                user_lbl_distribute.Text = $"Unable to retrieve logged-in username.";
-            }
-        }
-
         private void btn_database_distribute_Click(object sender, EventArgs e)
         {
             Database database = new Database(dbManager);
@@ -281,6 +241,20 @@ namespace BME_Inventory
             if (result == DialogResult.Yes)
             {
                 Application.Exit();
+            }
+        }
+
+        private void Distribute_Load(object sender, EventArgs e)
+        {
+            string username = CurrentUser.Username;
+
+            if (username != null)
+            {
+                user_lbl_distribution.Text = $"{username}";
+            }
+            else
+            {
+                user_lbl_distribution.Text = $"Unable to retrieve username.";
             }
         }
     }

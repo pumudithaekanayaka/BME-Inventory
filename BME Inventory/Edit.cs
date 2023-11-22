@@ -13,9 +13,10 @@ namespace BME_Inventory
         {
             InitializeComponent();
             dbManager = databaseManager;
-            UpdateUIBasedOnUserRole();
             BindMakeComboBox();
             BindModelComboBox();
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
         private void BindMakeComboBox()
@@ -87,27 +88,6 @@ namespace BME_Inventory
             finally
             {
                 dbManager.CloseConnection();
-            }
-        }
-
-        private void UpdateUIBasedOnUserRole()
-        {
-            string currentUserRole = UserRoles.CurrentUserRole;
-
-            if (currentUserRole == "admin")
-            {
-                btn_distribute_edit.Enabled = true;
-                btn_dev_edit.Enabled = false;
-                btn_dev_edit.Visible = false;
-                btn_add_edit.Enabled = true;
-                btn_database_edit.Enabled = true;
-            }
-            else if (currentUserRole == "maintenance")
-            {
-                btn_distribute_edit.Enabled = true;
-                btn_dev_edit.Enabled = true;
-                btn_add_edit.Enabled = true;
-                btn_database_edit.Enabled = true;
             }
         }
 

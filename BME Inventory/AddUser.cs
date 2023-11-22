@@ -19,18 +19,8 @@ namespace BME_Inventory
         {
             InitializeComponent();
             dbManager = databaseManager;
-            UpdateUIBasedOnUserRole();
-        }
-
-        private void UpdateUIBasedOnUserRole()
-        {
-            string currentUserRole = UserRoles.CurrentUserRole;
-
-            if (currentUserRole == "admin")
-            {
-                btn_dev_adduser.Enabled = false;
-                btn_dev_adduser.Visible = false;
-            }
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
         private void login_btn_Click(object sender, EventArgs e)
@@ -77,21 +67,6 @@ namespace BME_Inventory
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
-            }
-        }
-
-        private void AddUser_Load(object sender, EventArgs e)
-        {
-
-            string username = CurrentUser.Username;
-
-            if (username != null)
-            {
-                user_lbl_adduser.Text = $"{username}";
-            }
-            else
-            {
-                user_lbl_adduser.Text = $"Unable to retrieve username.";
             }
         }
 

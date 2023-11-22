@@ -13,6 +13,8 @@ namespace BME_Inventory
         {
             InitializeComponent();
             dbManager = databaseManager;
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
         public string ServerName
