@@ -2,6 +2,8 @@
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.IO;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace BME_Inventory
 {
@@ -17,6 +19,7 @@ namespace BME_Inventory
             password_txt.PasswordChar = '*';
             this.AutoScaleMode = AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            var skinManager = MaterialSkinManager.Instance;
         }
 
         public string LoggedInUsername => loggedInUsername;

@@ -1,13 +1,14 @@
 ﻿using System.Data.SqlClient;
 using System.IO;
+using System.Globalization;
 
 namespace BME_Inventory
 {
-    public partial class Recieve : Form
+    public partial class DistributeForm : Form
     {
         private DatabaseManager dbManager;
 
-        public Recieve(DatabaseManager databaseManager)
+        public DistributeForm(DatabaseManager databaseManager)
         {
             InitializeComponent();
             dbManager = databaseManager;
@@ -15,7 +16,7 @@ namespace BME_Inventory
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
-        private void LogChanges(string logMessage)
+        private static void LogChanges(string logMessage)
         {
             string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string logFolderPath = Path.Combine(documentsFolder, "Inventory Logs/Received Logs");
@@ -95,7 +96,7 @@ namespace BME_Inventory
                                 {
                                     MessageBox.Show("Data recieved and logged successfully!");
                                     stock_txt_recieve.Text = "";
-                                    stock_lbl.Text = (decimal.Parse(stock_lbl.Text) - stockValue5).ToString();
+                                    stock_lbl.Text = (decimal.Parse(stock_lbl.Text, CultureInfo.InvariantCulture) + stockValue5).ToString(CultureInfo.InvariantCulture);
                                 }
                                 else
                                 {
@@ -141,9 +142,9 @@ namespace BME_Inventory
                         {
                             part_name_lbl_recieve.Text = reader.GetString(1);
                             equip_name_lbl_recieve.Text = reader.GetString(2);
-                            upper_lbl_recieve.Text = reader.GetDecimal(3).ToString();
-                            lower_lbl_recieve.Text = reader.GetDecimal(4).ToString();
-                            stock_lbl.Text = reader.GetDecimal(5).ToString();
+                            upper_lbl_recieve.Text = reader.GetDecimal(3).ToString(CultureInfo.InvariantCulture);
+                            lower_lbl_recieve.Text = reader.GetDecimal(4).ToString(CultureInfo.InvariantCulture);
+                            stock_lbl.Text = reader.GetDecimal(5).ToString(CultureInfo.InvariantCulture);
                             description_lbl_recieve.Text = reader.GetString(6);
 
                             decimal stockValue;
@@ -169,72 +170,6 @@ namespace BME_Inventory
             finally
             {
                 dbManager.CloseConnection();
-            }
-        }
-
-        private void btn_database_recieve_Click(object sender, EventArgs e)
-        {
-            Database database = new Database(dbManager);
-            database.Show();
-            this.Close();
-        }
-
-        private void btn_distribute_recieve_Click(object sender, EventArgs e)
-        {
-            Distribute distribute = new Distribute(dbManager);
-            distribute.Show();
-            this.Close();
-        }
-
-        private void btn_add_recieve_Click(object sender, EventArgs e)
-        {
-            Create create = new Create(dbManager);
-            create.Show();
-            this.Close();
-        }
-
-        private void btn_adduser_recieve_Click(object sender, EventArgs e)
-        {
-            AddUser addUser = new AddUser(dbManager);
-            addUser.Show();
-            this.Close();
-        }
-
-        private void btn_edit_recieve_Click(object sender, EventArgs e)
-        {
-            Edit edit = new Edit(dbManager);
-            edit.Show();
-            this.Close();
-        }
-
-        private void btn_dev_recieve_Click(object sender, EventArgs e)
-        {
-            DeveloperDashboard developerDashboard = new DeveloperDashboard(dbManager);
-            developerDashboard.Show();
-            this.Close();
-        }
-
-        private void btn_home_recieve_Click(object sender, EventArgs e)
-        {
-            Dashboard dashboard = new Dashboard(dbManager);
-            dashboard.Show();
-            this.Close();
-        }
-
-        private void btn_logout_recieve_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Login loginForm = new Login(dbManager);
-            loginForm.Show();
-        }
-
-        private void btn_exit_recieve_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
             }
         }
 

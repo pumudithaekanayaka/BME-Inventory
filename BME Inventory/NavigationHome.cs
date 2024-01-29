@@ -5,6 +5,10 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.Bibliography;
 using System.Runtime.InteropServices;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Math;
 
 namespace BME_Inventory
 {
@@ -12,11 +16,12 @@ namespace BME_Inventory
     {
         private DatabaseManager dbManager;
         private Form activeForm;
-        private readonly Color TurquoiseColor = Color.DeepSkyBlue;
+        private readonly Color TurquoiseColor = Color.CornflowerBlue;
         private readonly Color WhiteColor = Color.GhostWhite;
         private const int SC_CLOSE = 0xF060;
         private const int MF_BYCOMMAND = 0x00000000;
         private readonly Color customTitleBarColor = Color.LightSkyBlue;
+
 
         public NavigationHome(DatabaseManager databaseManager)
         {
@@ -58,28 +63,43 @@ namespace BME_Inventory
         {
             string currentUserRole = UserRoles.CurrentUserRole;
 
-            Button[] buttons = { btn_receive_navhome, btn_edit_navhome, btn_add_navhome, btn_dev_navhome, btn_adduser_navhome };
-
-            foreach (var button in buttons)
-            {
-                button.Visible = button.Enabled = true;
-            }
-
             if (currentUserRole == "user")
             {
-                foreach (var button in buttons)
-                {
-                    button.Visible = button.Enabled = false;
-                }
-
                 btn_database_navhome.Enabled = true;
-            }
-            else if (currentUserRole == "admin" || currentUserRole == "maintenance")
-            {
+                btn_database_navhome.Visible = true;
                 btn_distribute_navhome.Enabled = true;
-                btn_edit_navhome.Enabled = true;
-                btn_add_navhome.Enabled = true;
+                btn_distribute_navhome.Visible = true;
+                btn_receive_navhome.Enabled = false;
+                btn_receive_navhome.Visible = false;
+                btn_add_navhome.Enabled = false;
+                btn_add_navhome.Visible = false;
+                btn_adduser_navhome.Enabled = false;
+                btn_adduser_navhome.Visible = false;
+                btn_edit_navhome.Enabled = false;
+                btn_edit_navhome.Visible = false;
+                btn_dev_navhome.Enabled = false;
+                btn_dev_navhome.Visible = false;
+            }
+            else if (currentUserRole == "admin")
+            {
                 btn_database_navhome.Enabled = true;
+                btn_database_navhome.Visible = true;
+                btn_distribute_navhome.Enabled = true;
+                btn_distribute_navhome.Visible = true;
+                btn_receive_navhome.Enabled = true;
+                btn_receive_navhome.Visible = true;
+                btn_add_navhome.Enabled = true;
+                btn_add_navhome.Visible = true;
+                btn_adduser_navhome.Enabled = true;
+                btn_adduser_navhome.Visible = true;
+                btn_edit_navhome.Enabled = true;
+                btn_edit_navhome.Visible = true;
+                btn_dev_navhome.Enabled = false;
+                btn_dev_navhome.Visible = false;
+            }
+            else if (currentUserRole == "maintenance")
+            {
+
             }
         }
 
@@ -91,12 +111,12 @@ namespace BME_Inventory
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            pnl_home_navhome.Controls.Add(form);
+            MainPanel.Controls.Add(form);
             form.Show();
             title_lbl_navhome.Text = title;
         }
 
-        private void SetButtonColors(Button button, Color backColor)
+        private static void SetButtonColors(Button button, Color backColor)
         {
             button.BackColor = backColor;
         }
@@ -182,7 +202,7 @@ namespace BME_Inventory
 
         private void btn_receive_navhome_Click(object sender, EventArgs e)
         {
-            Recieve recieve = new Recieve(dbManager);
+            DistributeForm recieve = new DistributeForm(dbManager);
             HandleButtonClick(recieve, "Distribution Form");
 
             btn_database_navhome.Enabled = true;
@@ -345,6 +365,12 @@ namespace BME_Inventory
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            PrintWindow printWindow = new PrintWindow(dbManager);
+            HandleButtonClick(printWindow, "Dashboard");
         }
     }
 }

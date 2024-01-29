@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Globalization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Data.SqlClient;
 using System.IO;
@@ -22,6 +23,7 @@ namespace BME_Inventory
         {
             try
             {
+
                 if (string.IsNullOrWhiteSpace(book_txt_distribute.Text))
                 {
                     MessageBox.Show("Book ID is required!");
@@ -37,7 +39,6 @@ namespace BME_Inventory
                     cmd.Parameters.AddWithValue("@book_id", book_txt_distribute.Text);
 
                     decimal stockValue5 = 0;
-
                     if (decimal.TryParse(stock_txt5.Text, out stockValue5))
                     {
                         cmd.Parameters.AddWithValue("@stock5", stockValue5);
@@ -46,33 +47,32 @@ namespace BME_Inventory
 
                         if (rowsAffected > 0)
                         {
-                            string logMessage = $"{user_lbl_distribution} updated record with part ID {part_id_txt5.Text} successfully with a reduction of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now}, the Book page ID of the 500 book is {book_combo_distribute.SelectedItem?.ToString()} / {book_txt_distribute.Text}";
+                            string logMessage = $"{user_lbl_distribution.Text} updated record with part ID {part_id_txt5.Text} successfully with a increase of {stockValue5} from the stock value of {stock_lbl.Text} at {DateTime.Now}, Issue Order Number/P.O.Number = {book_txt_distribute.Text}";
                             LogChanges(logMessage);
 
-
-                            string distributionQuery = "INSERT INTO distribution (part_id, make, model, equip_name, issued_by, issued_quantity, time, book_page_id) VALUES (@part_id, @make, @model, @equip_name, @issued_by, @issued_quantity, @time, @book_page_id)";
+                            string distributionQuery = "INSERT INTO received (part_id, make, model, equip_name, add_by, add_quantity, time, issue_id) VALUES (@part_id, @make, @model, @equip_name, @add_by, @add_quantity, @time, @issue_id)";
                             using (SqlCommand distributionCmd = new SqlCommand(distributionQuery, dbManager.GetConnection()))
                             {
-                                distributionCmd.Parameters.AddWithValue("@book_page_id", book_txt_distribute.Text + book_combo_distribute.SelectedItem?.ToString() ?? "");
                                 distributionCmd.Parameters.AddWithValue("@part_id", part_id_txt5.Text);
                                 distributionCmd.Parameters.AddWithValue("@make", make_lbl.Text);
                                 distributionCmd.Parameters.AddWithValue("@model", model_lbl.Text);
                                 distributionCmd.Parameters.AddWithValue("@equip_name", equip_name_lbl.Text);
-                                distributionCmd.Parameters.AddWithValue("@issued_by", user_lbl_distribution);
-                                distributionCmd.Parameters.AddWithValue("@issued_quantity", stockValue5);
+                                distributionCmd.Parameters.AddWithValue("@add_by", user_lbl_distribution.Text);
+                                distributionCmd.Parameters.AddWithValue("@add_quantity", stockValue5);
                                 distributionCmd.Parameters.AddWithValue("@time", DateTime.Now);
+                                distributionCmd.Parameters.AddWithValue("@issue_id", book_txt_distribute.Text);
 
                                 int distributionRowsAffected = distributionCmd.ExecuteNonQuery();
 
                                 if (distributionRowsAffected > 0)
                                 {
-                                    MessageBox.Show("Data distributed and logged successfully!");
+                                    MessageBox.Show("Data recieved and logged successfully!");
                                     stock_txt5.Text = "";
-                                    stock_lbl.Text = (decimal.Parse(stock_lbl.Text) - stockValue5).ToString();
+                                    stock_lbl.Text = (decimal.Parse(stock_lbl.Text, CultureInfo.InvariantCulture) - stockValue5).ToString(CultureInfo.InvariantCulture);
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Failed to log distribution data!");
+                                    MessageBox.Show("Failed to log recieve data!");
                                 }
                             }
                         }
@@ -97,7 +97,7 @@ namespace BME_Inventory
             }
         }
 
-        private void LogChanges(string logMessage)
+        private static void LogChanges(string logMessage)
         {
             string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string logFolderPath = Path.Combine(documentsFolder, "Inventory Logs/Distribution Logs");
@@ -145,15 +145,15 @@ namespace BME_Inventory
                         {
                             part_name_lbl.Text = reader.GetString(1);
                             equip_name_lbl.Text = reader.GetString(2);
-                            upper_lbl5.Text = reader.GetDecimal(3).ToString();
-                            lower_lbl5.Text = reader.GetDecimal(4).ToString();
-                            stock_lbl.Text = reader.GetDecimal(5).ToString();
+                            upper_lbl_distribute.Text = reader.GetDecimal(3).ToString(CultureInfo.InvariantCulture);
+                            lower_lbl_distribute.Text = reader.GetDecimal(4).ToString(CultureInfo.InvariantCulture);
+                            stock_lbl.Text = reader.GetDecimal(5).ToString(CultureInfo.InvariantCulture);
                             description_lbl.Text = reader.GetString(6);
                             make_lbl.Text = reader.GetString(7);
                             model_lbl.Text = reader.GetString(8);
 
                             decimal stockValue;
-                            if (decimal.TryParse(stock_lbl.Text, out stockValue) && decimal.TryParse(lower_lbl5.Text, out decimal lowerValue))
+                            if (decimal.TryParse(stock_lbl.Text, out stockValue) && decimal.TryParse(lower_lbl_distribute.Text, out decimal lowerValue))
                             {
                                 if (stockValue < lowerValue)
                                 {
@@ -175,72 +175,6 @@ namespace BME_Inventory
             finally
             {
                 dbManager.CloseConnection();
-            }
-        }
-
-        private void btn_database_distribute_Click(object sender, EventArgs e)
-        {
-            Database database = new Database(dbManager);
-            database.Show();
-            this.Hide();
-        }
-
-        private void btn_receive_distribute_Click(object sender, EventArgs e)
-        {
-            Recieve recieve = new Recieve(dbManager);
-            recieve.Show();
-            this.Hide();
-        }
-
-        private void btn_add_distribute_Click(object sender, EventArgs e)
-        {
-            Create create = new Create(dbManager);
-            create.Show();
-            this.Hide();
-        }
-
-        private void btn_adduser_distribute_Click(object sender, EventArgs e)
-        {
-            AddUser addUser = new AddUser(dbManager);
-            addUser.Show();
-            this.Hide();
-        }
-
-        private void btn_edit_distribute_Click(object sender, EventArgs e)
-        {
-            Edit edit = new Edit(dbManager);
-            edit.Show();
-            this.Hide();
-        }
-
-        private void btn_dev_dashboard_Click(object sender, EventArgs e)
-        {
-            DeveloperDashboard developerDashboard = new DeveloperDashboard(dbManager);
-            developerDashboard.Show();
-            this.Hide();
-        }
-
-        private void btn_home_distribute_Click(object sender, EventArgs e)
-        {
-            Dashboard dashboard = new Dashboard(dbManager);
-            dashboard.Show();
-            this.Hide();
-        }
-
-        private void btn_logout_distribute_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Login loginForm = new Login(dbManager);
-            loginForm.Show();
-        }
-
-        private void btn_exit_distribute_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
             }
         }
 

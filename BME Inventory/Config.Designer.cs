@@ -37,52 +37,62 @@
             // 
             // cont_btn_select
             // 
-            cont_btn_select.Location = new Point(738, 397);
+            cont_btn_select.BackColor = Color.CornflowerBlue;
+            cont_btn_select.FlatAppearance.BorderSize = 0;
+            cont_btn_select.FlatStyle = FlatStyle.Flat;
+            cont_btn_select.Location = new Point(528, 192);
             cont_btn_select.Margin = new Padding(4, 3, 4, 3);
             cont_btn_select.Name = "cont_btn_select";
             cont_btn_select.Size = new Size(232, 42);
             cont_btn_select.TabIndex = 0;
             cont_btn_select.Text = "Continue";
-            cont_btn_select.UseVisualStyleBackColor = true;
+            cont_btn_select.UseVisualStyleBackColor = false;
             cont_btn_select.Click += cont_btn_select_Click;
             // 
             // create_tables_btn_config
             // 
-            create_tables_btn_config.Location = new Point(484, 397);
+            create_tables_btn_config.BackColor = Color.CornflowerBlue;
+            create_tables_btn_config.FlatAppearance.BorderSize = 0;
+            create_tables_btn_config.FlatStyle = FlatStyle.Flat;
+            create_tables_btn_config.Location = new Point(274, 192);
             create_tables_btn_config.Margin = new Padding(4, 3, 4, 3);
             create_tables_btn_config.Name = "create_tables_btn_config";
             create_tables_btn_config.Size = new Size(232, 42);
             create_tables_btn_config.TabIndex = 1;
             create_tables_btn_config.Text = "Create";
-            create_tables_btn_config.UseVisualStyleBackColor = true;
+            create_tables_btn_config.UseVisualStyleBackColor = false;
             create_tables_btn_config.Click += create_tables_btn_config_Click;
             // 
             // label1
             // 
+            label1.AutoEllipsis = true;
             label1.AutoSize = true;
+            label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Google Sans", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(47, 64);
+            label1.Location = new Point(12, 17);
             label1.Name = "label1";
-            label1.Size = new Size(854, 35);
+            label1.Size = new Size(520, 74);
             label1.TabIndex = 2;
-            label1.Text = "Click Create Button to Create All of The Tables and Folders Needed ";
+            label1.Text = "Click Create Button to Create All of The \r\nTables and Folders Needed.";
+            label1.UseCompatibleTextRendering = true;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Google Sans", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(47, 99);
+            label2.Location = new Point(12, 91);
             label2.Name = "label2";
-            label2.Size = new Size(782, 35);
+            label2.Size = new Size(533, 70);
             label2.TabIndex = 3;
-            label2.Text = "If the Tables and Folders Already Created Then Click Continue";
+            label2.Text = "If the Tables and Folders Already Created,\r\nThen Click Continue.";
             // 
             // ConfigForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 21F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.GhostWhite;
-            ClientSize = new Size(1000, 472);
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoSize = true;
+            BackColor = Color.White;
+            ClientSize = new Size(802, 453);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(create_tables_btn_config);

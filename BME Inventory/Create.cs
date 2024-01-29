@@ -96,7 +96,57 @@ namespace BME_Inventory
             }
         }
 
-        private void insert_btn_Click(object sender, EventArgs e)
+        private static void ClearTextBoxes(Control control)
+        {
+            foreach (Control c in control.Controls)
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Clear();
+                }
+                else
+                {
+                    ClearTextBoxes(c);
+                }
+            }
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string make = make_txt1.Text;
+                string model = model_txt1.Text;
+
+                if (string.IsNullOrEmpty(make) || string.IsNullOrEmpty(model))
+                {
+                    MessageBox.Show("Both 'Make' and 'Model' fields must be filled.");
+                }
+                else
+                {
+                    dbManager.OpenConnection();
+
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO parts(make, model) VALUES(@make, @model)", dbManager.GetConnection()))
+                    {
+                        cmd.Parameters.AddWithValue("@make", make);
+                        cmd.Parameters.AddWithValue("@model", model);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    ClearTextBoxes(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                dbManager.CloseConnection();
+            }
+        }
+
+        private void save_btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -152,115 +202,6 @@ namespace BME_Inventory
             finally
             {
                 dbManager.CloseConnection();
-            }
-        }
-
-        private void ClearTextBoxes(Control control)
-        {
-            foreach (Control c in control.Controls)
-            {
-                if (c is TextBox)
-                {
-                    ((TextBox)c).Clear();
-                }
-                else
-                {
-                    ClearTextBoxes(c);
-                }
-            }
-        }
-
-        private void model_btn1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string make = make_txt1.Text;
-                string model = model_txt1.Text;
-
-                if (string.IsNullOrEmpty(make) || string.IsNullOrEmpty(model))
-                {
-                    MessageBox.Show("Both 'Make' and 'Model' fields must be filled.");
-                }
-                else
-                {
-                    dbManager.OpenConnection();
-
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO parts(make, model) VALUES(@make, @model)", dbManager.GetConnection()))
-                    {
-                        cmd.Parameters.AddWithValue("@make", make);
-                        cmd.Parameters.AddWithValue("@model", model);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    ClearTextBoxes(this);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                dbManager.CloseConnection();
-            }
-        }
-
-        private void btn_database_adduser_Click(object sender, EventArgs e)
-        {
-            Database database = new Database(dbManager);
-            database.Show();
-            this.Hide();
-        }
-
-        private void btn_distribute_adduser_Click(object sender, EventArgs e)
-        {
-            Distribute distribute = new Distribute(dbManager);
-            distribute.Show();
-            this.Hide();
-        }
-
-        private void btn_receive_adduser_Click(object sender, EventArgs e)
-        {
-            Recieve receive = new Recieve(dbManager);
-            receive.Show();
-            this.Hide();
-        }
-
-        private void btn_adduser_adduser_Click(object sender, EventArgs e)
-        {
-            AddUser adduser = new AddUser(dbManager);
-            adduser.Show();
-            this.Hide();
-        }
-
-        private void btn_dev_adduser_Click(object sender, EventArgs e)
-        {
-            DeveloperDashboard developerDashboard = new DeveloperDashboard(dbManager);
-            developerDashboard.Show();
-            this.Hide();
-        }
-
-        private void btn_home_create_Click(object sender, EventArgs e)
-        {
-            Dashboard dashboard = new Dashboard(dbManager);
-            dashboard.Show();
-            this.Hide();
-        }
-
-        private void btn_logout_adduser_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Login loginForm = new Login(dbManager);
-            loginForm.Show();
-        }
-
-        private void btn_exit_adduser_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
             }
         }
     }

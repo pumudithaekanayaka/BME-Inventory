@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace BME_Inventory
 {
@@ -108,9 +109,9 @@ namespace BME_Inventory
                         {
                             part_name_txt_edit.Text = reader.GetString(1);
                             equip_name_txt_edit.Text = reader.GetString(2);
-                            upper_lbl_edit.Text = reader.GetDecimal(3).ToString();
-                            lower_lbl_edit.Text = reader.GetDecimal(4).ToString();
-                            stock_lbl_edit.Text = reader.GetDecimal(5).ToString();
+                            upper_lbl_edit.Text = reader.GetDecimal(3).ToString(CultureInfo.InvariantCulture);
+                            lower_lbl_edit.Text = reader.GetDecimal(4).ToString(CultureInfo.InvariantCulture);
+                            stock_lbl_edit.Text = reader.GetDecimal(5).ToString(CultureInfo.InvariantCulture);
                             desc_txt_edit.Text = reader.GetString(6);
                             make_lbl_edit.Text = reader.GetString(7);
                             model_lbl_edit.Text = reader.GetString(8);
@@ -238,7 +239,7 @@ namespace BME_Inventory
 
         private void btn_receive_edit_Click(object sender, EventArgs e)
         {
-            Recieve receive = new Recieve(dbManager);
+            DistributeForm receive = new DistributeForm(dbManager);
             receive.Show();
             this.Hide();
         }

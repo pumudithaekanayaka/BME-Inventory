@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
-            Desktop_pnl_dashboard = new Panel();
             log_lbl_dashboard = new Label();
             label3 = new Label();
             label1 = new Label();
@@ -38,25 +37,8 @@
             btn_distribute_logs = new Button();
             refresh_btn_dashboard = new Button();
             dataGridView1 = new DataGridView();
-            Desktop_pnl_dashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // Desktop_pnl_dashboard
-            // 
-            Desktop_pnl_dashboard.Controls.Add(log_lbl_dashboard);
-            Desktop_pnl_dashboard.Controls.Add(label3);
-            Desktop_pnl_dashboard.Controls.Add(label1);
-            Desktop_pnl_dashboard.Controls.Add(btn_received_logs);
-            Desktop_pnl_dashboard.Controls.Add(dateTimePicker1);
-            Desktop_pnl_dashboard.Controls.Add(btn_distribute_logs);
-            Desktop_pnl_dashboard.Controls.Add(refresh_btn_dashboard);
-            Desktop_pnl_dashboard.Controls.Add(dataGridView1);
-            Desktop_pnl_dashboard.Dock = DockStyle.Fill;
-            Desktop_pnl_dashboard.Location = new Point(0, 0);
-            Desktop_pnl_dashboard.Name = "Desktop_pnl_dashboard";
-            Desktop_pnl_dashboard.Size = new Size(1315, 879);
-            Desktop_pnl_dashboard.TabIndex = 30;
             // 
             // log_lbl_dashboard
             // 
@@ -65,7 +47,7 @@
             log_lbl_dashboard.BorderStyle = BorderStyle.FixedSingle;
             log_lbl_dashboard.FlatStyle = FlatStyle.Flat;
             log_lbl_dashboard.Font = new Font("Google Sans", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            log_lbl_dashboard.Location = new Point(36, 483);
+            log_lbl_dashboard.Location = new Point(8, 469);
             log_lbl_dashboard.Name = "log_lbl_dashboard";
             log_lbl_dashboard.Size = new Size(70, 27);
             log_lbl_dashboard.TabIndex = 37;
@@ -77,7 +59,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Google Sans", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(40, 378);
+            label3.Location = new Point(12, 364);
             label3.Name = "label3";
             label3.Size = new Size(261, 21);
             label3.TabIndex = 36;
@@ -87,7 +69,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Google Sans", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(40, 333);
+            label1.Location = new Point(12, 319);
             label1.Name = "label1";
             label1.Size = new Size(279, 21);
             label1.TabIndex = 35;
@@ -95,43 +77,52 @@
             // 
             // btn_received_logs
             // 
+            btn_received_logs.BackColor = Color.CornflowerBlue;
+            btn_received_logs.FlatAppearance.BorderSize = 0;
+            btn_received_logs.FlatStyle = FlatStyle.Flat;
             btn_received_logs.Font = new Font("Google Sans", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_received_logs.Location = new Point(325, 372);
+            btn_received_logs.Location = new Point(297, 358);
             btn_received_logs.Name = "btn_received_logs";
             btn_received_logs.Size = new Size(102, 32);
             btn_received_logs.TabIndex = 34;
             btn_received_logs.Text = "Load";
-            btn_received_logs.UseVisualStyleBackColor = true;
+            btn_received_logs.UseVisualStyleBackColor = false;
             btn_received_logs.Click += btn_received_logs_Click;
             // 
             // dateTimePicker1
             // 
             dateTimePicker1.Font = new Font("Google Sans", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Location = new Point(40, 430);
+            dateTimePicker1.Location = new Point(12, 416);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(327, 29);
             dateTimePicker1.TabIndex = 33;
             // 
             // btn_distribute_logs
             // 
+            btn_distribute_logs.BackColor = Color.CornflowerBlue;
+            btn_distribute_logs.FlatAppearance.BorderSize = 0;
+            btn_distribute_logs.FlatStyle = FlatStyle.Flat;
             btn_distribute_logs.Font = new Font("Google Sans", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_distribute_logs.Location = new Point(325, 326);
+            btn_distribute_logs.Location = new Point(297, 312);
             btn_distribute_logs.Name = "btn_distribute_logs";
             btn_distribute_logs.Size = new Size(102, 32);
             btn_distribute_logs.TabIndex = 32;
             btn_distribute_logs.Text = "Load";
-            btn_distribute_logs.UseVisualStyleBackColor = true;
+            btn_distribute_logs.UseVisualStyleBackColor = false;
             btn_distribute_logs.Click += btn_distribute_logs_Click;
             // 
             // refresh_btn_dashboard
             // 
+            refresh_btn_dashboard.BackColor = Color.CornflowerBlue;
+            refresh_btn_dashboard.FlatAppearance.BorderSize = 0;
+            refresh_btn_dashboard.FlatStyle = FlatStyle.Flat;
             refresh_btn_dashboard.Font = new Font("Google Sans", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            refresh_btn_dashboard.Location = new Point(66, 222);
+            refresh_btn_dashboard.Location = new Point(12, 269);
             refresh_btn_dashboard.Name = "refresh_btn_dashboard";
             refresh_btn_dashboard.Size = new Size(102, 32);
             refresh_btn_dashboard.TabIndex = 31;
             refresh_btn_dashboard.Text = "Refresh";
-            refresh_btn_dashboard.UseVisualStyleBackColor = true;
+            refresh_btn_dashboard.UseVisualStyleBackColor = false;
             refresh_btn_dashboard.Click += refresh_btn_dashboard_Click_1;
             // 
             // dataGridView1
@@ -140,23 +131,30 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.GridColor = SystemColors.ControlLightLight;
-            dataGridView1.Location = new Point(36, 27);
+            dataGridView1.GridColor = SystemColors.ControlLight;
+            dataGridView1.Location = new Point(12, 13);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(904, 153);
+            dataGridView1.Size = new Size(978, 244);
             dataGridView1.TabIndex = 30;
             // 
             // Dashboard
             // 
-            AutoScaleMode = AutoScaleMode.None;
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
-            AutoSize = true;
-            BackColor = Color.Snow;
-            ClientSize = new Size(1315, 879);
-            Controls.Add(Desktop_pnl_dashboard);
+            BackColor = Color.White;
+            ClientSize = new Size(1132, 553);
+            Controls.Add(log_lbl_dashboard);
+            Controls.Add(refresh_btn_dashboard);
+            Controls.Add(label3);
+            Controls.Add(dateTimePicker1);
+            Controls.Add(dataGridView1);
+            Controls.Add(btn_received_logs);
+            Controls.Add(label1);
+            Controls.Add(btn_distribute_logs);
             Font = new Font("Nunito", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Dashboard";
@@ -164,14 +162,12 @@
             Text = "Dashboard";
             TransparencyKey = Color.Cyan;
             WindowState = FormWindowState.Maximized;
-            Desktop_pnl_dashboard.ResumeLayout(false);
-            Desktop_pnl_dashboard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-        private Panel Desktop_pnl_dashboard;
         private Label log_lbl_dashboard;
         private Label label3;
         private Label label1;

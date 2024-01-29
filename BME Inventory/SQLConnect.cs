@@ -1,22 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using MySql.Data;
+using System.Data.SqlClient;
+using Npgsql;
+using System.Data.SQLite;
 
 namespace BME_Inventory
 {
-    public partial class DatabaseConnection : Form
+    public partial class SQLConnect : Form
     {
+
         private DatabaseManager dbManager;
         private string serverName;
         private string databaseName;
+        private string username;
+        private string password;
 
-        public DatabaseConnection(DatabaseManager databaseManager, bool firstRun)
+        public SQLConnect(DatabaseManager databaseManager)
         {
             InitializeComponent();
             dbManager = databaseManager;
-            this.AutoScaleMode = AutoScaleMode.Dpi;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
         public string ServerName
@@ -31,18 +41,42 @@ namespace BME_Inventory
             set { databaseName = value; }
         }
 
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
         public string ConnectionString
         {
             get
             {
-                return $"Data Source={ServerName};Initial Catalog={DatabaseName};Integrated Security=True";
+                // Use the SqlConnectionStringBuilder to build the connection string
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
+                {
+                    DataSource = ServerName,
+                    InitialCatalog = DatabaseName,
+                    IntegratedSecurity = string.IsNullOrWhiteSpace(Username) && string.IsNullOrWhiteSpace(Password),
+                    UserID = string.IsNullOrWhiteSpace(Username) ? null : Username,
+                    Password = string.IsNullOrWhiteSpace(Password) ? null : Password
+                };
+
+                return builder.ToString();
             }
         }
 
-        private void conn_btn_Click(object sender, EventArgs e)
+        private void sql_conn_btn_Click(object sender, EventArgs e)
         {
-            string enteredServerName = server_txt.Text;
-            string enteredDatabaseName = db_txt.Text;
+            string enteredServerName = server_add_txt.Text;
+            string enteredDatabaseName = database_txt.Text;
+            string enteredUsername = username_txt.Text;
+            string enteredPassword = password_txt.Text;
 
             if (string.IsNullOrWhiteSpace(enteredServerName) || string.IsNullOrWhiteSpace(enteredDatabaseName))
             {
@@ -52,6 +86,8 @@ namespace BME_Inventory
 
             serverName = enteredServerName;
             databaseName = enteredDatabaseName;
+            username = enteredUsername;
+            password = enteredPassword;
 
             if (dbManager != null)
             {
@@ -83,7 +119,15 @@ namespace BME_Inventory
         {
             if (dbManager != null)
             {
-                return dbManager.SearchAndConnectToDatabase(serverName, databaseName);
+
+                string enteredServerName = server_add_txt.Text;
+                string enteredDatabaseName = database_txt.Text;
+                string enteredUsername = username_txt.Text;
+                string enteredPassword = password_txt.Text;
+                // Use the SqlConnectionStringBuilder to build the connection string
+                string connectionString = dbManager.GetConnectionString(enteredServerName, enteredDatabaseName, enteredUsername, enteredPassword);
+
+                return dbManager.SearchAndConnectToDatabase(enteredServerName, enteredDatabaseName, enteredUsername, enteredPassword);
             }
             else
             {
@@ -106,7 +150,7 @@ namespace BME_Inventory
             Properties.Settings.Default.Save();
         }
 
-        private void ShowErrorMessage(string message)
+        private static void ShowErrorMessage(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

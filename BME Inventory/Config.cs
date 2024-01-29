@@ -13,8 +13,6 @@ namespace BME_Inventory
         {
             InitializeComponent();
             dbManager = databaseManager;
-            this.AutoScaleMode = AutoScaleMode.Dpi;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         }
 
         private void cont_btn_select_Click(object sender, EventArgs e)

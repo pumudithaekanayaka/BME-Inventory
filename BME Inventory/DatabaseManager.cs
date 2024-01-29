@@ -17,7 +17,7 @@ namespace BME_Inventory
         {
             LoadConfiguration();
 
-            connection = new SqlConnection(GetConnectionString(ServerName, DatabaseName));
+            connection = new SqlConnection(GetOldConnectionString(ServerName, DatabaseName));
         }
 
         public DatabaseManager(string connectionString)
@@ -59,7 +59,7 @@ namespace BME_Inventory
             }
         }
 
-        public bool SearchAndConnectToDatabase(string serverName, string databaseName)
+        public bool SearchAndConnectToDatabase(string serverName, string databaseName, string username = null, string password = null)
         {
             try
             {
@@ -69,7 +69,15 @@ namespace BME_Inventory
                 SaveConfiguration();
                 SaveToRegistry();
 
-                connection.ConnectionString = GetConnectionString(ServerName, DatabaseName);
+                if (string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(password))
+                {
+                    connection.ConnectionString = GetOldConnectionString(ServerName, DatabaseName);
+                }
+                else
+                {
+                    connection.ConnectionString = GetConnectionString(ServerName, DatabaseName, username, password);
+                }
+
                 connection.Open();
                 return true;
             }
@@ -85,14 +93,30 @@ namespace BME_Inventory
             }
         }
 
+
         private ConnectionState CheckConnectionState()
         {
             return connection.State;
         }
 
-        private string GetConnectionString(string serverName, string databaseName)
+        private string GetOldConnectionString(string serverName, string databaseName)
         {
             return $"Data Source={serverName};Initial Catalog={databaseName};Integrated Security=True";
+        }
+
+
+        public string GetConnectionString(string serverName, string databaseName, string username, string password)
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
+            {
+                DataSource = serverName,
+                InitialCatalog = databaseName,
+                IntegratedSecurity = string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(password),
+                UserID = string.IsNullOrWhiteSpace(username) ? null : username,
+                Password = string.IsNullOrWhiteSpace(password) ? null : password
+            };
+
+            return builder.ToString();
         }
 
         private void SaveConfiguration()
